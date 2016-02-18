@@ -1,3 +1,9 @@
-report/*.sty
+data/
+
 report/sig-*
+report/*.sty
+report/*.aux
+report/*.log
+report/*.cls
+report/*.synctex.gz
 
