@@ -1,4 +1,9 @@
+*.pyc
+*.py~
+
 data/
+index/
+luke/
 
 report/sig-*
 report/*.sty
