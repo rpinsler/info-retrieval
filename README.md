@@ -1,2 +1,22 @@
 # info-retrieval
-Group Assignment for CI6226 Information Retrieval and Analysis
+
+This is a basic search engine for the [dblp](http://dblp.uni-trier.de/) computer science bibliography with applications in Information Retrieval. It is built on top of [PyLucene](https://lucene.apache.org/pylucene/index.html), a python extension of the highly-popular full-text search engine [Lucene](https://lucene.apache.org/).
+
+------------------
+
+## Installation
+
+The project has the following dependencies:
+- PyLucene (see [installation instructions](http://lucene.apache.org/pylucene/install.html))
+- lxml
+
+To set up the project, download the xml and dtd files of the [dblp dataset](http://dblp.uni-trier.de/xml/
+) into the *data/* folder.
+
+------------------
+
+## Usage
+
+------------------
+
+## Examples
