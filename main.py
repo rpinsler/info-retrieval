@@ -14,7 +14,7 @@ if __name__ == "__main__":
     # DATA_DIR = 'data/dblp.xml'
     DATA_DIR = 'data/dblp_small.xml'
     INDEX_DIR = 'index'
-    topN = 100
+    topN = 10
 
     lucene.initVM()
 
@@ -25,7 +25,10 @@ if __name__ == "__main__":
     # index documents
     Indexer(INDEX_DIR, context)
 
-    q = raw_input("Query:")
+    print('Finished indexing. You can search now,' +
+          ' but currently only on the title field.' +
+          ' Try e.g. "optimization".')
+    q = raw_input("Query: ")
     directory = SimpleFSDirectory(File(INDEX_DIR))
     searcher = IndexSearcher(DirectoryReader.open(directory))
     analyzer = StandardAnalyzer(Version.LUCENE_CURRENT)

@@ -1,7 +1,8 @@
 from java.io import File
 from org.apache.lucene.analysis.standard import StandardAnalyzer
-from org.apache.lucene.document import Document, Field, FieldType
-from org.apache.lucene.index import IndexWriter, IndexWriterConfig, FieldInfo
+from org.apache.lucene.document import Document, IntField, \
+     StringField, TextField, Field
+from org.apache.lucene.index import IndexWriter, IndexWriterConfig
 from org.apache.lucene.store import SimpleFSDirectory
 from org.apache.lucene.util import Version
 
@@ -48,29 +49,32 @@ class Indexer():
         # TODO: (optionally) perform lower case conversion on title
         # TODO: (optionally) use stopwords on title
 
-        # TODO: set indexing options properly
-        t1 = FieldType()
-        t1.setIndexed(True)
-        t1.setStored(True)
-        t1.setTokenized(False)
-        t1.setIndexOptions(FieldInfo.IndexOptions.DOCS_AND_FREQS)
+        # meaning of Field.Store.YES:
+        # Store the original field value in the index.
+        # This is useful for short texts like a document's title which should
+        # be displayed with the results. The value is stored in its
+        # original form, i.e. no analyzer is used before it is stored.
 
         try:
             doc = Document()
             # remove <i></i> tags that are sometimes used in titles
+            # turns out more HTML tags may be used: ref, sup, sub, i, tt
             etree.strip_tags(elem, 'i')
-            doc.add(Field('id', elem.get('key'), t1))
+            # index but don't tokenize id
+            doc.add(StringField('id', elem.get('key'), Field.Store.YES))
             for ch in elem:
                 if ch.tag == 'title':
-                    doc.add(Field('title', ch.text, t1))
+                    doc.add(TextField('title', ch.text, Field.Store.YES))
                 elif ch.tag == 'author':
-                    pass
-                    # how to add multiple entries to same field?
-                    # entry.setdefault('authors', []).append(ch.text)
+                    # should probably only tokenize, nothing else
+                    doc.add(TextField('authors', ch.text, Field.Store.YES))
                 elif ch.tag == 'year':
-                    doc.add(Field('year', ch.text, t1))
+                    # IntField allows range searches, but it's more difficult
+                    # doc.add(IntField('year', int(ch.text), Field.Store.YES))
+                    doc.add(StringField('year', ch.text, Field.Store.YES))
                 elif ch.tag == 'journal' or ch.tag == 'booktitle':
-                    doc.add(Field('venue', ch.text, t1))
+                    # should probably only tokenize, nothing else
+                    doc.add(TextField('venue', ch.text, Field.Store.YES))
 
             self.writer.addDocument(doc)
         except Exception, e:

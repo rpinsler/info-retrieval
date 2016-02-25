@@ -8,10 +8,10 @@ def search(q, searcher, analyzer, N):
     # TODO: allow free text keyword queries on any attributes
     # TODO: parameterize freetext search on specific attributes
     # TODO: support double quotation marks for phrases (e.g. "event detection")
-    # (currently hard-coded as 'year')
-    query = QueryParser(Version.LUCENE_CURRENT, 'year', analyzer).parse(q)
+    # (currently hard-coded as 'title')
+    query = QueryParser(Version.LUCENE_CURRENT, 'title', analyzer).parse(q)
     docs = searcher.search(query, N).scoreDocs
-    # print "%s total matching documents." % len(docs)
+    print "%s total matching documents." % len(docs)
     for doc in docs:
         d = searcher.doc(doc.doc)
         try:
