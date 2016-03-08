@@ -39,9 +39,7 @@ if __name__ == "__main__":
                 StandardAnalyzer(Version.LUCENE_CURRENT), per_field)
     Indexer(os.path.join(base_dir, INDEX_DIR), context, analyzer)
 
-    print('Finished indexing. You can search now,' +
-          ' but currently only on the title field.' +
-          ' Try e.g. "optimization".')
+    print('Finished indexing.')
     directory = SimpleFSDirectory(File(INDEX_DIR))
     searcher = IndexSearcher(DirectoryReader.open(directory))
     # q = raw_input("Query: ")

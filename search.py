@@ -1,15 +1,16 @@
-from org.apache.lucene.queryparser.classic import QueryParser
+from org.apache.lucene.queryparser.classic import QueryParser, MultiFieldQueryParser
 from org.apache.lucene.util import Version
 
 # this should probably be turned into a class like Indexer in index.py
 
 
-def search(q, searcher, analyzer, N):
-    # TODO: allow free text keyword queries on any attributes
-    # TODO: parameterize freetext search on specific attributes
+def search(q, fields, searcher, analyzer, N):
     # TODO: support double quotation marks for phrases (e.g. "event detection")
-    # (currently hard-coded as 'title')
-    query = QueryParser(Version.LUCENE_CURRENT, 'title', analyzer).parse(q)
+    if fields is None:
+        fields = ['title', 'authors', 'year', 'venue']
+    parser = MultiFieldQueryParser(Version.LUCENE_CURRENT, fields, analyzer)
+    query = MultiFieldQueryParser.parse(parser, q)
+    # query = QueryParser(Version.LUCENE_CURRENT, 'title', analyzer).parse(q)
     docs = searcher.search(query, N).scoreDocs
     print "%s total matching documents." % len(docs)
     for doc in docs:
@@ -32,7 +33,18 @@ def run(searcher, analyzer, N):
             return
         print
         print "Searching for: ", q
-        query = QueryParser(Version.LUCENE_CURRENT, 'title', analyzer).parse(q)
+
+        fields = raw_input("Fields to search through (comma separated list): ")
+        if fields == '':
+            fields = ['title', 'authors', 'year', 'venue']
+        else:
+            fields = fields.split(",")
+
+        print
+        print "Searching in fields: ", fields
+        parser = MultiFieldQueryParser(Version.LUCENE_CURRENT, fields, analyzer)
+        query = MultiFieldQueryParser.parse(parser, q)
+        print query
         docs = searcher.search(query, N).scoreDocs
         print "%s total matching documents." % len(docs)
         for doc in docs:
