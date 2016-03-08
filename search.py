@@ -28,11 +28,18 @@ def run(searcher, analyzer, N):
     while True:
         print
         print "Hit enter with no input to quit."
-        q = raw_input("Query: ")
-        if q == '':
+        user_query = raw_input("Query: ")
+        if user_query == '':
             return
         print
-        print "Searching for: ", q
+        print "Searching for: ", user_query
+        phrases = re.findall(r'"([^"]*)"', user_query)
+        q = re.sub(r'"([^"]*)"', "", user_query)
+        print "Detected phrases: ", phrases
+
+        # p = PhraseQuery()
+        # for phrase in phrases:
+        #   p.add(Term(somefield, phrase)
 
         fields = raw_input("Fields to search through (comma separated list): ")
         if fields == '':
