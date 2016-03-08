@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<form action="{{ url_for('query') }}" id="f_search" role="search" method="get">
+        <div class="input-group" id="adv-search">
+            <input type="text" name="q" class="form-control" placeholder="Search"/>
+            <div class="input-group-btn">
+                <div class="btn-group" role="group">
+                    <!-- <div class="dropdown dropdown-lg">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <form class="form-horizontal" role="form">
+                              <div class="form-group">
+                                <label for="contain">Author</label>
+                                <input class="form-control" type="text" />
+                              </div>
+                              <div class="form-group">
+                                <label for="contain">Contains the words</label>
+                                <input class="form-control" type="text" />
+                              </div>
+                              <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                    -->
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+ <div class="row">
+  <div class="col-lg-6">
+  	<ul class=results>
+  	{% for result in results %}
+  	  <li><h4>{{ result.title }}</h4>{{ result.text|safe }}
+  	{% else %}
+  	  <li><em>Unbelievable. No results here so far</em>
+  	{% endfor %}
+  	</ul>
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+{% endblock %}
