@@ -1,18 +1,46 @@
 from java.io import File
-from org.apache.lucene.analysis.standard import StandardAnalyzer
-from org.apache.lucene.document import Document, IntField, \
-     StringField, TextField, Field
+from org.apache.lucene.analysis.standard import StandardAnalyzer, \
+     StandardTokenizer, StandardFilter
+from org.apache.lucene.document import Document, StringField, TextField, Field
 from org.apache.lucene.index import IndexWriter, IndexWriterConfig
+from org.apache.pylucene.analysis import PythonAnalyzer
 from org.apache.lucene.store import SimpleFSDirectory
 from org.apache.lucene.util import Version
+from org.apache.lucene.analysis.core import LowerCaseFilter, StopFilter, \
+     StopAnalyzer, SimpleAnalyzer, WhitespaceAnalyzer
+from org.apache.lucene.analysis.en import PorterStemFilter
 
 from lxml import etree
+import os
+
+
+class CustomAnalyzer(PythonAnalyzer):
+    def __init__(self, config):
+        self.lowercase = config['lowercase']
+        self.stemming = config['stemming']
+        self.stopwords = config['stopwords']
+        PythonAnalyzer.__init__(self)
+
+    def createComponents(self, fieldName, reader):
+        source = StandardTokenizer(Version.LUCENE_CURRENT, reader)
+        filter = StandardFilter(Version.LUCENE_CURRENT, source)
+        if self.lowercase:
+            filter = LowerCaseFilter(Version.LUCENE_CURRENT, filter)
+        if self.stemming:
+            filter = PorterStemFilter(filter)
+        if self.stopwords:
+            filter = StopFilter(Version.LUCENE_CURRENT, filter,
+                                StopAnalyzer.ENGLISH_STOP_WORDS_SET)
+        return self.TokenStreamComponents(source, filter)
 
 
 class Indexer():
-    def __init__(self, index_dir, context):
-        store = SimpleFSDirectory(File(index_dir))
-        analyzer = StandardAnalyzer(Version.LUCENE_CURRENT)
+    def __init__(self, store_dir, context, analyzer):
+
+        if not os.path.exists(store_dir):
+            os.mkdir(store_dir)
+
+        store = SimpleFSDirectory(File(store_dir))
         config = IndexWriterConfig(Version.LUCENE_CURRENT, analyzer)
         config.setOpenMode(IndexWriterConfig.OpenMode.CREATE)
         self.writer = IndexWriter(store, config)
@@ -57,23 +85,20 @@ class Indexer():
 
         try:
             doc = Document()
-            # remove <i></i> tags that are sometimes used in titles
-            # turns out more HTML tags may be used: ref, sup, sub, i, tt
-            etree.strip_tags(elem, 'i')
+            # remove <i></i> tags etc. that are sometimes used
+            etree.strip_tags(elem, 'i', 'ref', 'sub', 'sup', 'tt')
             # index but don't tokenize id
             doc.add(StringField('id', elem.get('key'), Field.Store.YES))
             for ch in elem:
                 if ch.tag == 'title':
                     doc.add(TextField('title', ch.text, Field.Store.YES))
                 elif ch.tag == 'author':
-                    # should probably only tokenize, nothing else
                     doc.add(TextField('authors', ch.text, Field.Store.YES))
                 elif ch.tag == 'year':
                     # IntField allows range searches, but it's more difficult
                     # doc.add(IntField('year', int(ch.text), Field.Store.YES))
                     doc.add(StringField('year', ch.text, Field.Store.YES))
                 elif ch.tag == 'journal' or ch.tag == 'booktitle':
-                    # should probably only tokenize, nothing else
                     doc.add(TextField('venue', ch.text, Field.Store.YES))
 
             self.writer.addDocument(doc)
