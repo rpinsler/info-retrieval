@@ -21,3 +21,23 @@ def search(q, searcher, analyzer, N):
 
     # return top N results along with rank, scores, docID and snippets
     return docs
+
+
+def run(searcher, analyzer, N):
+    while True:
+        print
+        print "Hit enter with no input to quit."
+        q = raw_input("Query: ")
+        if q == '':
+            return
+        print
+        print "Searching for: ", q
+        query = QueryParser(Version.LUCENE_CURRENT, 'title', analyzer).parse(q)
+        docs = searcher.search(query, N).scoreDocs
+        print "%s total matching documents." % len(docs)
+        for doc in docs:
+            d = searcher.doc(doc.doc)
+            try:
+                print(d)  # might return ascii error when converting to string
+            except Exception, e:
+                print e

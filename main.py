@@ -10,7 +10,7 @@ from java.util import HashMap
 from java.io import File
 
 from lxml import etree
-from search import search
+from search import search, run
 from index import Indexer, CustomAnalyzer
 
 INDEX_DIR = 'index'
@@ -42,8 +42,8 @@ if __name__ == "__main__":
     print('Finished indexing. You can search now,' +
           ' but currently only on the title field.' +
           ' Try e.g. "optimization".')
-    q = raw_input("Query: ")
     directory = SimpleFSDirectory(File(INDEX_DIR))
     searcher = IndexSearcher(DirectoryReader.open(directory))
-    # analyzer = StandardAnalyzer(Version.LUCENE_CURRENT)
-    search(q, searcher, analyzer, topN)
+    # q = raw_input("Query: ")
+    # search(q, searcher, analyzer, topN)
+    run(searcher, analyzer, topN)
