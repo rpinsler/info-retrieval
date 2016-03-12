@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="row">
+<div class="row search">
 	<div class="col-md-12">
 		<form action="{{ url_for('query') }}" id="f_search" role="search" method="get">
         <div class="input-group" id="adv-search">
@@ -34,13 +34,23 @@
 
  <div class="row">
   <div class="col-lg-6">
-  	<ul class=results>
+  {% for meta in metadata %}
+  <p class="text-muted">{{results|length}} results found ({{meta.time}}s)</p>
+  {% else %}
+  <!-- show nothing -->
+  {% endfor %}
   	{% for result in results %}
-  	  <li><h4>{{ result.title }}</h4>{{ result.text|safe }}
-  	{% else %}
-  	  <li><em>Unbelievable. No results here so far</em>
+    <article class="search-result row">
+          <div class="col-xs-12 col-sm-12 col-md-12 excerpet">
+            <h4 class="title"><strong class="score" title="Relevance score: {{ result.score }}">{{result.rank}}</strong><a href="#">{{ result.title }}</a></h4>
+            <span class="text-success">{{ result.authors }} - {{ result.year }} - {{ result.venue }}</span>
+            <a href="#" data-toggle="tooltip" title="{{ result.key }}"><span class="glyphicon glyphicon-link"></span></a>
+            <p class="snippet">{{ result.text|safe }}</p>
+            <span class="text-info">Relevance score: {{ result.score }}</span>
+          </div>
+          <span class="clearfix borda"></span>
+        </article>
   	{% endfor %}
-  	</ul>
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
 {% endblock %}
