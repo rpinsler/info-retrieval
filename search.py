@@ -6,6 +6,7 @@ from org.apache.lucene.search import IndexSearcher
 from org.apache.lucene.index import DirectoryReader
 from java.io import File
 import re
+import time
 
 
 class Searcher():
@@ -34,7 +35,10 @@ class Searcher():
                                        self.analyzer)
         query = MultiFieldQueryParser.parse(parser, q)
         print query
+        start = time.clock()
         docs = self.searcher.search(query, N).scoreDocs
+        end = time.clock()
+        duration = end-start
         print "%s total matching documents." % len(docs)
         for doc in docs:
             d = self.searcher.doc(doc.doc)
@@ -44,7 +48,7 @@ class Searcher():
                         print e
 
         # return top N results along with rank, scores, docID and snippets
-        return docs
+        return docs, duration
 
     def run(self, N=0):
         while True:

@@ -58,3 +58,11 @@
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
 {% endblock %}
+
+{% block js_footer %}
+{{ super() }}
+<script type="text/javascript">
+  $(".form-control").val('{{query}}')
+</script>
+
+{% endblock %}
