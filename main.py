@@ -1,16 +1,12 @@
 import os
 import lucene
-from org.apache.lucene.search import IndexSearcher
-from org.apache.lucene.index import DirectoryReader
 from org.apache.lucene.analysis.standard import StandardAnalyzer
-from org.apache.lucene.store import SimpleFSDirectory
 from org.apache.lucene.util import Version
 from org.apache.lucene.analysis.miscellaneous import PerFieldAnalyzerWrapper
 from java.util import HashMap
-from java.io import File
 
 from lxml import etree
-from search import search, run
+from search import Searcher
 from index import Indexer, CustomAnalyzer
 
 INDEX_DIR = 'index'
@@ -20,8 +16,8 @@ DATA_DIR = 'data/dblp_small.xml'
 if __name__ == "__main__":
 
     # user inputs
-    base_dir = os.path.expanduser("~") + \
-               "/Semester_NTU/10 Information Retrieval and Analysis/info-retrieval"
+    base_dir = os.path.expanduser("~") + "/Semester_NTU/" + \
+               "10 Information Retrieval and Analysis/info-retrieval"
     topN = 10
 
     lucene.initVM()
@@ -40,8 +36,7 @@ if __name__ == "__main__":
     Indexer(os.path.join(base_dir, INDEX_DIR), context, analyzer)
 
     print('Finished indexing.')
-    directory = SimpleFSDirectory(File(INDEX_DIR))
-    searcher = IndexSearcher(DirectoryReader.open(directory))
+    searcher = Searcher(os.path.join(base_dir, INDEX_DIR), analyzer)
     # q = raw_input("Query: ")
-    # search(q, searcher, analyzer, topN)
-    run(searcher, analyzer, topN)
+    # searcher.search(q, topN)
+    searcher.run(topN)

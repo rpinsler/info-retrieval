@@ -2,7 +2,7 @@
 {% block content %}
 <div class="row search">
 	<div class="col-md-12">
-		<form action="{{ url_for('query') }}" id="f_search" role="search" method="get">
+		<form action="{{ url_for('search') }}" id="f_search" role="search" method="get">
         <div class="input-group" id="adv-search">
             <input type="text" name="q" class="form-control" placeholder="Search"/>
             <div class="input-group-btn">
@@ -34,11 +34,15 @@
 
  <div class="row">
   <div class="col-lg-6">
-  {% for meta in metadata %}
-  <p class="text-muted">{{results|length}} results found ({{meta.time}}s)</p>
+  {% if metadata %}
+    {% if results|length == 1 %}
+      <p class="text-muted">{{results|length}} result found ({{metadata.time}}s)</p>
+    {% else %}
+      <p class="text-muted">{{results|length}} results found ({{metadata.time}}s)</p>
+    {% endif %}    
   {% else %}
   <!-- show nothing -->
-  {% endfor %}
+  {% endif %}
   	{% for result in results %}
     <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-12 excerpet">
