@@ -1,0 +1,5 @@
+Download the following files from the dblp dataset (http://dblp.uni-trier.de/xml/) into this folder:
+- dblp.xml.gz
+- dblp.dtd
+
+Extract dblp.xml.gz as dblp.xml and place it in this folder.
