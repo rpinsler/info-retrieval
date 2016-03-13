@@ -37,6 +37,6 @@ if __name__ == "__main__":
 
     print('Finished indexing.')
     searcher = Searcher(os.path.join(base_dir, INDEX_DIR), analyzer)
-    # q = raw_input("Query: ")
-    # searcher.search(q, topN)
+    # # q = raw_input("Query: ")
+    # # searcher.search(q, topN)
     searcher.run(topN)
