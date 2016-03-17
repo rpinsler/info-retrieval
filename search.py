@@ -2,11 +2,14 @@ from org.apache.lucene.queryparser.classic import QueryParser, \
      MultiFieldQueryParser
 from org.apache.lucene.store import SimpleFSDirectory
 from org.apache.lucene.util import Version
-from org.apache.lucene.search import IndexSearcher
-from org.apache.lucene.index import DirectoryReader
+from org.apache.lucene.search import IndexSearcher, BooleanClause, \
+     BooleanQuery, PhraseQuery
+from org.apache.lucene.index import DirectoryReader, Term
 from java.io import File
 import re
 import time
+
+FIELDS = ['title', 'authors', 'year', 'venue']
 
 
 class Searcher():
@@ -15,50 +18,114 @@ class Searcher():
         self.searcher = IndexSearcher(DirectoryReader.open(directory))
         self.analyzer = analyzer
 
-    def search(self, user_query, fields=[''], N=0):
-        # TODO: support double quotation marks for phrases (e.g. "event detection")
-        print "Searching for: ", user_query
-        # phrases = re.findall(r'"([^"]*)"', user_query)
-        # q = re.sub(r'"([^"]*)"', "", user_query)
-        # print "Detected phrases: ", phrases
-        # p = PhraseQuery()
-        # for phrase in phrases:
-        #   p.add(Term(somefield, phrase)
+    def search(self, query='', adv_query=None, N=0):
+        query = query.strip()
+        search_query = BooleanQuery()
 
-        if fields == ['']:
-            fields = ['title', 'authors', 'year', 'venue']
+        if query == '' and adv_query is None:
+            return [], 0, search_query
 
-        print
-        print "Searching in fields: ", fields
-        q = user_query
-        parser = MultiFieldQueryParser(Version.LUCENE_CURRENT, fields,
-                                       self.analyzer)
-        query = MultiFieldQueryParser.parse(parser, q)
-        print query
+        if query != '':
+            print "Searching for:", query
+        if adv_query is not None:
+            print "Searching for (advanced): ", adv_query
+
+        # evaluate phrases of standard query for title field
+        if query != '':
+            pq, query = self.extract_phrase_query(query, "title")
+            if pq is not None:
+                # phrase queries have high priority
+                search_query.add(pq, BooleanClause.Occur.MUST)
+
+        # evaluate remaining keywords on all fields
+        if query != '':
+            mfqparser = MultiFieldQueryParser(Version.LUCENE_CURRENT, FIELDS,
+                                              self.analyzer)
+            mfq = MultiFieldQueryParser.parse(mfqparser, query)
+            search_query.add(mfq, BooleanClause.Occur.SHOULD)
+
+        # evaluate advanced query options
+        if adv_query is not None:
+            for field, query in adv_query.iteritems():
+                if field == 'title':
+                    pq, query = self.extract_phrase_query(query, field)
+                    if pq is not None:
+                        # phrase queries have high priority
+                        search_query.add(pq, BooleanClause.Occur.MUST)
+
+                if query != '':
+                    q = QueryParser(Version.LUCENE_CURRENT, field,
+                                    self.analyzer).parse(query)
+                    # all advanced query options have high priority
+                    search_query.add(q, BooleanClause.Occur.MUST)
+
+        print "Lucene query: " + str(search_query)
         start = time.clock()
-        docs = self.searcher.search(query, N).scoreDocs
+        docs = self.searcher.search(search_query, N).scoreDocs
         end = time.clock()
         duration = end-start
-        print "%s total matching documents." % len(docs)
-        for doc in docs:
+        print "%s total matching document(s)." % len(docs)
+        if len(docs) > 0:
+            print
+            print "Result list:"
+        for i, doc in enumerate(docs):
             d = self.searcher.doc(doc.doc)
             try:
-                print(d)  # might return ascii error when converting to string
+                # trying to convert doc into string might cause ascii error
+                print str(i+1) + ") " + str(d)
             except Exception, e:
                         print e
 
         # return top N results along with rank, scores, docID and snippets
         return docs, duration
 
+    def extract_phrase_query(self, q, field):
+        phrases = re.findall(r'"([^"]*)"', q)
+        if len(phrases) == 0:
+            return None, q
+
+        q = re.sub(r'"([^"]*)"', "", q).strip()  # query without phrases
+        print "Detected phrases: ", phrases
+
+        bq = BooleanQuery()
+        for phrase in phrases:
+            # pq = PhraseQuery()
+            # for term in filter(None, phrase.split(' ')):
+            #     pq.add(Term(field, term))
+            qparser = QueryParser(field, self.analyzer)
+            pq = qparser.parse(field + ':"' + phrase + '"')
+            # phrase queries have high priority
+            bq.add(pq, BooleanClause.Occur.MUST)
+
+        return bq, q
+
     def run(self, N=0):
         while True:
             print
-            print "Hit enter with no input to quit."
-            user_query = raw_input("Query: ")
-            if user_query == '':
+            print "Standard search. Type ':q' to quit."
+            query = raw_input("Query: ")
+            if query == ':q':
                 return
             print
 
-            fields = raw_input("Fields to search through (comma separated): ")
-            fields = fields.split(",")
-            self.search(user_query, fields, N)
+            b_adv = raw_input("Use advanced search? (y/n): ")
+            adv_query = None
+            if b_adv == 'y':
+                print "Advanced search. Hit enter with no input to skip field."
+                title = raw_input("Title: ")
+                authors = raw_input("Authors: ")
+                year = raw_input("Year: ")
+                venue = raw_input("Venue: ")
+                values = [title, authors, year, venue]
+                if filter(None, values) != []:
+                    adv_query = dict(zip(FIELDS, values))
+
+            elif b_adv == 'n':
+                print "Proceed without advanced search."
+            else:
+                print "Invalid input. Proceed without advanced search."
+
+            print
+            print "Execute search."
+
+            self.search(query, adv_query, N)

@@ -66,16 +66,6 @@ class Indexer():
         del context
 
     def index_document(self, elem):
-        # index at least the following attributes:
-        # - paper id (or key)
-        # - paper title
-        # - authors
-        # - year of publication
-        # - publication venue: journal for article, booktitle for inproceedings
-
-        # TODO: (optionally) perform stemming on title
-        # TODO: (optionally) perform lower case conversion on title
-        # TODO: (optionally) use stopwords on title
 
         # meaning of Field.Store.YES:
         # Store the original field value in the index.

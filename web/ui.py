@@ -48,7 +48,8 @@ def search():
     vm_env.attachCurrentThread()
     user_query = request.args.get('q', '')
     if user_query == '':
-        return render_template('search.html', results=[], metadata=None, query=user_query)
+        return render_template('search.html', results=[], metadata=None,
+                               query=user_query)
 
     docs, duration = searcher.search(user_query, N=10)
     lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet mauris eu tortor" + \
