@@ -13,10 +13,11 @@ FIELDS = ['title', 'authors', 'year', 'venue']
 
 
 class Searcher():
-    def __init__(self, index_dir, analyzer):
+    def __init__(self, index_dir, analyzer, verbose=True):
         directory = SimpleFSDirectory(File(index_dir))
         self.searcher = IndexSearcher(DirectoryReader.open(directory))
         self.analyzer = analyzer
+        self.verbose = verbose
 
     def search(self, query='', adv_query=None, N=0):
         query = query.strip()
@@ -25,10 +26,11 @@ class Searcher():
         if query == '' and adv_query is None:
             return [], 0
 
-        if query != '':
-            print "Searching for:", query
-        if adv_query is not None:
-            print "Searching for (advanced): ", adv_query
+        if self.verbose:
+            if query != '':
+                print "Searching for:", query
+            if adv_query is not None:
+                print "Searching for (advanced): ", adv_query
 
         # evaluate phrases of standard query for title field
         if query != '':
@@ -59,22 +61,26 @@ class Searcher():
                     # all advanced query options have high priority
                     search_query.add(q, BooleanClause.Occur.MUST)
 
-        print "Lucene query: " + str(search_query)
         start = time.clock()
         docs = self.searcher.search(search_query, N).scoreDocs
         end = time.clock()
         duration = end-start
-        print "%s total matching document(s)." % len(docs)
-        if len(docs) > 0:
-            print
-            print "Result list:"
-        for i, doc in enumerate(docs):
-            d = self.searcher.doc(doc.doc)
-            try:
-                # trying to convert doc into string might cause ascii error
-                print str(i+1) + ") " + str(d)
-            except Exception, e:
-                        print e
+
+        if self.verbose:
+            print "Lucene query: " + str(search_query)
+            print "%s total matching document(s)." % len(docs)
+            if len(docs) > 0:
+                print
+                print "Result list:"
+
+                for i, doc in enumerate(docs):
+                    d = self.searcher.doc(doc.doc)
+                    try:
+                        # trying to convert doc into string might
+                        # cause ascii error
+                        print str(i+1) + ") " + str(d)
+                    except Exception, e:
+                                print e
 
         # return top N results along with rank, scores, docID and snippets
         return docs, duration
@@ -85,7 +91,8 @@ class Searcher():
             return None, q
 
         q = re.sub(r'"([^"]*)"', "", q).strip()  # query without phrases
-        print "Detected phrases: ", phrases
+        if self.verbose:
+            print "Detected phrases: ", phrases
 
         bq = BooleanQuery()
         for phrase in phrases:
