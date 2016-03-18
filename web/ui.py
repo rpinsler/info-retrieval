@@ -33,7 +33,7 @@ app.config.update(
     DEBUG=True,
 )
 
-logger = logging.getLogger('kumologging')
+logger = logging.getLogger('dblp-search')
 logger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
 logger.addHandler(ch)

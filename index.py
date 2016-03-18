@@ -23,15 +23,15 @@ class CustomAnalyzer(PythonAnalyzer):
 
     def createComponents(self, fieldName, reader):
         source = StandardTokenizer(Version.LUCENE_CURRENT, reader)
-        filter = StandardFilter(Version.LUCENE_CURRENT, source)
+        tfilter = StandardFilter(Version.LUCENE_CURRENT, source)
         if self.lowercase:
-            filter = LowerCaseFilter(Version.LUCENE_CURRENT, filter)
+            tfilter = LowerCaseFilter(Version.LUCENE_CURRENT, tfilter)
         if self.stemming:
-            filter = PorterStemFilter(filter)
+            tfilter = PorterStemFilter(tfilter)
         if self.stopwords:
-            filter = StopFilter(Version.LUCENE_CURRENT, filter,
-                                StopAnalyzer.ENGLISH_STOP_WORDS_SET)
-        return self.TokenStreamComponents(source, filter)
+            tfilter = StopFilter(Version.LUCENE_CURRENT, tfilter,
+                                 StopAnalyzer.ENGLISH_STOP_WORDS_SET)
+        return self.TokenStreamComponents(source, tfilter)
 
 
 class Indexer():
