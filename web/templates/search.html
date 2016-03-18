@@ -74,8 +74,9 @@
             <h4 class="title"><strong class="score" title="Relevance score: {{ result.score }}">{{result.rank}}</strong><a href="#">{{ result.title }}</a></h4>
             <span class="text-success">{{ result.authors }} - {{ result.year }} - {{ result.venue }}</span>
             <a href="#" data-toggle="tooltip" title="{{ result.key }}"><span class="glyphicon glyphicon-link"></span></a>
+            <span class="text-muted">Relevance: {{ result.score }}</span>
             <p class="snippet">{{ result.text|safe }}</p>
-            <span class="text-info">Relevance score: {{ result.score }}</span>
+            <!--<span class="text-info">Relevance score: {{ result.score }}</span>-->
           </div>
           <span class="clearfix borda"></span>
         </article>
