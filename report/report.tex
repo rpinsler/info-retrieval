@@ -46,7 +46,8 @@
 % For tracking purposes - this is V2.0 - May 2012
 
 \documentclass{sig-alternate-05-2015}
-
+%\usepackage{hyperref}
+\usepackage{url}
 
 \begin{document}
 
@@ -200,13 +201,13 @@
 
 \section{System Overview}
 
-The search engine is able to index and search publication records listed in the dblp computer science bibliography (DBLP). It is built on top of PyLucene, a Python extension of the open-source software library Lucene that provides text indexing and search capabilities.
+The search engine is able to index and search publication records listed in the dblp computer science bibliography (DBLP)~\cite{dblp}. It is built on top of PyLucene, a Python extension of the open-source software library Lucene~\cite{Lucene} that provides text indexing and search capabilities.
 
 Publication records from DBLP are provided in a single XML file. The dataset comprises of various kinds of record types, such as articles published in a journal or magazine (\emph{article}), papers published in a conference or workshop proceedings (\emph{inproceedings}), books, and PhD theses. From those, only documents that are classified as \emph{article} or \emph{inproceedings} are considered.
 
 \section{Indexing}
 
-To index a record, it first has to be extracted from the XML file before it can be stored. This can be done conveniently using an XML parser. Due to the large file size of the dataset, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the \emph{lxml} Python library that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. During event processing, it is possible to access the current element, i.e. an \emph{article} or \emph{inproceedings} record, and its children, i.e. attributes of the record such as title or year of publication. As some of the publication titles use basic HTML text formatting, HTML tags are removed prior to indexing. 
+To index a record, it first has to be extracted from the XML file before it can be stored. This can be done conveniently using an XML parser. Due to the large file size of the dataset, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the lxml Python library~\cite{lxml} that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. During event processing, it is possible to access the current element, i.e. an \emph{article} or \emph{inproceedings} record, and its children, i.e. attributes of the record such as title or year of publication. As some of the publication titles use basic HTML text formatting, HTML tags are removed prior to indexing. 
 
 Each record is indexed as a Lucene \emph{document}, comprising of the following \emph{fields}: id, title, authors, year and venue (journal or booktitle, depending on the record type). All fields are treated as strings\footnote{The \emph{year} attribute may also be stored as integer, allowing for features like range searches. However, this would require additional effort during search that we try to avoid.}. Field contents are stored in the index, which allows to retrieve them later during search. This is especially useful to enhance search results with additional information when presented to the user. The values of the fields \emph{id} and \emph{year} are stored as-is. All other fields are tokenized ($f_\text{token}$) and further processed, including lowercase conversion ($f_\text{low}$), stemming ($f_\text{stem}$) and removal of stopwords ($f_\text{stop}$). In particular, we use the Porter stemmer and the default stopword list of Lucene, which consists of 33 common English words. Table \ref{tbl:analysis} summarizes the analysis applied to each field.
 
@@ -252,9 +253,7 @@ The search module makes use of the document index to retrieve the most relevant 
 
 \section{User Interface}
 
-There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The web UI is built with Flask, a leightweight Python web framework that leverages Jinja2 as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query.
-
-% In this section, we briefly introduce the latter.
+There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The web UI is built with Flask~\cite{Flask}, a leightweight Python web framework that leverages Jinja2~\cite{Jinja2} as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap~\cite{Bootstrap} to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query.
 
 \begin{figure}[th]
 \caption{Web-based search user interface}
@@ -276,7 +275,7 @@ There are two ways to interact with the search engine: via a text-based command 
 % initial runs of your .tex file to
 % produce the bibliography for the citations in your paper.
 \bibliographystyle{abbrv}
-\bibliography{sigproc}  % sigproc.bib is the name of the Bibliography in this case
+\bibliography{report}  % sigproc.bib is the name of the Bibliography in this case
 % You must have a proper ".bib" file
 %  and remember to run:
 % latex bibtex latex latex
