@@ -54,8 +54,12 @@ def precision(docs, gt):
     pass
 
 
-def f1_score(docs, gt):
-    pass
+def f1_score(precision, recall):
+    if precision+recall == 0:
+        return 0
+
+    f1 = 2*(precision*recall)/(precision+recall)
+    return f1
 
 
 def recall(docs, gt):
