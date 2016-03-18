@@ -23,7 +23,7 @@ class Searcher():
         search_query = BooleanQuery()
 
         if query == '' and adv_query is None:
-            return [], 0, search_query
+            return [], 0
 
         if query != '':
             print "Searching for:", query

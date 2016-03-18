@@ -16,6 +16,7 @@ from search import Searcher
 from index import CustomAnalyzer
 
 INDEX_DIR = 'index'
+FIELDS = ['title', 'authors', 'year', 'venue']
 
 lucene.initVM()
 vm_env = lucene.getVMEnv()
@@ -46,12 +47,18 @@ def index():
 @app.route('/search')
 def search():
     vm_env.attachCurrentThread()
-    user_query = request.args.get('q', '')
-    if user_query == '':
+    query = request.args.get('q', '').strip()
+    title = request.args.get('title', '').strip()
+    authors = request.args.get('authors', '').strip()
+    year = request.args.get('year', '').strip()
+    venue = request.args.get('venue', '').strip()
+    values = [title, authors, year, venue]
+    adv_query = dict(zip(FIELDS, values))
+    if query == '' and len(filter(None, values)) == 0:
         return render_template('search.html', results=[], metadata=None,
-                               query=user_query)
+                               query=query, adv_query=adv_query)
 
-    docs, duration = searcher.search(user_query, N=10)
+    docs, duration = searcher.search(query=query, adv_query=adv_query, N=10)
     lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet mauris eu tortor" + \
     		 "interdum tempor. Sed vulputate odio odio. Sed arcu neque, accumsan et urna quis, ultrices" + \
     		 "consectetur turpis. Donec eu euismod sem, nec aliquam velit. Donec ac tristique mi."
@@ -69,7 +76,8 @@ def search():
     #            key=doc[4], authors=doc[5], year=doc[6], venue=doc[7])
     #            for doc in docs]
     metadata = dict(time=round(duration, 2))
-    return render_template('search.html', results=results, metadata=metadata, query=user_query)
+    return render_template('search.html', results=results, metadata=metadata,
+                           query=query, adv_query=adv_query)
 
 if __name__ == '__main__':
     app.run()
