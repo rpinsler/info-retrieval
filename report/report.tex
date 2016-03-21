@@ -48,6 +48,7 @@
 \documentclass{sig-alternate-05-2015}
 %\usepackage{hyperref}
 \usepackage{url}
+\usepackage{listings}
 
 \begin{document}
 
@@ -209,23 +210,24 @@ Publication records from DBLP are provided in a single XML file. The dataset com
 
 To index a record, it first has to be extracted from the XML file before it can be stored. This can be done conveniently using an XML parser. Due to the large file size of the dataset, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the lxml Python library~\cite{lxml} that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. During event processing, it is possible to access the current element, i.e. an \emph{article} or \emph{inproceedings} record, and its children, i.e. attributes of the record such as title or year of publication. As some of the publication titles use basic HTML text formatting, HTML tags are removed prior to indexing. 
 
-Each record is indexed as a Lucene \emph{document}, comprising of the following \emph{fields}: id, title, authors, year and venue (journal or booktitle, depending on the record type). All fields are treated as strings\footnote{The \emph{year} attribute may also be stored as integer, allowing for features like range searches. However, this would require additional effort during search that we try to avoid.}. Field contents are stored in the index, which allows to retrieve them later during search. This is especially useful to enhance search results with additional information when presented to the user. The values of the fields \emph{id} and \emph{year} are stored as-is. All other fields are tokenized ($f_\text{token}$) and further processed, including lowercase conversion ($f_\text{low}$), stemming ($f_\text{stem}$) and removal of stopwords ($f_\text{stop}$). In particular, we use the Porter stemmer and the default stopword list of Lucene, which consists of 33 common English words. Table \ref{tbl:analysis} summarizes the analysis applied to each field.
+Each record is indexed as a Lucene \emph{document}, comprising of the following \emph{fields}: id, title, authors, year and venue (journal or booktitle, depending on the record type). To facilitate the search, an additional \emph{content} field is added that concatenates the values of the above fields except the id. All fields are treated as strings\footnote{The \emph{year} attribute may also be stored as integer, allowing for features like range searches. However, this would require additional effort during search that we try to avoid.}. Contents of the original fields (i.e. without the \emph{content} field) are stored in the index, which allows to retrieve them later during search. This is especially useful to enhance search results with additional information when presented to the user. The values of the fields \emph{id} and \emph{year} are stored as-is. All other fields are tokenized ($f_\text{token}$) and further processed, including lowercase conversion ($f_\text{low}$), removal of stopwords ($f_\text{stop}$) and stemming ($f_\text{stem}$). In particular, we use the Porter stemmer and the default stopword list of Lucene, which consists of 33 common English words. Table \ref{tbl:analysis} summarizes the analysis applied to each field.
 
-In order to evaluate the impact of additional token processing onto the index, different experiments are conducted. We quantify the speed of indexing in seconds, $t_\text{ind}$, as well as the number of terms in the \emph{title} vocabulary, $|V_\text{title}|$, when applying lowercase conversion, stemming and/or removal of stopwords on the \emph{title} field. The results are shown in Table \ref{tbl:evalindex}. [...]
+In order to evaluate the impact of additional token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. We measure the speed of indexing in seconds, $t_\text{ind}$, as well as the number of terms in the vocabulary, $|V_\text{title}|$. The results are shown in Table \ref{tbl:evalindex}. [...]
 
 \begin{table}[th]
 \centering
-\caption{Analysis of document fields} \label{tbl:analysis}
+\caption{Analysis applied to document fields} \label{tbl:analysis}
 \begin{tabular}{lcccc}
-\hline
+% \hline
 Field & $f_\text{token}$ & $f_\text{low}$ & $f_\text{stop}$ & $f_\text{stem}$ \\
 \hline
 id & & & & \\
 year & & & & \\
 authors & X & X & X & \\
 venue & X & X & X & \\
+content & X & X & X & \\
 title & X & X & X & X \\
-\hline
+% \hline
 \end{tabular}
 \end{table}
 
@@ -233,7 +235,7 @@ title & X & X & X & X \\
 \centering
 \caption{Evaluation of token processing on \emph{title} field} \label{tbl:evalindex}
 \begin{tabular}{cccrr}
-\hline
+% \hline
 $f_\text{low}$ & $f_\text{stop}$ & $f_\text{stem}$ & $t_\text{ind}$ & $|V_\text{title}|$\\
 \hline
 & & & 0.123 & 1337 \\
@@ -241,19 +243,28 @@ X & & & 0.123 & 1337 \\
 & X & & 0.123 & 1337 \\
 & & X & 0.123 & 1337 \\
 X & X & X & 0.123 & 1337 \\
-\hline
+% \hline
 \end{tabular}
 \end{table}
 
 \section{Search}
 
-The search module makes use of the document index to retrieve the most relevant documents to a given query. It supports free text keyword queries on any combination of attributes. By default, all attributes are considered. Phrase queries are supported using double quotation marks (e.g. ``information retrieval'') [...]. The search returns the $N$ most relevant documents according to Lucene's internal scoring function, where $N$ is a configurable parameter. It also measures the time needed to retrieve the results.
+The search module makes use of the document index to retrieve the most relevant documents to a given query. It supports free text keyword queries on any combination of the attributes title, authors, year and venue. By default, all attributes are considered. This is achieved by utilizing the \emph{content} field of the index. We refer to this as a standard search. Additionally, it is possible to query a combination of specific fields through an advanced search. Those keywords are directly matched against the respective fields in the index. In this case, documents must contain the provided keywords to be returned in the result set. Standard and advanced search can be freely combined during a single search request.
+
+Phrase queries are supported using double quotation marks (e.g. ``information retrieval'') in both standard and advanced search. Documents containing a particular phrase receive a higher weight during scoring. This requires an exact match up to the processing on the respective field. If a document does not contain the phrase, it may still be considered when there is a match for at least one of the keywords within the phrase. This considerably increases recall while risking an increase of false positives. Note that there is no restriction for the number of phrases within a query.
+
+The search returns the $N$ most relevant documents along with their ranks, scores, ids and snippets, where $N$ is a configurable parameter. Relevance is determined based on Lucene's internal scoring function. It also measures the time needed to retrieve the results. The complete procedure for handling queries is outlined in Listing \ref{lst:search}.
+
+\lstset{language=Python,caption={Query handling},label={lst:search}}
+\begin{lstlisting}
+print('Hello world!')
+\end{lstlisting} 
 
 \section{Evaluation}
 
 \section{User Interface}
 
-There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The web UI is built with Flask~\cite{Flask}, a leightweight Python web framework that leverages Jinja2~\cite{Jinja2} as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap~\cite{Bootstrap} to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query.
+There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The latter is built with Flask~\cite{Flask}, a leightweight Python web framework that leverages Jinja2~\cite{Jinja2} as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap~\cite{Bootstrap} to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query.
 
 \begin{figure}[th]
 \caption{Web-based search user interface}
