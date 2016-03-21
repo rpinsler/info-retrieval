@@ -13,6 +13,8 @@ from org.apache.lucene.analysis.en import PorterStemFilter
 from lxml import etree
 import os
 
+FIELDS = ['title', 'authors', 'year', 'venue']
+
 
 class CustomAnalyzer(PythonAnalyzer):
     def __init__(self, config):
@@ -80,6 +82,9 @@ class Indexer():
             # index but don't tokenize id
             doc.add(StringField('id', elem.get('key'), Field.Store.YES))
             for ch in elem:
+                if ch.tag in FIELDS:
+                    doc.add(TextField('content', ch.text, Field.Store.NO))
+
                 if ch.tag == 'title':
                     doc.add(TextField('title', ch.text, Field.Store.YES))
                 elif ch.tag == 'author':
