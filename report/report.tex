@@ -49,6 +49,35 @@
 %\usepackage{hyperref}
 \usepackage{url}
 \usepackage{listings}
+\usepackage[utf8]{inputenc}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm\small,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\small\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
 
 \begin{document}
 
@@ -255,10 +284,8 @@ Phrase queries are supported using double quotation marks (e.g. ``information re
 
 The search returns the $N$ most relevant documents along with their ranks, scores, ids and snippets, where $N$ is a configurable parameter. Relevance is determined based on Lucene's internal scoring function. It also measures the time needed to retrieve the results. The complete procedure for handling queries is outlined in Listing \ref{lst:search}.
 
-\lstset{language=Python,caption={Query handling},label={lst:search}}
-\begin{lstlisting}
-print('Hello world!')
-\end{lstlisting} 
+\lstset{caption={Query handling},label={lst:search}}
+\pythonexternal{search.py}
 
 \section{Evaluation}
 
