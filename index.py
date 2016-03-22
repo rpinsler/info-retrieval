@@ -12,9 +12,10 @@ from org.apache.lucene.analysis.en import PorterStemFilter
 
 from lxml import etree
 import os
+import random
 
 FIELDS = ['title', 'authors', 'year', 'venue']
-
+DUMP_RANDOM_DOCS = True
 
 class CustomAnalyzer(PythonAnalyzer):
     def __init__(self, config):
@@ -37,7 +38,7 @@ class CustomAnalyzer(PythonAnalyzer):
 
 
 class Indexer():
-    def __init__(self, store_dir, context, analyzer):
+    def __init__(self, store_dir, context, analyzer, verbose=True):
 
         if not os.path.exists(store_dir):
             os.mkdir(store_dir)
@@ -46,8 +47,36 @@ class Indexer():
         config = IndexWriterConfig(Version.LUCENE_CURRENT, analyzer)
         config.setOpenMode(IndexWriterConfig.OpenMode.CREATE)
         self.writer = IndexWriter(store, config)
+        self.ndocs = 0
+        self.verbose = verbose
+        if DUMP_RANDOM_DOCS:
+            N = 856
+            k = 100
+            random.seed(0)
+            self.randdocs = sorted(random.sample(range(1, N+1), k=k))
+
         self.index(context)
         self.complete_index()
+
+        if self.verbose:
+            print "Finished indexing. %d documents indexed in total." % self.ndocs
+
+    def extract_document(self, doc, index):
+        with open("eval/qrels_manual/random_doc_selection", "a") as f:
+            f.write('%d) ' % (index+1))
+            key = doc['id'].encode("utf-8")
+            title = doc['title'].encode("utf-8")
+            authors = ''
+            for author in doc.getValues('authors'):
+                authors += author.encode("utf-8") + ', '
+            authors = authors[:-2]
+            year = doc['year'].encode("utf-8")
+            venue = doc['venue'].encode("utf-8")
+            f.write('%s\n title: %s\n authors: %s\n year: %s\n venue: %s\n'
+                    % (key, title, authors, year, venue))
+
+            with open("eval/qrels_manual/qrels", "a") as f:
+                f.write('TOPIC_NUM\t0\t%s\t \n' % doc['id'])
 
     def index(self, context):
         """
@@ -68,13 +97,6 @@ class Indexer():
         del context
 
     def index_document(self, elem):
-
-        # meaning of Field.Store.YES:
-        # Store the original field value in the index.
-        # This is useful for short texts like a document's title which should
-        # be displayed with the results. The value is stored in its
-        # original form, i.e. no analyzer is used before it is stored.
-
         try:
             doc = Document()
             # remove <i></i> tags etc. that are sometimes used
@@ -97,6 +119,13 @@ class Indexer():
                     doc.add(TextField('venue', ch.text, Field.Store.YES))
 
             self.writer.addDocument(doc)
+            self.ndocs += 1
+            if self.verbose and self.ndocs % 100 == 0:
+                print "%d documents processed..." % self.ndocs
+
+            if DUMP_RANDOM_DOCS and self.ndocs in self.randdocs:
+                self.extract_document(doc, self.randdocs.index(self.ndocs))
+
         except Exception, e:
             print "Indexing error:", e
 

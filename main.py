@@ -34,8 +34,6 @@ if __name__ == "__main__":
     analyzer = PerFieldAnalyzerWrapper(
                 StandardAnalyzer(Version.LUCENE_CURRENT), per_field)
     Indexer(os.path.join(base_dir, INDEX_DIR), context, analyzer)
-
-    print('Finished indexing.')
     searcher = Searcher(os.path.join(base_dir, INDEX_DIR), analyzer)
     # # q = raw_input("Query: ")
     # # searcher.search(q, N=topN)
