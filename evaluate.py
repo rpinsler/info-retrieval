@@ -1,6 +1,7 @@
 import time
 import os
 import lucene
+import csv
 from lxml import etree
 from java.io import File
 from org.apache.lucene.store import SimpleFSDirectory
@@ -11,10 +12,12 @@ from org.apache.lucene.analysis.miscellaneous import PerFieldAnalyzerWrapper
 from java.util import HashMap
 
 from index import Indexer, CustomAnalyzer
+from search import Seacher
 
 INDEX_DIR = 'index'
 # DATA_DIR = 'data/dblp.xml'
 DATA_DIR = 'data/dblp_small.xml'
+QRELS_FIELDS = ['topic', 'iteration', 'document', 'relevancy']
 
 
 def evaluate_index(index_dir, context, analyzer):
@@ -39,31 +42,67 @@ def evaluate_index(index_dir, context, analyzer):
     return duration, vocab_size
 
 
-def evaluate_search(queries, gt, searcher, analyzer, N):
+def evaluate_search(topics_dir, qrels_dir, searcher, ndocs=0, N=0):
     scores = []
-    for q in queries:
-        docs = search(q, searcher, analyzer, N)
-        prec = precision(docs, gt)
-        rec = recall(docs, gt)
-        f1 = f1_score(docs, gt)
-        scores.append({'precision': prec, 'recall': rec, 'f1': f1})
+    tree = etree.parse("eval/topics")
+
+    # get ground truth
+    with open(qrels_dir) as f:
+        reader = csv.reader(f, delimiter="\t")
+        qrels = [dict(zip(QRELS_FIELDS, row)) for row in reader]
+
+    for element in tree.iter():
+        # get topic information
+        if element.tag == 'num':
+            topic_num = int(element.text)
+        elif element.tag == 'query':
+            gt = filter(lambda d: int(d['topic']) == topic_num and
+                        int(d['relevancy']), qrels)
+            if ndocs != 0:
+                # fill up with placeholder values for non-relevant docs
+                gt.append([dict(zip(QRELS_FIELDS, [topic_num, 0, '', 0]))] *
+                          ndocs-len(gt))
+            # perform search
+            q = element.text
+            docs = searcher.search(query=q, adv_query=None, N)
+            hits = []
+            for doc in docs:
+                d = searcher.searcher.doc(doc.doc)
+                hits.append(d['id'])
+
+            nretrieved = len(hits)
+            nrelevant = len(filter(lambda d: d in gt, hits))
+            nrelevant_gt = len(gt)
+            prec = precision(nrelevant, nretrieved)
+            rec = recall(nrelevant, nrelevant_gt)
+            f1 = f1_score(prec, rec)
+            scores.append({'N': N, 'nrelevant_gt': nrelevant_gt,
+                           'precision': prec, 'recall': rec, 'f1': f1})
     return scores
 
 
-def precision(docs, gt):
-    pass
+def precision(nrelevant, nretrieved):
+    if nretrieved == 0:
+        return None
+
+    return nrelevant/nretrieved
+
+
+def recall(nrelevant, nrelevant_gt):
+    if nrelevant_gt == 0:
+        return None
+
+    return nrelevant/nrelevant_gt
 
 
 def f1_score(precision, recall):
+    if precision is None or recall is None:
+        return None
     if precision+recall == 0:
         return 0
 
     f1 = 2*(precision*recall)/(precision+recall)
     return f1
-
-
-def recall(docs, gt):
-    pass
 
 if __name__ == "__main__":
     base_dir = os.path.expanduser("~") + "/Semester_NTU/" + \
