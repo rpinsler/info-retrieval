@@ -68,10 +68,14 @@ def search():
     results = []
     for (rank, doc) in enumerate(docs):
         d = searcher.searcher.doc(doc.doc)
+        authors = ''
+        for author in d.getValues('authors'):
+            authors += author.encode("utf-8") + ', '
+        authors = authors[:-2]
         results.append(dict(rank=rank+1, score=round(doc.score, 2),
-                            key=d.get('id'), title=d.get('title'), text=lipsum,
-                            authors=d.get('authors'),
-                            year=d.get('year'), venue=d.get('venue')))
+                            key=d['id'], title=d['title'][:-1], text=lipsum,
+                            authors=authors,
+                            year=d['year'], venue=d['venue']))
     # results = [dict(title=doc[0], text=lipsum, rank=doc[2], score=doc[3],
     #            key=doc[4], authors=doc[5], year=doc[6], venue=doc[7])
     #            for doc in docs]
