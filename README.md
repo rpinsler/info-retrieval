@@ -11,6 +11,11 @@ The project has the following dependencies:
 - lxml
 - Flask
 
+For the applications, more packages are required:
+- nltk
+- numpy
+- scikit-learn
+
 To set up the project, download the xml and dtd files of the [dblp dataset](http://dblp.uni-trier.de/xml/
 ) into the *data/* folder.
 
