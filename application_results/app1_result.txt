@@ -1,0 +1,191 @@
+2000
+case study 279
+performance evaluation 165
+performance analysis 156
+electronic commerce 137
+neural network 133
+poster session 130
+book review 120
+special issue 115
+knowledge management 100
+genetic algorithms 96
+
+2001
+case study 334
+performance evaluation 169
+performance analysis 157
+special issue 127
+book review 127
+new approach 107
+data mining 106
+neural network 103
+knowledge management 91
+genetic algorithm 90
+
+2002
+case study 350
+performance analysis 238
+special issue 181
+performance evaluation 179
+data mining 139
+book review 132
+knowledge management 124
+genetic algorithm 118
+new approach 112
+genetic algorithms 109
+
+2003
+case study 411
+performance analysis 267
+web services 222
+performance evaluation 220
+special issue 181
+neural network 167
+new approach 163
+genetic algorithm 160
+genetic algorithms 156
+ad hoc networks 150
+
+2004
+case study 538
+performance analysis 311
+web services 282
+performance evaluation 247
+wireless sensor networks 247
+neural network 245
+sensor networks 240
+special issue 213
+ad hoc networks 199
+new approach 185
+
+2005
+case study 632
+wireless sensor networks 521
+sensor networks 390
+web services 349
+performance analysis 335
+neural network 324
+performance evaluation 297
+genetic algorithm 253
+ad hoc networks 238
+special issue 232
+
+2006
+wireless sensor networks 796
+case study 628
+performance analysis 451
+sensor networks 448
+neural network 381
+performance evaluation 320
+web services 310
+genetic algorithm 296
+special issue 256
+face recognition 239
+
+2007
+wireless sensor networks 1090
+case study 753
+performance analysis 459
+sensor networks 437
+performance evaluation 377
+neural network 343
+special issue 301
+genetic algorithm 296
+web services 289
+wireless networks 247
+
+2008
+wireless sensor networks 1165
+case study 807
+performance analysis 439
+sensor networks 396
+neural network 373
+performance evaluation 350
+special issue 315
+wireless networks 298
+new approach 284
+genetic algorithm 259
+
+2009
+wireless sensor networks 1338
+case study 908
+performance analysis 458
+neural network 436
+genetic algorithm 384
+performance evaluation 380
+special issue 374
+sensor networks 364
+wireless networks 273
+comparative study 260
+
+2010
+wireless sensor networks 1398
+case study 943
+performance analysis 475
+neural network 448
+genetic algorithm 405
+performance evaluation 400
+special issue 365
+wireless networks 333
+sensor networks 312
+comparative study 297
+
+2011
+wireless sensor networks 1290
+case study 1064
+performance analysis 550
+performance evaluation 430
+special issue 411
+neural network 388
+genetic algorithm 368
+cognitive radio networks 357
+wireless networks 329
+empirical study 305
+
+2012
+wireless sensor networks 1358
+case study 1154
+performance analysis 561
+performance evaluation 439
+special issue 418
+cognitive radio networks 402
+comparative study 361
+genetic algorithm 341
+empirical study 324
+neural network 319
+
+2013
+wireless sensor networks 1412
+case study 1182
+performance analysis 568
+cognitive radio networks 468
+special issue 452
+performance evaluation 404
+cloud computing 373
+genetic algorithm 341
+empirical study 340
+neural network 340
+
+2014
+case study 1250
+wireless sensor networks 1224
+performance analysis 576
+special issue 479
+cognitive radio networks 449
+performance evaluation 416
+empirical study 360
+comparative study 352
+neural network 339
+cloud computing 325
+
+2015
+case study 1294
+wireless sensor networks 978
+performance analysis 525
+special issue 455
+performance evaluation 397
+cognitive radio networks 350
+comparative study 344
+empirical study 315
+neural network 313
+genetic algorithm 303
