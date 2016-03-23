@@ -301,7 +301,7 @@ There are two ways to interact with the search engine: via a text-based command 
 \end{figure}
 
 \section{Applications in IR}
-We implement two applications based on dblp data. The first one is to find the top-10 most popular research topics of a specific year. The second one is finding top-10 similar publication venues and years with a given publication venue and year. Only paper titles are used in both application.
+We implement two applications based on dblp data. The first one is to find the top-10 most popular research topics of a specific year. The second one is finding top-10 similar publication venues and years with a given publication venue and year. Only paper titles are used in both application. 
 
 In this section, the related techniques and the detailed implementations of the applications are demonstrated, followed by the experiment results.
 
@@ -315,7 +315,7 @@ Before mining popular research topics from paper titles, we need to firstly extr
 \end{itemize}
 From the observation of real topic names, we can conclude that a topic name usually consist of adjectives and nouns. Therefore, in the third step, we define the pattern as adj+adj+...+noun+...+noun. After the topic identification, we count the frequency of each topic appearing in the titles. Finally, the top-10 most frequent topics will be return as the result.
 \subsection{Similar publication venues}
-For retrieving similar publication venues and years, firstly we need to measure the similarity between two publication venues and years (e.g How similar are "TKDE'14" and "CIKM'15") using the paper titles. One simple way is to firstly tokenize every title of the venues and years, and use bag-of-words model, computing the cosine similarity of the word frequency vectors between them. However, based on our statistical analysis, the dimensionality is too high. It is very inefficient to compute similarity. Besides, the data may also be very noisy, containing many words that only appears once in the whole dataset.
+For retrieving similar publication venues and years, firstly we need to measure the similarity between two publication venues and years (e.g How similar are "TKDE'14" and "CIKM'15") using the paper titles. One simple way is to firstly tokenize every title of the venues and years, and use bag-of-words model, computing the cosine similarity of the word frequency vectors between them. However, based on our statistical analysis, the dimensionality is too high. It is very inefficient to compute similarity. Besides, the data may also be very noisy, containing many words that only appears once in the whole dataset. 
 
 To address the aforementioned problems, we adopted Latent Dirichlet allocation (LDA)\cite{blei2003latent} to learn the latent topics from the data. Instead of using word frequency vectors, the similarity is defined based on the cosine similarity between the topic distribution between two venues and years. Thus, for a query venue and year, we compute the topic similarities between it and every other venues and years. Then, top-10 similar venues and years are returned as the result.
 
@@ -341,19 +341,6 @@ Rank & Topic & Frequency\\ \hline
 8 & genetic algorithm & 341 \\ \hline
 9 & empirical study & 340 \\ \hline
 10 & neural network & 340 \\ \hline
-\end{tabular}
-\end{table}
-
-\begin{table}\small
-\centering
-\caption{Representive words for the topics leant by LDA} \label{tbl:topics}
-\begin{tabular}{|p{65pt}|p{180pt}|} \hline
-Topic & Words\\ \hline
-Geographic Information System & data using based sar spatial sensing analysis remote images radar model land image satellite surface detection gis classification resolution hyperspectral \\ \hline
-Robotics & robot control based using robots mobile motion robotic planning human autonomous design navigation vision dynamic sensor multi force tracking visual \\ \hline
-Wireless Sensor Networks & networks wireless based network mobile routing ad hoc sensor protocol performance control using traffic efficient scheme qos algorithm 802 multi \\ \hline
-Software Technology & software testing analysis based using test engineering development study code case model systems java quality source empirical tool approach program \\ \hline
-Social Media & social online media networks community network behavior use internet effects study analysis communities understanding games self role game impact influence \\ \hline
 \end{tabular}
 \end{table}
 
