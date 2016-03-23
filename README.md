@@ -12,7 +12,7 @@ The project has the following dependencies:
 - Flask
 
 For the applications, more packages are required:
-- nltk
+- nltk (run nltk.download() and install all packages)
 - numpy
 - scikit-learn
 
