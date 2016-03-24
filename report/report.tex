@@ -52,26 +52,42 @@
 \usepackage[utf8]{inputenc}
 
 % Default fixed font does not support bold face
-\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
-\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+%\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{8} % for bold
+%\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{8}  % for normal
 
 % Custom colors
 \usepackage{color}
 \definecolor{deepblue}{rgb}{0,0,0.5}
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{lightgrey}{rgb}{0.4,0.4,0.4}
 
 % Python style for highlighting
 \newcommand\pythonstyle{\lstset{
-language=Python,
-basicstyle=\ttm\small,
-otherkeywords={self},             % Add keywords here
-keywordstyle=\ttb\small\color{deepblue},
-emph={MyClass,__init__},          % Custom highlighting
-emphstyle=\ttb\color{deepred},    % Custom highlighting style
-stringstyle=\color{deepgreen},
-frame=tb,                         % Any extra options here
-showstringspaces=false            %
+  language=Python,
+  basicstyle=\scriptsize,
+  breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{lightgrey},    % comment style
+  emph={},          % Custom highlighting
+  emphstyle=\color{deepred},    % Custom highlighting style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=tb,                         % Any extra options here around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{deepblue},
+  otherkeywords={self, True, False},             % Add keywords here
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{lightgrey}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered  
+  stringstyle=\color{deepgreen},
+  tabsize=1                  % sets default tabsize to 2 spaces
 }}
 
 % Python for external files
@@ -237,9 +253,23 @@ Publication records from DBLP are provided in a single XML file. The dataset com
 
 \section{Indexing}
 
-To index a record, it first has to be extracted from the XML file before it can be stored. This can be done conveniently using an XML parser. Due to the large file size of the dataset, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the lxml\footnote{\url{http://lxml.de}} Python library that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. During event processing, it is possible to access the current element, i.e. an \emph{article} or \emph{inproceedings} record, and its children, i.e. attributes of the record such as title or year of publication. As some of the publication titles use basic HTML text formatting, HTML tags are removed prior to indexing.
+Indexing the DBLP dataset is a multi-step process. First, each record has to be extracted from the XML file before it can be further processed. Additional preprocessing is applied to match the expected input format. Finally, the records are processed and indexed through the PyLucene API. Listing \ref{lst:indexer} gives an overview of the Indexer class that provides above functionality. It takes as input the file to be indexed, the desired index storage location and an analyzer instance that we will introduce later. By calling its own index function, it triggers the indexing process (Listing \ref{lst:indexer}, line 12). In the following, we explain each step in more detail.
 
-Each record is indexed as a Lucene \emph{document}, comprising of the following \emph{fields}: id, title, authors, year and venue (journal or booktitle, depending on the record type). To facilitate the search, an additional \emph{content} field is added that concatenates the values of the above fields except the id. All fields are treated as strings\footnote{The \emph{year} attribute may also be stored as integer, allowing for features like range searches. However, this would require additional effort during search that we try to avoid.}. Contents of the original fields (i.e. without the \emph{content} field) are stored in the index, which allows to retrieve them later during search. This is especially useful to enhance search results with additional information when presented to the user. The values of the fields \emph{id} and \emph{year} are stored as-is. All other fields are tokenized ($f_\text{token}$) and further processed, including lowercase conversion ($f_\text{low}$), removal of stopwords ($f_\text{stop}$) and stemming ($f_\text{stem}$). In particular, we use the Porter stemmer and the default stopword list of Lucene, which consists of 33 common English words. Table \ref{tbl:analysis} summarizes the analysis applied to each field.
+\lstset{caption={Indexer class}, label={lst:indexer}}
+\pythonexternal{snippets/class_indexer.py} 
+
+\textbf{Parsing} \quad  We use an XML parser to extract the DBLP records from the dataset. Due to the large file size, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the lxml\footnote{\url{http://lxml.de}} Python library that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. For each emitted event, we call the index\_document function. (Listing \ref{lst:indexer}, lines 15-19)
+
+\lstset{caption={index\_document function}, label={lst:fn_index}}
+\pythonexternal{snippets/fn_index.py}
+
+\textbf{Preprocessing} \quad Given the current element, i.e. an \emph{article} or \emph{inproceedings} record, we can now iterate through its children, i.e. attributes of the record such as title or publication year. This is shown in Listing \ref{lst:fn_index}. As some of the records contain basic HTML formatting, irrelevant tags are removed and HTML-encoded characters are replaced  (Listing \ref{lst:fn_index}, lines 5 and 12-15).
+
+\textbf{Indexing} \quad Each record is indexed as a Lucene \emph{document}, comprising of the following \emph{fields}: id, title, authors, year and venue. The venue is derived from the journal or booktitle attribute, depending on the record type. To facilitate the search, an additional \emph{content} field is added that concatenates the values of the above fields except the id. This can be easily achieved by subsequently adding all values to the same field. This method is also used to index multiple authors. (Listing \ref{lst:fn_index}, lines 19-20 and 27-28).
+
+All fields are treated as strings\footnote{The \emph{year} attribute may also be stored as integer, allowing for features like range searches. However, this would require additional effort during search that we try to avoid.}. Contents of the original fields (i.e. without the \emph{content} field) are stored in the index, which allows to retrieve them later during search. This is especially useful to enhance search results with additional information when presented to the user. The values of the fields \emph{id} and \emph{year} are stored as-is, which is a property of the StringField class. All other fields are tokenized ($f_\text{token}$) and further processed. The processing applied to each of those TextFields is determined by the analyzer that is used, which is known by the index writer (Listing \ref{lst:indexer}, lines 6-10 and Listing \ref{lst:fn_index}, line 29). By default, all TextFields are processed in the same way, which may include lowercase conversion ($f_\text{low}$), removal of stopwords ($f_\text{stop}$) and stemming ($f_\text{stem}$). In particular, we use the Porter stemmer and the default stopword list of Lucene, which consists of 33 common English words.
+
+Table \ref{tbl:analysis} summarizes the analysis applied to each field.
 
 \begin{table}[th]
 \centering
@@ -258,7 +288,12 @@ title & X & X & X & X \\
 \end{tabular}
 \end{table}
 
-In order to evaluate the impact of additional token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. We measure the speed of indexing (including parsing and analyzing the documents) in seconds, $t_\text{ind}$, as well as the number of terms in the vocabulary, $|V_\text{title}|$. The results are shown in Table \ref{tbl:evalindex}. Note that indexing speed slightly varies over different runs.
+\textbf{Evaluation} \quad In order to evaluate the impact of additional token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. For this, we define a custom analyzer that gives us full control over the configurations by extending the base analyzer of PyLucene (Listing \ref{lst:customanalyzer}).  
+
+\lstset{caption={CustomAnalyzer class}, label={lst:customanalyzer}}
+\pythonexternal{snippets/class_customanalyzer.py}
+
+We measure the speed of indexing (including parsing and analyzing the documents) in seconds, $t_\text{ind}$, as well as the number of terms in the vocabulary, $|V_\text{title}|$. The results are shown in Table \ref{tbl:evalindex}. Note that indexing speed slightly varies over different runs.
 
 \begin{table}[th]
 \centering
@@ -276,24 +311,24 @@ X & X & X & 417.94 ($\pm0\%$) & 288\,710 ($-34\%$) \\
 \end{tabular}
 \end{table}
 
-Applying lowercase conversion or stemming reduces the vocabulary significantly, whereas the removal of stopwords has nearly no impact. This is expected, since the first two techniques map multiple token onto the same term whereas the exclusion of stopwords decreases the vocabulary size only by the number of stopwords. By combining multiple processing steps, the vocabulary can be further reduced, leading to a reduction to up two thirds of the original size when no further processing is applied. In terms of indexing speed, we found that the additional processing steps are negligible. In particular, there seems to be no positive correlation between indexing speed and the number of processing steps that are applied. One reason for this is that while processing each document is more time-consuming, the cost for indexing a processed document is actually reduced. Therefore, we conclude that, under the given evaluation criteria, it is recommended to apply all three processing techniques due to the reduction in vocabulary size. However, it should be noted that this also has an effect on other properties of the system, e.g. the quality of search results, which might or might not be desired.
+Applying lowercase conversion or stemming reduces the vocabulary significantly, whereas the removal of stopwords has nearly no impact. This is expected, since the first two techniques are able to map multiple tokens onto the same term whereas the exclusion of stopwords decreases the vocabulary size only by the number of stopwords. By combining multiple processing steps, the vocabulary can be further reduced, leading to a reduction of to up a third of the original size when no further processing is applied. In terms of indexing speed, we found that the additional processing steps are negligible. In particular, there seems to be no positive correlation between indexing speed and the number of processing steps that are applied. One reason for this is that while processing each document is more time-consuming, the cost for indexing a processed document is actually reduced. Therefore, we conclude that, under the given evaluation criteria, it is recommended to apply all three processing techniques due to the reduction in vocabulary size. However, it should be noted that this also has an effect on other properties of the system, e.g. the quality of search results, which might or might not be desired.
 
 \section{Search}
 
-The search module makes use of the document index to retrieve the most relevant documents to a given query. It supports free text keyword queries on any combination of the attributes title, authors, year and venue. By default, all attributes are considered. This is achieved by utilizing the \emph{content} field of the index. We refer to this as a standard search. Additionally, it is possible to query a combination of specific fields through an advanced search. Those keywords are directly matched against the respective fields in the index. In this case, documents must contain the provided keywords to be returned in the result set. Standard and advanced search can be freely combined during a single search request.
+\textbf{Keyword search} \quad The search module makes use of the document index to retrieve the most relevant documents to a given query. It supports free text keyword queries on any combination of the attributes title, authors, year and venue. By default, all attributes are considered. This is achieved by utilizing the \emph{content} field of the index. We refer to this as a standard search. Additionally, it is possible to query a combination of specific fields through an advanced search. Those keywords are directly matched against the respective fields in the index. In this case, documents must contain the provided keywords to be returned in the result set. Standard and advanced search can be freely combined during a single search request.
 
-Phrase queries are supported using double quotation marks (e.g. ``information retrieval'') in both standard and advanced search. Documents containing a particular phrase receive a higher weight during scoring. This requires an exact match up to the processing on the respective field. If a document does not contain the phrase, it may still be considered when there is a match for at least one of the keywords within the phrase. This considerably increases recall while risking an increase of false positives. Note that there is no restriction for the number of phrases within a query.
+\textbf{Phrase queries} \quad Phrase queries are supported using double quotation marks (e.g. ``information retrieval'') in both standard and advanced search. Documents containing a particular phrase receive a higher weight during scoring. This requires an exact match up to the processing on the respective field. If a document does not contain the phrase, it may still be considered when there is a match for at least one of the keywords within the phrase. This considerably increases recall while risking an increase of false positives. Note that there is no restriction for the number of phrases within a query.
 
-The search returns the $N$ most relevant documents along with their ranks, scores, ids and snippets, where $N$ is a configurable parameter. Relevance is determined based on Lucene's internal scoring function. It also measures the time needed to retrieve the results. The complete procedure for handling queries is outlined in Listing \ref{lst:search}.
+\textbf{Query results} \quad The search returns the $N$ most relevant documents along with their ranks, scores, ids and snippets, where $N$ is a configurable parameter. Relevance is determined based on Lucene's internal scoring function. It also measures the time needed to retrieve the results. The complete procedure for handling queries is outlined in Listing \ref{lst:search}.
 
 \lstset{caption={Query handling},label={lst:search}}
-\pythonexternal{search.py}
+\pythonexternal{snippets/search.py}
 
 \section{Evaluation}
 
 \section{User Interface}
 
-There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The latter is built with Flask\footnote{\url{http://flask.pocoo.org}}, a leightweight Python web framework that leverages Jinja2\footnote{\url{http://jinja.pocoo.org}} as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap\footnote{\url{http://getbootstrap.com}} to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query.
+There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The latter is built with Flask\footnote{\url{http://flask.pocoo.org}}, a leightweight Python web framework that leverages Jinja2\footnote{\url{http://jinja.pocoo.org}} as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap\footnote{\url{http://getbootstrap.com}} to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query. As the UI is not our focus, we omit further implementation details; the interested reader is referred to the source code. 
 
 \begin{figure*}[th]
 \centering
