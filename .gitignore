@@ -15,3 +15,4 @@ report/report.bbl
 report/report.blg
 report/report.out
 eval/qrels*/
+eval/index_eval*.txt
