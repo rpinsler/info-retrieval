@@ -231,17 +231,15 @@ showstringspaces=false            %
 
 \section{System Overview}
 
-The search engine is able to index and search publication records listed in the dblp computer science bibliography (DBLP)~\cite{dblp}. It is built on top of PyLucene, a Python extension of the open-source software library Lucene~\cite{Lucene} that provides text indexing and search capabilities.
+The search engine is able to index and search publication records listed in the dblp computer science bibliography (DBLP)~\cite{dblp}. It is built on top of PyLucene, a Python extension of the open-source software library Lucene\footnote{\url{https://lucene.apache.org}} that provides text indexing and search capabilities.
 
 Publication records from DBLP are provided in a single XML file. The dataset comprises of various kinds of record types, such as articles published in a journal or magazine (\emph{article}), papers published in a conference or workshop proceedings (\emph{inproceedings}), books, and PhD theses. From those, only documents that are classified as \emph{article} or \emph{inproceedings} are considered.
 
 \section{Indexing}
 
-To index a record, it first has to be extracted from the XML file before it can be stored. This can be done conveniently using an XML parser. Due to the large file size of the dataset, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the lxml Python library~\cite{lxml} that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. During event processing, it is possible to access the current element, i.e. an \emph{article} or \emph{inproceedings} record, and its children, i.e. attributes of the record such as title or year of publication. As some of the publication titles use basic HTML text formatting, HTML tags are removed prior to indexing.
+To index a record, it first has to be extracted from the XML file before it can be stored. This can be done conveniently using an XML parser. Due to the large file size of the dataset, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the lxml\footnote{\url{http://lxml.de}} Python library that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. During event processing, it is possible to access the current element, i.e. an \emph{article} or \emph{inproceedings} record, and its children, i.e. attributes of the record such as title or year of publication. As some of the publication titles use basic HTML text formatting, HTML tags are removed prior to indexing.
 
 Each record is indexed as a Lucene \emph{document}, comprising of the following \emph{fields}: id, title, authors, year and venue (journal or booktitle, depending on the record type). To facilitate the search, an additional \emph{content} field is added that concatenates the values of the above fields except the id. All fields are treated as strings\footnote{The \emph{year} attribute may also be stored as integer, allowing for features like range searches. However, this would require additional effort during search that we try to avoid.}. Contents of the original fields (i.e. without the \emph{content} field) are stored in the index, which allows to retrieve them later during search. This is especially useful to enhance search results with additional information when presented to the user. The values of the fields \emph{id} and \emph{year} are stored as-is. All other fields are tokenized ($f_\text{token}$) and further processed, including lowercase conversion ($f_\text{low}$), removal of stopwords ($f_\text{stop}$) and stemming ($f_\text{stem}$). In particular, we use the Porter stemmer and the default stopword list of Lucene, which consists of 33 common English words. Table \ref{tbl:analysis} summarizes the analysis applied to each field.
-
-In order to evaluate the impact of additional token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. We measure the speed of indexing in seconds, $t_\text{ind}$, as well as the number of terms in the vocabulary, $|V_\text{title}|$. The results are shown in Table \ref{tbl:evalindex}. [...]
 
 \begin{table}[th]
 \centering
@@ -260,6 +258,8 @@ title & X & X & X & X \\
 \end{tabular}
 \end{table}
 
+In order to evaluate the impact of additional token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. We measure the speed of indexing (including parsing and analyzing the documents) in seconds, $t_\text{ind}$, as well as the number of terms in the vocabulary, $|V_\text{title}|$. The results are shown in Table \ref{tbl:evalindex}. Note that indexing speed slightly varies over different runs.
+
 \begin{table}[th]
 \centering
 \caption{Evaluation of token processing on \emph{title} field} \label{tbl:evalindex}
@@ -267,14 +267,16 @@ title & X & X & X & X \\
 % \hline
 $f_\text{low}$ & $f_\text{stop}$ & $f_\text{stem}$ & $t_\text{ind}$ & $|V_\text{title}|$\\
 \hline
-& & & 0.123 & 1337 \\
-X & & & 0.123 & 1337 \\
-& X & & 0.123 & 1337 \\
-& & X & 0.123 & 1337 \\
-X & X & X & 0.123 & 1337 \\
+& & & 417.97 ($100\%$) & 436\,354 ($100\%$) \\
+X & & & 430.57 ($+3\%$) & 346\,286 ($-21\%$) \\
+& X & & 414.89 ($-1\%$) & 436\,321 ($\pm0\%$) \\
+& & X & 439.75 ($+5\%$) & 365\,534 ($-16\%$) \\
+X & X & X & 417.94 ($\pm0\%$) & 288\,710 ($-34\%$) \\
 % \hline
 \end{tabular}
 \end{table}
+
+Applying lowercase conversion or stemming reduces the vocabulary significantly, whereas the removal of stopwords has nearly no impact. This is expected, since the first two techniques map multiple token onto the same term whereas the exclusion of stopwords decreases the vocabulary size only by the number of stopwords. By combining multiple processing steps, the vocabulary can be further reduced, leading to a reduction to up two thirds of the original size when no further processing is applied. In terms of indexing speed, we found that the additional processing steps are negligible. In particular, there seems to be no positive correlation between indexing speed and the number of processing steps that are applied. One reason for this is that while processing each document is more time-consuming, the cost for indexing a processed document is actually reduced. Therefore, we conclude that, under the given evaluation criteria, it is recommended to apply all three processing techniques due to the reduction in vocabulary size. However, it should be noted that this also has an effect on other properties of the system, e.g. the quality of search results, which might or might not be desired.
 
 \section{Search}
 
@@ -291,14 +293,14 @@ The search returns the $N$ most relevant documents along with their ranks, score
 
 \section{User Interface}
 
-There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The latter is built with Flask~\cite{Flask}, a leightweight Python web framework that leverages Jinja2~\cite{Jinja2} as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap~\cite{Bootstrap} to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query.
+There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The latter is built with Flask\footnote{\url{http://flask.pocoo.org}}, a leightweight Python web framework that leverages Jinja2\footnote{\url{http://jinja.pocoo.org}} as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap\footnote{\url{http://getbootstrap.com}} to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query.
 
-\begin{figure}[th]
+\begin{figure*}[th]
 \centering
-\includegraphics[width=0.48\textwidth]{img/search}
+\includegraphics[width=.8\textwidth]{img/search}
 \caption{Web-based search user interface}
 \label{fig:search}
-\end{figure}
+\end{figure*}
 
 \section{Applications in IR}
 We implement two applications based on dblp data. The first one is to find the top-10 most popular research topics of a specific year. The second one is finding top-10 similar publication venues and years with a given publication venue and year. Only paper titles are used in both application.
@@ -310,7 +312,7 @@ Before mining popular research topics from paper titles, we need to firstly extr
 \begin{itemize}
   \item Retrieve the titles of all the papers published in 2014, using the index.
   \item Tokenize each title and remove punctuations and stop words.
-  \item Use Part-Of-Speech Tagger (POS Tagger)\footnote{http://nlp.stanford.edu/software/tagger.shtml} to assign parts of speech to each word, such as noun, verb, adjective, etc.
+  \item Use Part-Of-Speech Tagger (POS Tagger)\footnote{\url{http://nlp.stanford.edu/software/tagger.shtml}} to assign parts of speech to each word, such as noun, verb, adjective, etc.
   \item Extract topics from the tagged words based on the given pattern.
 \end{itemize}
 From the observation of real topic names, we can conclude that a topic name usually consist of adjectives and nouns. Therefore, in the third step, we define the pattern as adj+adj+...+noun+...+noun. After the topic identification, we count the frequency of each topic appearing in the titles. Finally, the top-10 most frequent topics will be return as the result.
@@ -321,7 +323,7 @@ To address the aforementioned problems, we adopted Latent Dirichlet allocation (
 
 \begin{figure}[th]
 \centering
-\includegraphics[width=0.48\textwidth]{img/lda}
+\includegraphics[width=0.48\textwidth]{img/LDA}
 \caption{Graph representation of Latent Dirichlet allocation (LDA)}
 \label{fig:lda}
 \end{figure}
