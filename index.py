@@ -15,10 +15,12 @@ from lxml import etree
 import os
 import random
 import HTMLParser
-import lxml.html.clean as clean
 
-FIELDS = ['title', 'authors', 'year', 'venue']
+TAGS = ('article', 'inproceedings')
+HTML_TAGS = ('i','ref','sub','sup','tt')
+FIELDS = ['title', 'author', 'year', 'journal', 'booktitle']
 DUMP_RANDOM_DOCS = False
+
 
 class CustomAnalyzer(PythonAnalyzer):
     def __init__(self, config):
@@ -45,7 +47,7 @@ class CustomAnalyzer(PythonAnalyzer):
 
 
 class Indexer():
-    def __init__(self, store_dir, context, analyzer, verbose=True):
+    def __init__(self, data_dir, store_dir, analyzer, verbose=True):
 
         if not os.path.exists(store_dir):
             os.mkdir(store_dir)
@@ -62,8 +64,7 @@ class Indexer():
             k = 100
             random.seed(0)
             self.randdocs = sorted(random.sample(range(1, N+1), k=k))
-
-        self.index(context)
+        self.index(data_dir)
         self.complete_index()
 
         if self.verbose:
@@ -86,13 +87,18 @@ class Indexer():
             with open("eval/qrels_manual/qrels", "a") as f:
                 f.write('TOPIC_NUM\t0\t%s\t \n' % doc['id'])
 
-    def index(self, context):
+    def index(self, data_dir):
         """
         http://lxml.de/parsing.html#modifying-the-tree
         Based on Liza Daly's fast_iter
         http://www.ibm.com/developerworks/xml/library/x-hiperfparse/
         See also http://effbot.org/zone/element-iterparse.htm
         """
+
+        context = etree.iterparse(data_dir, events=('end',),
+                                  tag=TAGS,
+                                  dtd_validation=True)
+
         for event, elem in context:
             self.index_document(elem)
             # It's safe to call clear() here because no descendants will be
@@ -108,7 +114,7 @@ class Indexer():
         try:
             doc = Document()
             # remove <i></i> tags etc. that are sometimes used
-            etree.strip_tags(elem, 'i', 'ref', 'sub', 'sup', 'tt')
+            etree.strip_tags(elem, HTML_TAGS)
             doc.add(StringField('id', elem.get('key'), Field.Store.YES))
             for ch in elem:
                 if ch.text is None:
@@ -116,6 +122,8 @@ class Indexer():
 
                 if ch.tag in FIELDS:
                     doc.add(TextField('content', ch.text, Field.Store.NO))
+                else:
+                    continue
 
                 if ch.tag == 'title':
                     doc.add(TextField('title', ch.text, Field.Store.YES))
