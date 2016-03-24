@@ -7,16 +7,16 @@ from java.io import File
 from org.apache.lucene.store import SimpleFSDirectory
 from org.apache.lucene.index import IndexReader, MultiFields
 from org.apache.lucene.analysis.standard import StandardAnalyzer
-from org.apache.lucene.util import Version
+from org.apache.lucene.util import Version, BytesRefIterator
 from org.apache.lucene.analysis.miscellaneous import PerFieldAnalyzerWrapper
 from java.util import HashMap
 
 from index import Indexer, CustomAnalyzer
-from search import Seacher
+from search import Searcher
 
 INDEX_DIR = 'index'
-# DATA_DIR = 'data/dblp.xml'
-DATA_DIR = 'data/dblp_small.xml'
+DATA_DIR = 'data/dblp.xml'
+# DATA_DIR = 'data/dblp_small.xml'
 QRELS_FIELDS = ['topic', 'iteration', 'document', 'relevancy']
 
 
@@ -32,12 +32,17 @@ def evaluate_index(index_dir, context, analyzer):
     directory = SimpleFSDirectory(File(index_dir))
     reader = IndexReader.open(directory)
     vocabulary = MultiFields.getTerms(reader, 'title')
-    # print str(vocabulary.size()) # size of vocabulary
+    vocab_size = vocabulary.size()
+    if vocab_size == -1:
+        termsref = BytesRefIterator.cast_(vocabulary.iterator(None))
+        vocab_size = sum(1 for _ in termsref)
+
+
+    # print str(vocab_size) # size of vocabulary
     # print str(vocabulary.getDocCount()) # #docs that have at least one term for title field
     # print str(vocabulary.getSumTotalTermFreq()) # #tokens
     # print str(vocabulary.getSumDocFreq()) # #postings
 
-    vocab_size = vocabulary.size()
     reader.close()
     return duration, vocab_size
 
@@ -64,7 +69,7 @@ def evaluate_search(topics_dir, qrels_dir, searcher, ndocs=0, N=0):
                           ndocs-len(gt))
             # perform search
             q = element.text
-            docs = searcher.search(query=q, adv_query=None, N)
+            docs = searcher.search(query=q, adv_query=None, N=N)
             hits = []
             for doc in docs:
                 d = searcher.searcher.doc(doc.doc)
@@ -120,18 +125,24 @@ if __name__ == "__main__":
 
     print
     print("Evaluate indexing options")
-    for config in configs:
-        context = etree.iterparse(DATA_DIR, events=('end',),
-                                  tag=('article', 'inproceedings'),
-                                  dtd_validation=True)
-        title_analyzer = CustomAnalyzer(config)
-        per_field = HashMap()
-        per_field.put("title", title_analyzer)
-        analyzer = PerFieldAnalyzerWrapper(
-                    StandardAnalyzer(Version.LUCENE_CURRENT), per_field)
-        duration, size = evaluate_index(os.path.join(base_dir, INDEX_DIR),
-                                        context, analyzer)
-        print
-        print(config)
-        print("Speed of indexing: " + str(round(duration, 2)) + "s")
-        print("Size of vocabulary on title attribute: " + str(size))
+    with open("eval/index_eval.txt", 'w') as f:
+        for config in configs:
+            context = etree.iterparse(DATA_DIR,
+                                      events=('end',),
+                                      tag=('article', 'inproceedings'),
+                                      dtd_validation=True)
+            title_analyzer = CustomAnalyzer(config)
+            per_field = HashMap()
+            per_field.put("title", title_analyzer)
+            analyzer = PerFieldAnalyzerWrapper(
+                        StandardAnalyzer(Version.LUCENE_CURRENT), per_field)
+            duration, size = evaluate_index(os.path.join(base_dir, INDEX_DIR),
+                                            context, analyzer)
+            print
+            print(config)
+            print("Speed of indexing: %.2fs" % round(duration, 2))
+            print("Size of vocabulary on title attribute: %d\n" % size)
+
+            f.write(str(config) + "\n")
+            f.write("Speed of indexing: %.2fs\n" % round(duration, 2))
+            f.write("Size of vocabulary on title attribute: %d\n" % size)

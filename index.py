@@ -1,4 +1,5 @@
 from java.io import File
+from java.util import HashSet, Arrays
 from org.apache.lucene.analysis.standard import StandardAnalyzer, \
      StandardTokenizer, StandardFilter
 from org.apache.lucene.document import Document, StringField, TextField, Field
@@ -13,9 +14,11 @@ from org.apache.lucene.analysis.en import PorterStemFilter
 from lxml import etree
 import os
 import random
+import HTMLParser
+import lxml.html.clean as clean
 
 FIELDS = ['title', 'authors', 'year', 'venue']
-DUMP_RANDOM_DOCS = True
+DUMP_RANDOM_DOCS = False
 
 class CustomAnalyzer(PythonAnalyzer):
     def __init__(self, config):
@@ -30,10 +33,14 @@ class CustomAnalyzer(PythonAnalyzer):
         if self.lowercase:
             tfilter = LowerCaseFilter(Version.LUCENE_CURRENT, tfilter)
         if self.stemming:
+            # EnglishMinimalStemFilter, KStemFilter and PorterStemFilter
             tfilter = PorterStemFilter(tfilter)
         if self.stopwords:
-            tfilter = StopFilter(Version.LUCENE_CURRENT, tfilter,
-                                 StopAnalyzer.ENGLISH_STOP_WORDS_SET)
+            # words = [line.rstrip('\n') for line
+            #          in open('stopwords/english_default.txt')]
+            words = StopAnalyzer.ENGLISH_STOP_WORDS_SET
+            # HashSet(Arrays.asList(words))
+            tfilter = StopFilter(Version.LUCENE_CURRENT, tfilter, words)
         return self.TokenStreamComponents(source, tfilter)
 
 
@@ -47,6 +54,7 @@ class Indexer():
         config = IndexWriterConfig(Version.LUCENE_CURRENT, analyzer)
         config.setOpenMode(IndexWriterConfig.OpenMode.CREATE)
         self.writer = IndexWriter(store, config)
+        self.htmlparser = HTMLParser.HTMLParser()
         self.ndocs = 0
         self.verbose = verbose
         if DUMP_RANDOM_DOCS:
@@ -101,9 +109,11 @@ class Indexer():
             doc = Document()
             # remove <i></i> tags etc. that are sometimes used
             etree.strip_tags(elem, 'i', 'ref', 'sub', 'sup', 'tt')
-            # index but don't tokenize id
             doc.add(StringField('id', elem.get('key'), Field.Store.YES))
             for ch in elem:
+                if ch.text is None:
+                    ch = etree.fromstring(self.htmlparser.unescape(etree.tostring(ch)))
+
                 if ch.tag in FIELDS:
                     doc.add(TextField('content', ch.text, Field.Store.NO))
 
@@ -120,7 +130,7 @@ class Indexer():
 
             self.writer.addDocument(doc)
             self.ndocs += 1
-            if self.verbose and self.ndocs % 100 == 0:
+            if self.verbose and self.ndocs % 100000 == 0:
                 print "%d documents processed..." % self.ndocs
 
             if DUMP_RANDOM_DOCS and self.ndocs in self.randdocs:
