@@ -10,7 +10,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
 
 STOP_WORDS = stopwords.words('english')
-TEMP_DIR = "./temp"
 
 
 class SimilarVenueYear():
@@ -81,14 +80,14 @@ class SimilarVenueYear():
             result.append((venue, year, sorted_sim[i]))
         return result
 
-    def write_to_file(self):
-        if not os.path.isdir(TEMP_DIR):
-            os.mkdir(TEMP_DIR)
-        pickle.dump(self.model, open(TEMP_DIR + '/lda_model.obj', 'w'))
-        pickle.dump(self.venue_year_names, open(TEMP_DIR + '/venue_year_names.obj', 'w'))
-        pickle.dump(self.vocab, open(TEMP_DIR + '/vocab.obj', 'w'))
+    def write_to_file(self, temp_path):
+        if not os.path.isdir(temp_path):
+            os.mkdir(temp_path)
+        pickle.dump(self.model, open(temp_path + '/lda_model.obj', 'w'))
+        pickle.dump(self.venue_year_names, open(temp_path + '/venue_year_names.obj', 'w'))
+        pickle.dump(self.vocab, open(temp_path + '/vocab.obj', 'w'))
 
-    def load_from_file(self):
-        self.model = pickle.load(open(TEMP_DIR + '/lda_model.obj', 'r'))
-        self.venue_year_names = pickle.load(open(TEMP_DIR + '/venue_year_names.obj', 'r'))
-        self.vocab = pickle.load(open(TEMP_DIR + '/vocab.obj', 'r'))
+    def load_from_file(self, temp_path):
+        self.model = pickle.load(open(temp_path + '/lda_model.obj', 'r'))
+        self.venue_year_names = pickle.load(open(temp_path + '/venue_year_names.obj', 'r'))
+        self.vocab = pickle.load(open(temp_path + '/vocab.obj', 'r'))

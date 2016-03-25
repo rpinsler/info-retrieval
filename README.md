@@ -37,10 +37,10 @@ You can use one of the following ways to interact with the search engine:
 
 Before running the program, building index for this application is required.
 ```python
-from index import Indexer
+from app_index import AppIndexer
 
 # building index for the application.
-Indexer(DATA_DIR, INDEX_DIR, context, analyzer)
+AppIndexer(DATA_DIR, APP_INDEX_DIR, context, analyzer)
 ```
 After building index, we can send query (a year), retrieve all the titles in the year and find the most popular topics in the year.
 ```python
@@ -53,4 +53,18 @@ results = pt.get_popular_topics(query_year, top_k)
 
 #### Finding similar publication venues and years
 For finding similar publication venues and years, there is no need to build index because all the titles in the dataset will be used.
-If this is the first time you run this code, then you need to build a [LDA](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) model using 
+If this is the first time you run this code, then you need to build a [LDA](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) model using
+```python
+from similar_venue_year import SimilarVenueYear
+svy = SimilarVenueYear()
+svy.lda_modeling(context, n_topics=10, n_iter=100, min_df=10)
+```
+You may want to store the model so the next time you can just load the model from files, instead running lda again.
+```python
+svy.write_to_file(path) # defalut: ./temp
+svy.load_from_file(path)
+```
+Query for the top-k similar publication venues and years:
+```python
+results = svy.query_venue_year(venue='SIGIR', year='2015', top_k=10)
+```
