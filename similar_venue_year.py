@@ -69,16 +69,17 @@ class SimilarVenueYear():
         for i in xrange(doc_topic.shape[0]):
             sim = doc_topic[i].dot(doc_topic[query_id]) / norm(doc_topic[i]) / norm(doc_topic[query_id])
             all_sim.append(sim)
-        print "Query:", venue, year
-        print
+
         sorted_item = sorted(range(len(all_sim)), key=lambda k: all_sim[k], reverse=True)
         sorted_sim = sorted(all_sim, key=lambda k: k, reverse=True)
+
+        result = []
         for i in xrange(1, top_k + 1):
             venue_year = self.venue_year_names[sorted_item[i]]
             venue = venue_year[:-4]
             year = venue_year[-4:]
-            print venue, year, sorted_sim[i]
-        print
+            result.append((venue, year, sorted_sim[i]))
+        return result
 
     def write_to_file(self):
         if not os.path.isdir(TEMP_DIR):

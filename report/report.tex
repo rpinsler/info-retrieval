@@ -85,7 +85,7 @@
   showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
   showstringspaces=false,          % underline spaces within strings only
   showtabs=false,                  % show tabs within strings adding particular underscores
-  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered  
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
   stringstyle=\color{deepgreen},
   tabsize=1                  % sets default tabsize to 2 spaces
 }}
@@ -256,7 +256,7 @@ Publication records from DBLP are provided in a single XML file. The dataset com
 Indexing the DBLP dataset is a multi-step process. First, each record has to be extracted from the XML file before it can be further processed. Additional preprocessing is applied to match the expected input format. Finally, the records are processed and indexed through the PyLucene API. Listing \ref{lst:indexer} gives an overview of the Indexer class that provides above functionality. It takes as input the file to be indexed, the desired index storage location and an analyzer instance that we will introduce later. By calling its own index function, it triggers the indexing process (Listing \ref{lst:indexer}, line 12). In the following, we explain each step in more detail.
 
 \lstset{caption={Indexer class}, label={lst:indexer}}
-\pythonexternal{snippets/class_indexer.py} 
+\pythonexternal{snippets/class_indexer.py}
 
 \textbf{Parsing} \quad  We use an XML parser to extract the DBLP records from the dataset. Due to the large file size, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the lxml\footnote{\url{http://lxml.de}} Python library that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. For each emitted event, we call the index\_document function. (Listing \ref{lst:indexer}, lines 15-19)
 
@@ -288,7 +288,7 @@ title & X & X & X & X \\
 \end{tabular}
 \end{table}
 
-\textbf{Evaluation} \quad In order to evaluate the impact of additional token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. For this, we define a custom analyzer that gives us full control over the configurations by extending the base analyzer of PyLucene (Listing \ref{lst:customanalyzer}).  
+\textbf{Evaluation} \quad In order to evaluate the impact of additional token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. For this, we define a custom analyzer that gives us full control over the configurations by extending the base analyzer of PyLucene (Listing \ref{lst:customanalyzer}).
 
 \lstset{caption={CustomAnalyzer class}, label={lst:customanalyzer}}
 \pythonexternal{snippets/class_customanalyzer.py}
@@ -328,7 +328,7 @@ Applying lowercase conversion or stemming reduces the vocabulary significantly, 
 
 \section{User Interface}
 
-There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The latter is built with Flask\footnote{\url{http://flask.pocoo.org}}, a leightweight Python web framework that leverages Jinja2\footnote{\url{http://jinja.pocoo.org}} as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap\footnote{\url{http://getbootstrap.com}} to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query. As the UI is not our focus, we omit further implementation details; the interested reader is referred to the source code. 
+There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The latter is built with Flask\footnote{\url{http://flask.pocoo.org}}, a leightweight Python web framework that leverages Jinja2\footnote{\url{http://jinja.pocoo.org}} as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap\footnote{\url{http://getbootstrap.com}} to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query. As the UI is not our focus, we omit further implementation details; the interested reader is referred to the source code.
 
 \begin{figure*}[th]
 \centering
@@ -348,13 +348,34 @@ Before mining popular research topics from paper titles, we need to firstly extr
   \item Retrieve the titles of all the papers published in 2014, using the index.
   \item Tokenize each title and remove punctuations and stop words.
   \item Use Part-Of-Speech Tagger (POS Tagger)\footnote{\url{http://nlp.stanford.edu/software/tagger.shtml}} to assign parts of speech to each word, such as noun, verb, adjective, etc.
-  \item Extract topics from the tagged words based on the given pattern.
+  \item Extract topics from the tagged words based on the given pattern, using regular expression tools.
 \end{itemize}
-From the observation of real topic names, we can conclude that a topic name usually consist of adjectives and nouns. Therefore, in the third step, we define the pattern as adj+adj+...+noun+...+noun. After the topic identification, we count the frequency of each topic appearing in the titles. Finally, the top-10 most frequent topics will be return as the result.
-\subsection{Similar publication venues}
-For retrieving similar publication venues and years, firstly we need to measure the similarity between two publication venues and years (e.g How similar are "TKDE'14" and "CIKM'15") using the paper titles. One simple way is to firstly tokenize every title of the venues and years, and use bag-of-words model, computing the cosine similarity of the word frequency vectors between them. However, based on our statistical analysis, the dimensionality is too high. It is very inefficient to compute similarity. Besides, the data may also be very noisy, containing many words that only appears once in the whole dataset.
+The key point of topic extraction is the above steps is to define the word pattern of topic. From the observation of real topic names, we can conclude that
+\begin{itemize}
+  \item A topic name usually consist of adjectives and nouns.
+  \item The adjectives always come before nouns for a topic name.
+  \item Normally the number of words in a topic name is less than four.
+\end{itemize}
+Therefore, in the third step, we define the pattern as adj+adj+...+noun+...+noun. Moreover, only unigram, bigram and trigram are considered in this application. In addition, we ignore those unigram terms with very high (top 1\%) frequency because they may be some widely-used terminology in many different topics. After the topic identification, we count the frequency of each topic appeared in the titles. Finally, the top-10 most frequent topics will be return as the result.
 
-To address the aforementioned problems, we adopted Latent Dirichlet allocation (LDA)\cite{blei2003latent} to learn the latent topics from the data. Instead of using word frequency vectors, the similarity is defined based on the cosine similarity between the topic distribution between two venues and years. Thus, for a query venue and year, we compute the topic similarities between it and every other venues and years. Then, top-10 similar venues and years are returned as the result.
+\lstset{caption={Finding popular topics for a given year}, label={lst:popular_topics}}
+\pythonexternal{snippets/popular_topics.py}
+
+\subsection{Similar publication venues}
+For retrieving similar publication venues and years, firstly we need to measure the similarity between two publication venues and years (e.g How similar are "TKDE'14" and "CIKM'15") using the paper titles. One simple way is to firstly tokenize every title of the venues and years, and use bag-of-words model, computing the cosine similarity of the word frequency vectors between them, which is defined as:
+\begin{equation*}
+  Sim_{i, j} = \frac{\sum_{k\in W}freq_{i,k} \cdot freq_{j,k}}{\sqrt{\sum_{k\in W}freq_{i,k}^2}\sqrt{\sum_{k\in W}freq_{j,k}^2}},
+\end{equation*}
+where i, j are two (venue, year) pairs. $W$ refers to the collection contains all the words appeared in the corpus. $freq_{i,k}$ is the frequency of word $k$ appears in the $i$th venue and year.
+
+However, based on our statistical analysis, the dimensionality is too high. It is very inefficient to compute similarity. Besides, the data may also be very noisy, containing many words that only appears once in the whole dataset.
+
+To address the aforementioned problems, we adopted Latent Dirichlet allocation (LDA)\cite{blei2003latent} to learn the latent topics from the data. Instead of using word frequency vectors, the similarity is defined based on the cosine similarity between the topic distribution of two venues and years. Thus, for a query venue and year, we compute the topic similarities between it and every other venues and years, which is given by
+
+\begin{equation*}
+  Sim_{i, j} = \frac{\sum_{z\in Z}\theta_{i,z} \cdot \theta_{j,z}}{\sqrt{\sum_{z\in Z}\theta_{i,z}^2}\sqrt{\sum_{z\in Z}\theta_{j,z}^2}},
+\end{equation*}
+where Z is the topic set; $\theta_{i,z}$ is the probability of the $i$th venue and year belongs to topic $z$.Then, based on the similarity, top-10 similar venues and years are returned as the result.
 
 \begin{figure}[th]
 \centering
