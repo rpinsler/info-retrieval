@@ -35,12 +35,12 @@ You can use one of the following ways to interact with the search engine:
 
 #### Finding popular topics
 
-Before running the program, building index for this application is required.
+Before running the program, building index is required.
 ```python
-from app_index import AppIndexer
+from index import Indexer
 
 # building index for the application.
-AppIndexer(DATA_DIR, APP_INDEX_DIR, context, analyzer)
+Indexer(DATA_DIR, INDEX_DIR, context, analyzer)
 ```
 After building index, we can send query (a year), retrieve all the titles in the year and find the most popular topics in the year.
 ```python
@@ -57,7 +57,7 @@ If this is the first time you run this code, then you need to build a [LDA](http
 ```python
 from similar_venue_year import SimilarVenueYear
 svy = SimilarVenueYear()
-svy.lda_modeling(context, n_topics=10, n_iter=100, min_df=10)
+svy.lda_modeling(context, n_topics=10, n_iter=100)
 ```
 You may want to store the model so the next time you can just load the model from files, instead running lda again.
 ```python
