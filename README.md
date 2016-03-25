@@ -30,3 +30,27 @@ You can use one of the following ways to interact with the search engine:
 ------------------
 
 ## Examples
+
+### Applications
+
+#### Finding popular topics
+
+Before running the program, building index for this application is required.
+```python
+from index import Indexer
+
+# building index for the application.
+Indexer(DATA_DIR, INDEX_DIR, context, analyzer)
+```
+After building index, we can send query (a year), retrieve all the titles in the year and find the most popular topics in the year.
+```python
+from popular_topics import PopularTopics
+
+# create an analyzer before using this application.
+pt = PopularTopics(index_dir, analyzer)
+results = pt.get_popular_topics(query_year, top_k)
+```
+
+#### Finding similar publication venues and years
+For finding similar publication venues and years, there is no need to build index because all the titles in the dataset will be used.
+If this is the first time you run this code, then you need to build a [LDA](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) model using 

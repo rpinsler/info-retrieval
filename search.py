@@ -116,6 +116,18 @@ class Searcher():
 
         return bq, q
 
+    def search_year(self, q_year):
+        search_query = BooleanQuery()
+        q = QueryParser(Version.LUCENE_CURRENT, 'content',
+                            self.analyzer).parse(q_year)
+        search_query.add(q, BooleanClause.Occur.MUST)
+        docs = self.searcher.search(search_query, 0x7fffffff).scoreDocs
+        titles = []
+        for doc in docs:
+            d = self.searcher.doc(doc.doc)
+            titles.append(d.get('title'))
+        return titles
+
     def run(self, N=0):
         while True:
             print
