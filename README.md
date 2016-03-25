@@ -42,7 +42,7 @@ from index import Indexer
 # building index for the application.
 Indexer(DATA_DIR, INDEX_DIR, context, analyzer)
 ```
-After building index, we can send query (a year), retrieve all the titles in the year and find the most popular topics in the year.
+After building index, we can send query (a year). The application will retrieve all the titles in the year and find the most popular topics in the year.
 ```python
 from popular_topics import PopularTopics
 
