@@ -49,6 +49,7 @@
 %\usepackage{hyperref}
 \usepackage{url}
 \usepackage{listings}
+\usepackage{footnote}
 \usepackage[utf8]{inputenc}
 
 % Default fixed font does not support bold face
@@ -259,9 +260,10 @@ Publication records from DBLP are provided in a single XML file. The dataset com
 
 \section{Indexing}
 
-Indexing the DBLP dataset is a multi-step process. First, each record has to be extracted from the XML file before it can be further processed. Additional preprocessing is applied to match the expected input format. Finally, the records are processed and indexed through the PyLucene API. Listing \ref{lst:indexer} gives an overview of the Indexer class that provides above functionality. It takes as input the file to be indexed, the desired index storage location and an analyzer instance that we will introduce later. By calling its own index function, it triggers the indexing process (Listing \ref{lst:indexer}, line 12). In the following, we explain each step in more detail.
+Indexing the DBLP dataset is a multi-step process. First, each record has to be extracted from the XML file before it can be further processed. Additional preprocessing is applied to match the expected input format. Finally, the records are processed and indexed through the PyLucene API. Listing \ref{lst:indexer} gives an overview of the Indexer class that provides above functionality. It takes as input the location of the file to be indexed, the desired index storage location and an analyzer instance that we will introduce later. By calling its own index function, it triggers the indexing process (Listing \ref{lst:indexer}, line 12). In the following, we explain each step in more detail.
 
-\lstset{caption={Indexer class}, label={lst:indexer}}
+\lstset{caption={Indexer class\protect\footnotemark}, label={lst:indexer}}
+\footnotetext[2]{Listings are slightly modified to improve readability.}
 \pythonexternal{snippets/class_indexer.py}
 
 \textbf{Parsing} \quad  We use an XML parser to extract the DBLP records from the dataset. Due to the large file size, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the lxml\footnote{\url{http://lxml.de}} Python library that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. For each emitted event, we call the index\_document function. (Listing \ref{lst:indexer}, lines 15-19)
@@ -269,37 +271,42 @@ Indexing the DBLP dataset is a multi-step process. First, each record has to be 
 \lstset{caption={index\_document function}, label={lst:fn_index}}
 \pythonexternal{snippets/fn_index.py}
 
-\textbf{Preprocessing} \quad Given the current element, i.e. an \emph{article} or \emph{inproceedings} record, we can now iterate through its children, i.e. attributes of the record such as title or publication year. This is shown in Listing \ref{lst:fn_index}. As some of the records contain basic HTML formatting, irrelevant tags are removed and HTML-encoded characters are replaced  (Listing \ref{lst:fn_index}, lines 5 and 12-15).
+\textbf{Preprocessing} \quad Given the current element, i.e. an \emph{article} or \emph{inproceedings} record, we can now iterate through its children, i.e. record attributes like title or publication year. This is shown in Listing \ref{lst:fn_index}. As some records contain HTML formatting, irrelevant tags are removed and HTML-encoded characters are replaced  (Listing \ref{lst:fn_index}, lines 5 and 12-15).
 
-\textbf{Indexing} \quad Each record is indexed as a Lucene \emph{document}, comprising of the following \emph{fields}: id, title, authors, year and venue. The venue is derived from the journal or booktitle attribute, depending on the record type. To facilitate the search, an additional \emph{content} field is added that concatenates the values of the above fields except the id. This can be easily achieved by subsequently adding all values to the same field. This method is also used to index multiple authors. (Listing \ref{lst:fn_index}, lines 19-20 and 27-28).
+\textbf{Indexing} \quad Each record is indexed as a Lucene \emph{document}, comprising of the following \emph{fields}: id, title, authors, year and venue. The venue field is derived from the journal or booktitle attribute, depending on the record type. To facilitate the search, an additional \emph{content} field is added that concatenates the values of the above fields except the id. This can be easily achieved by subsequently adding all values to the same field. This method is also used to index multiple authors. (Listing \ref{lst:fn_index}, lines 19-20 and 27-28).
 
-All fields are treated as strings\footnote{The \emph{year} attribute may also be stored as integer, allowing for features like range searches. However, this would require additional effort during search that we try to avoid.}. Contents of the original fields (i.e. without the \emph{content} field) are stored in the index, which allows to retrieve them later during search. This is especially useful to enhance search results with additional information when presented to the user. The values of the fields \emph{id} and \emph{year} are stored as-is, which is a property of the StringField class. All other fields are tokenized ($f_\text{token}$) and further processed. The processing applied to each of those TextFields is determined by the analyzer that is used, which is known by the index writer (Listing \ref{lst:indexer}, lines 6-10 and Listing \ref{lst:fn_index}, line 29). By default, all TextFields are processed in the same way, which may include lowercase conversion ($f_\text{low}$), removal of stopwords ($f_\text{stop}$) and stemming ($f_\text{stem}$). In particular, we use the Porter stemmer and the default stopword list of Lucene, which consists of 33 common English words.
+All fields are treated as strings\footnote{The \emph{year} attribute may also be stored as integer, allowing for features like range searches. However, this would require additional effort during search that we try to avoid.}. Contents of the original fields (i.e. without the \emph{content} field) are stored in the index, which allows to retrieve them later during search. This is especially useful to enhance search results with additional information when presented to the user. The values of the fields \emph{id} and \emph{year} are stored as-is, which is a property of the StringField class. All other fields are tokenized ($f_\text{token}$) and further processed. 
 
-Table \ref{tbl:analysis} summarizes the analysis applied to each field.
+The processing applied to each of those TextFields is determined by the analyzer that is used, which is known by the index writer (Listing \ref{lst:indexer}, lines 6-10 and Listing \ref{lst:fn_index}, line 29). By default, all TextFields are processed in the same way, which may include lowercase conversion ($f_\text{low}$), removal of stopwords ($f_\text{stop}$) and stemming ($f_\text{stem}$). In particular, we use the Porter stemmer and the default stopword list of Lucene, which consists of 33 common English words. In order to assign different analyzers depending on the field, we utilize PyLucene's PerFieldAnalyzerWrapper as shown in Listing \ref{lst:perfield}. In this case, we apply the StandardAnalyzer from PyLucene to perform lowercase conversion and stopword removal on each tokenized field except the title, where the CustomAnalyzer introduced in Listing \ref{lst:customanalyzer} is used. 
 
-\begin{table}[th]
-\centering
-\caption{Analysis applied to document fields} \label{tbl:analysis}
-\begin{tabular}{lcccc}
-% \hline
-Field & $f_\text{token}$ & $f_\text{low}$ & $f_\text{stop}$ & $f_\text{stem}$ \\
-\hline
-id & & & & \\
-year & & & & \\
-authors & X & X & X & \\
-venue & X & X & X & \\
-content & X & X & X & \\
-title & X & X & X & X \\
-% \hline
-\end{tabular}
-\end{table}
+\lstset{caption={Indexing with field-dependent analyzers}, label={lst:perfield}}
+\pythonexternal{snippets/pfaw.py}
 
-\textbf{Evaluation} \quad In order to evaluate the impact of additional token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. For this, we define a custom analyzer that gives us full control over the configurations by extending the base analyzer of PyLucene (Listing \ref{lst:customanalyzer}).
+%Table \ref{tbl:analysis} summarizes the analysis applied to each field.
+%
+%\begin{table}[th]
+%\centering
+%\caption{Analysis applied to document fields} \label{tbl:analysis}
+%\begin{tabular}{lcccc}
+%% \hline
+%Field & $f_\text{token}$ & $f_\text{low}$ & $f_\text{stop}$ & $f_\text{stem}$ \\
+%\hline
+%id & & & & \\
+%year & & & & \\
+%authors & X & X & X & \\
+%venue & X & X & X & \\
+%content & X & X & X & \\
+%title & X & X & X & X \\
+%% \hline
+%\end{tabular}
+%\end{table}
+
+\textbf{Evaluation} \quad In order to evaluate the impact of additional token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. For this, we make use of our CustomAnalyzer that gives us full control over those configurations by extending the base analyzer of PyLucene. The class could be easily extended to support alternative stemmers and stopword lists by further parametrizing the config parameter.
 
 \lstset{caption={CustomAnalyzer class}, label={lst:customanalyzer}}
 \pythonexternal{snippets/class_customanalyzer.py}
 
-We measure the speed of indexing (including parsing and analyzing the documents) in seconds, $t_\text{ind}$, as well as the number of terms in the vocabulary, $|V_\text{title}|$. The results are shown in Table \ref{tbl:evalindex}. Note that indexing speed slightly varies over different runs.
+During our experiments, we measure the speed of indexing (including parsing and analyzing the documents) in seconds, $t_\text{ind}$, as well as the number of terms in the vocabulary, $|V_\text{title}|$. The results are shown in Table \ref{tbl:evalindex}. Note that indexing speed slightly varied over different runs (not shown).
 
 \begin{table}[th]
 \centering
@@ -321,14 +328,22 @@ Applying lowercase conversion or stemming reduces the vocabulary significantly, 
 
 \section{Search}
 
-\textbf{Keyword search} \quad The search module makes use of the document index to retrieve the most relevant documents to a given query. It supports free text keyword queries on any combination of the attributes title, authors, year and venue. By default, all attributes are considered. This is achieved by utilizing the \emph{content} field of the index. We refer to this as a standard search. Additionally, it is possible to query a combination of specific fields through an advanced search. Those keywords are directly matched against the respective fields in the index. In this case, documents must contain the provided keywords to be returned in the result set. Standard and advanced search can be freely combined during a single search request.
+The document index can now be used to retrieve the most relevant documents to a given query, which may be a combination of keywords and phrases. Those search capabilities are bundled in the Searcher class presented in Listing \ref{lst:searcher}. The main search logic is contained within the \emph{search} function as outlined in Listing \ref{lst:search}, whereas phrase queries are processed using \emph{extract\_pq}.  
 
-\textbf{Phrase queries} \quad Phrase queries are supported using double quotation marks (e.g. ``information retrieval'') in both standard and advanced search. Documents containing a particular phrase receive a higher weight during scoring. This requires an exact match up to the processing on the respective field. If a document does not contain the phrase, it may still be considered when there is a match for at least one of the keywords within the phrase. This considerably increases recall while risking an increase of false positives. Note that there is no restriction for the number of phrases within a query.
-
-\textbf{Query results} \quad The search returns the $N$ most relevant documents along with their ranks, scores, ids and snippets, where $N$ is a configurable parameter. Relevance is determined based on Lucene's internal scoring function. It also measures the time needed to retrieve the results. The complete procedure for handling queries is outlined in Listing \ref{lst:search}.
+\lstset{caption={Searcher class}, label={lst:searcher}}
+\pythonexternal{snippets/class_searcher.py}
 
 \lstset{caption={Query handling},label={lst:search}}
-\pythonexternal{snippets/search.py}
+\pythonexternal{snippets/fn_search.py}
+
+\textbf{Keyword search} \quad Our search allows free text keyword queries on any combination of the attributes title, authors, year and venue. By default, all attributes are considered. This is achieved by utilizing the \emph{content} field of the index. We refer to this as a standard search (Listing \ref{lst:search}, lines 8-13). Moreover, it is possible to query a combination of specific fields through an advanced search. Those keywords are directly matched against the respective fields in the index. In this case, documents must contain the provided keywords to be returned in the result set (Listing \ref{lst:search}, lines 21-26). Note that keywords are handled after phrase extraction (described below). Standard and advanced search can be combined.
+
+\textbf{Phrase queries} \quad Phrase queries are supported using double quotation marks (e.g. ``information retrieval'') in both standard and advanced search (Listing \ref{lst:search}, lines 3-7 and 17-20) through the \emph{extract\_pq} function outlined in Listing \ref{lst:pq}. There is no restriction for the number of phrases within a query. Documents containing a particular phrase receive higher weight during scoring. This requires an exact match up to the processing on the respective field (e.g. stemming). If a document does not contain the phrase, it may still be considered when there is a match for at least one of the keywords within the phrase. This considerably increases recall while risking an increase of false positives. All those rules are compactly represented using the query language of Lucene (Listing \ref{lst:pq}, lines 11-12). Finally, the function returns the constructed sub-query as well as the remaining keywords.
+
+\lstset{caption={Phrase extraction},label={lst:pq}}
+\pythonexternal{snippets/fn_extractpq.py}
+
+\textbf{Query results} \quad The search returns the $N$ most relevant documents along with their ranks, scores, ids and snippets, where $N$ is a configurable parameter. Relevance is determined based on Lucene's internal scoring function. It also measures the time needed to retrieve the results.
 
 \section{Evaluation}
 

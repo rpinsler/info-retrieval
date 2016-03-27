@@ -1,4 +1,3 @@
-VERSION = Version.LUCENE_CURRENT
 class CustomAnalyzer(PythonAnalyzer):
   def __init__(self,config):
     self.lowercase = config['lowercase']
