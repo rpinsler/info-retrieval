@@ -260,7 +260,7 @@ Publication records from DBLP are provided in a single XML file. The dataset com
 
 \section{Indexing}
 
-Indexing the DBLP dataset is a multi-step process. First, each record has to be extracted from the XML file before it can be further processed. Additional preprocessing is applied to match the expected input format. Finally, the records are processed and indexed through the PyLucene API. Listing \ref{lst:indexer} gives an overview of the Indexer class that provides above functionality. It takes as input the location of the file to be indexed, the desired index storage location and an analyzer instance that we will introduce later. By calling its own index function, it triggers the indexing process (Listing \ref{lst:indexer}, line 12). In the following, we explain each step in more detail.
+Indexing the DBLP dataset is a multi-step process. First, each record has to be extracted from the XML file before it can be further processed. Next, preprocessing is applied to match the expected input format. Finally, the records are processed and indexed through the PyLucene API. Listing \ref{lst:indexer} gives an overview of the Indexer class that provides above functionality. It takes as input the file to be indexed, the desired index storage location and an analyzer instance that we will introduce later. By calling its own index function, it triggers the indexing process (Listing \ref{lst:indexer}, line 12). In the following, we explain each step in more detail.
 
 \lstset{caption={Indexer class\protect\footnotemark}, label={lst:indexer}}
 \footnotetext[2]{Listings are slightly modified to improve readability.}
@@ -275,9 +275,9 @@ Indexing the DBLP dataset is a multi-step process. First, each record has to be 
 
 \textbf{Indexing} \quad Each record is indexed as a Lucene \emph{document}, comprising of the following \emph{fields}: id, title, authors, year and venue. The venue field is derived from the journal or booktitle attribute, depending on the record type. To facilitate the search, an additional \emph{content} field is added that concatenates the values of the above fields except the id. This can be easily achieved by subsequently adding all values to the same field. This method is also used to index multiple authors. (Listing \ref{lst:fn_index}, lines 19-20 and 27-28).
 
-All fields are treated as strings\footnote{The \emph{year} attribute may also be stored as integer, allowing for features like range searches. However, this would require additional effort during search that we try to avoid.}. Contents of the original fields (i.e. without the \emph{content} field) are stored in the index, which allows to retrieve them later during search. This is especially useful to enhance search results with additional information when presented to the user. The values of the fields \emph{id} and \emph{year} are stored as-is, which is a property of the StringField class. All other fields are tokenized ($f_\text{token}$) and further processed. 
+All fields are treated as strings\footnote{The \emph{year} attribute may also be stored as integer, allowing for features like range searches. However, this would require additional effort during search that we try to avoid.}. Contents of the original fields (i.e. without the \emph{content} field) are stored in the index, which allows to retrieve them later during search. This is useful to enhance search results with extra details when presented to the user. The values of the fields \emph{id} and \emph{year} are stored as-is, which is a property of the StringField class. All other fields are tokenized ($f_\text{token}$) and further processed. 
 
-The processing applied to each of those TextFields is determined by the analyzer that is used, which is known by the index writer (Listing \ref{lst:indexer}, lines 6-10 and Listing \ref{lst:fn_index}, line 29). By default, all TextFields are processed in the same way, which may include lowercase conversion ($f_\text{low}$), removal of stopwords ($f_\text{stop}$) and stemming ($f_\text{stem}$). In particular, we use the Porter stemmer and the default stopword list of Lucene, which consists of 33 common English words. In order to assign different analyzers depending on the field, we utilize PyLucene's PerFieldAnalyzerWrapper as shown in Listing \ref{lst:perfield}. In this case, we apply the StandardAnalyzer from PyLucene to perform lowercase conversion and stopword removal on each tokenized field except the title, where the CustomAnalyzer introduced in Listing \ref{lst:customanalyzer} is used. 
+The processing applied to each of those TextFields is determined by the analyzer that is used, which is known by the index writer (Listing \ref{lst:indexer}, lines 6-10 and Listing \ref{lst:fn_index}, line 29). By default, all TextFields are processed in the same way, which may include lowercase conversion ($f_\text{low}$), removal of stopwords ($f_\text{stop}$) and stemming ($f_\text{stem}$). In particular, we use the Porter stemmer and the default stopword list of Lucene, which consists of 33 common English words. To assign different analyzers depending on the field, we utilize PyLucene's PerFieldAnalyzerWrapper as shown in Listing \ref{lst:perfield}. In this case, we apply the StandardAnalyzer from PyLucene to perform lowercase conversion and stopword removal on each tokenized field except the title, where the CustomAnalyzer introduced in Listing \ref{lst:customanalyzer} is used. 
 
 \lstset{caption={Indexing with field-dependent analyzers}, label={lst:perfield}}
 \pythonexternal{snippets/pfaw.py}
@@ -301,7 +301,7 @@ The processing applied to each of those TextFields is determined by the analyzer
 %\end{tabular}
 %\end{table}
 
-\textbf{Evaluation} \quad In order to evaluate the impact of additional token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. For this, we make use of our CustomAnalyzer that gives us full control over those configurations by extending the base analyzer of PyLucene. The class could be easily extended to support alternative stemmers and stopword lists by further parametrizing the config parameter.
+\textbf{Evaluation} \quad To evaluate the impact of token processing onto the index, different configurations of lowercase conversion, removal of stopwords and/or stemming are applied to the \emph{title} field. For this, we make use of our CustomAnalyzer that gives us full control over those configurations by extending the base analyzer of PyLucene. Note that the class could be easily extended to support other stemmers and stopword lists by further parametrizing the config parameter.
 
 \lstset{caption={CustomAnalyzer class}, label={lst:customanalyzer}}
 \pythonexternal{snippets/class_customanalyzer.py}
@@ -324,11 +324,11 @@ X & X & X & 417.94 ($\pm0\%$) & 288\,710 ($-34\%$) \\
 \end{tabular}
 \end{table}
 
-Applying lowercase conversion or stemming reduces the vocabulary significantly, whereas the removal of stopwords has nearly no impact. This is expected, since the first two techniques are able to map multiple tokens onto the same term whereas the exclusion of stopwords decreases the vocabulary size only by the number of stopwords. By combining multiple processing steps, the vocabulary can be further reduced, leading to a reduction of to up a third of the original size when no further processing is applied. In terms of indexing speed, we found that the additional processing steps are negligible. In particular, there seems to be no positive correlation between indexing speed and the number of processing steps that are applied. One reason for this is that while processing each document is more time-consuming, the cost for indexing a processed document is actually reduced. Therefore, we conclude that, under the given evaluation criteria, it is recommended to apply all three processing techniques due to the reduction in vocabulary size. However, it should be noted that this also has an effect on other properties of the system, e.g. the quality of search results, which might or might not be desired.
+Applying lowercase conversion or stemming reduces the vocabulary significantly, whereas the removal of stopwords has nearly no impact. This is expected, since the first two techniques are able to map multiple tokens onto the same term whereas the exclusion of stopwords decreases the vocabulary size only by the number of stopwords. By combining multiple processing steps, the vocabulary can be further reduced, leading to a reduction of to up a third of the original size when no further processing is applied. In terms of indexing speed, we found that the additional processing steps are negligible. In particular, there seems to be no positive correlation between indexing speed and the number of processing steps that are applied. One reason for this is that while processing each document is more time-consuming, the cost for indexing a processed document is actually reduced. Therefore, we conclude that, under the given evaluation criteria, it is recommended to apply all three processing techniques due to the reduction in vocabulary size. However, this also has an effect on other properties of the system, e.g. the quality of search results, which might not be desired.
 
-\section{Search}
+\section{Search} \label{sec:search}
 
-The document index can now be used to retrieve the most relevant documents to a given query, which may be a combination of keywords and phrases. Those search capabilities are bundled in the Searcher class presented in Listing \ref{lst:searcher}. The main search logic is contained within the \emph{search} function as outlined in Listing \ref{lst:search}, whereas phrase queries are processed using \emph{extract\_pq}.  
+The index can now be used to retrieve a ranked list of documents to a given query, which may be a combination of keywords and phrases. Those search capabilities are bundled in the Searcher class presented in Listing \ref{lst:searcher}. The main search logic is part of the \emph{search} function as outlined in Listing \ref{lst:search}, whereas phrase queries are processed using \emph{extract\_pq}.  
 
 \lstset{caption={Searcher class}, label={lst:searcher}}
 \pythonexternal{snippets/class_searcher.py}
@@ -346,6 +346,41 @@ The document index can now be used to retrieve the most relevant documents to a 
 \textbf{Query results} \quad The search returns the $N$ most relevant documents along with their ranks, scores, ids and snippets, where $N$ is a configurable parameter. Relevance is determined based on Lucene's internal scoring function. It also measures the time needed to retrieve the results.
 
 \section{Evaluation}
+
+In order to evaluate the quality of search results, we run 10 queries on our search engine and measure performance in terms of precision, recall and the F1 score against a labeled test collection. As we are specifically interested in the performance for the top-10 results, the slightly modified metrics precision@K and recall@K are used:
+
+define metrics here...
+
+where $K=10$ in our case. In contrast to the usual recall metric, it is possible that a perfect system cannot achieve a recall@K value of 1. This happens when there are more than $K$ relevant documents in the test collection. To account for this, we state the overall number of relevant documents for each test query, $n_{rel}$, as well as the precision that is achieved as the maximum recall value is reached, i.e. after all (relevant) documents have been retrieved by the system. This is also known as R-precision.
+
+As the search engine is specifically built to retrieve DBLP records, it is reasonable to use the same\footnote{Note that if we wanted to utilize the results to improve performance, special care has to be taken to avoid overfitting.} dataset for evaluation. However, due to the large collection size, we are not able to manually assign relevance judgements to each document for all queries. A naive alternative would be to use a small random subset of the documents. In many cases, this subset will not contain any relevant documents at all though. Large web companies instead employ an approach called \emph{pooling}, where the top-N results from different search engines across all test queries are merged into a single collection, which is then labeled by human judges.  
+
+A similar approach can be applied by using the the DBLP search API, which accepts standard and advanced queries with both keywords and phrases as defined in Section \ref{sec:search}. Results are returned in XML format and can be post-filtered to remove irrelevant publication types. One issue is that hits are ranked by a coarse relevance score that does not always allow to extract a distinct top 10 for a given query. If there are hits beyond the top 10 that have the same score as the 10-th result, we include all of them. Since a single source of results does likely not contain all relevant documents, we additionally augment the test collection with a disjunct set of random documents from the original dataset. In total, the test collection comprises of 300 documents.
+
+We manually added relevance judgments for every document in the test collection with respect to each query. Inter-rater agreement is estimated to be X according to the kappa measure. Following TREC conventions, we derive test queries from topics with specific information needs and use the TREC file format to store topic definitions and relevance judgments. Table \ref{tbl:evalsearch} shows the results for each test query.
+
+\begin{table*}[th]
+\centering
+\caption{Evaluation of search results} \label{tbl:evalsearch}
+\begin{tabular}{lrrrrr}
+% \hline
+Query & $n_\text{rel}$ & Precision@10 & Recall@10 & F1@10 & R-precision \\
+\hline
+This is some pretty long query with many keywords & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+Some query & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+Some query & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+Some query & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+Some query & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+Some query & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+Some query & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+Some query & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+Some query & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+Some query & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+% \hline
+\end{tabular}
+\end{table*}
+
+add interpretation here...   
 
 \section{User Interface}
 
