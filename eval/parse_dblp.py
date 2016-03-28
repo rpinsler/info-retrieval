@@ -1,18 +1,27 @@
 from lxml import etree
 import urllib
+import re
 
 RECORD_TYPES = ["Conference and Workshop Papers", "Journal Articles"]
+API_URL = "http://dblp.uni-trier.de/search/publ/api?"
 
 
-def parse(context, f, topic_num):
+def parse(context):
     """
     http://lxml.de/parsing.html#modifying-the-tree
     Based on Liza Daly's fast_iter
     http://www.ibm.com/developerworks/xml/library/x-hiperfparse/
     See also http://effbot.org/zone/element-iterparse.htm
     """
-    for event, elem in context:
-        self.parse_element(elem, f, topic_num)
+    for _, hits in context:
+        nresults = int(hits.get('total'))
+
+    res = []
+    for elem in hits:
+        score = int(elem.get('score'))
+        key = parse_element(elem)
+        if key is not None:
+            res.append({'key': key, 'score': score})
         # It's safe to call clear() here because no descendants will be
         # accessed
         elem.clear()
@@ -21,21 +30,24 @@ def parse(context, f, topic_num):
             while ancestor.getprevious() is not None:
                 del ancestor.getparent()[0]
     del context
+    return res, nresults
 
 
-def parse_element(elem, f, topic_num):
+def parse_element(elem):
+    key = None
     try:
-        for ch in elem:
-            key = None
-            if ch.tag == 'type' and ch.text not in RECORD_TYPES:
-                return
-            elif ch.tag == 'url':
-                key = ch.text[20:]
-
-        f.write('%s\t0%s\t1\n' % (topic_num, key))
+        for el in elem:
+            if el.tag == "info":
+                for ch in el:
+                    key = None
+                    if ch.tag == 'type' and ch.text not in RECORD_TYPES:
+                        return
+                    elif ch.tag == 'url':
+                        key = ch.text[20:]
 
     except Exception, e:
         print "Parse error:", e
+    return key
 
 
 if __name__ == "__main__":
@@ -45,15 +57,36 @@ if __name__ == "__main__":
             topic_num = int(element.text)
         elif element.tag == 'query':
             data_dir = 'eval/qrels_dblp/q_%d' % topic_num
-            api_url = "http://dblp.uni-trier.de/search/publ/api?"
-            query = urllib.urlencode({'q': element.text, 'h': 1000,
-                                      'format': 'xml'})
-            print "Retrieving %s" % (api_url + query)
-            print "Writing results into %s" % data_dir
-            urllib.urlretrieve(api_url + query, data_dir)
-            context = etree.iterparse(data_dir, events=('end',),
-                                      tag=('hit'))
-
             open("eval/qrels_dblp/qrels_%d" % topic_num, 'w').close()
-            with open("eval/qrels_dblp/qrels_%d" % topic_num, "a") as f:
-                parse(context, topic_num, f)
+            nretrieved = 0
+            nresults = 1000
+            nfetch = 1000
+            maxscore = 0
+            while nretrieved < nresults:
+                q = element.text
+                q = q.replace('authors', 'author')
+                phrases = re.findall(r'"([^"]*)"', q)
+                for phrase in phrases:
+                    p = phrase.replace('"', '').replace(' ', '.')
+                    q = q.replace('"%s"' % phrase, p)
+                query = urllib.urlencode({'q': q, 'h': nfetch,
+                                          'f': nretrieved, 'format': 'xml'})
+                print "Retrieving %s" % (API_URL + query)
+                print "Writing results into %s" % data_dir
+                urllib.urlretrieve(API_URL + query, data_dir)
+                context = etree.iterparse(data_dir, events=('end',),
+                                          tag=('hits'))
+
+                with open("eval/qrels_dblp/qrels_%d" % topic_num, "a") as f:
+                    res, nresults = parse(context)
+                    if nretrieved == 0:
+                        maxscore = res[min(10, len(res))-1]['score']
+                        for d in res[:10]:
+                            f.write('%s\t0\t%s\t1\n' % (topic_num, d['key']))
+                        res = res[10:]
+                    for d in res:
+                        if d['score'] < maxscore:
+                            nretrieved = nresults
+                            break
+                        f.write('%s\t0\t%s\t1\n' % (topic_num, d['key']))
+                nretrieved += nfetch

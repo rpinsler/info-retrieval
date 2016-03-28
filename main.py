@@ -26,8 +26,8 @@ if __name__ == "__main__":
     per_field.put("title", title_analyzer)
     analyzer = PerFieldAnalyzerWrapper(
                 StandardAnalyzer(Version.LUCENE_CURRENT), per_field)
-    Indexer(DATA_DIR, INDEX_DIR, context, analyzer)
+    # Indexer(DATA_DIR, INDEX_DIR, analyzer)
     searcher = Searcher(INDEX_DIR, analyzer)
-    # # q = raw_input("Query: ")
-    # # searcher.search(q, N=topN)
-    searcher.run(topN)
+    q = raw_input("Query: ")
+    searcher.search(q)
+    #searcher.run(topN)

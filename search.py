@@ -32,6 +32,9 @@ class Searcher():
             if adv_query is not None:
                 print "Searching for (advanced): ", adv_query
 
+        if N == 0:
+            N = self.searcher.getIndexReader().numDocs()
+
         # evaluate phrases of standard query on all fields
         if query != '':
             # for field in FIELDS:
@@ -108,6 +111,9 @@ class Searcher():
             qparser = QueryParser(Version.LUCENE_CURRENT, field, self.analyzer)
             # parse phrase - this may or may not be desired
             # pq = qparser.parse(field + ':"' + phrase + '"')
+            # pq = qparser.parse('%s "%s"~%d^%.1f' %
+            # pq = qparser.parse('%s "%s"~%d^%.1f' %
+            #                   (phrase, phrase, slop, boost))
             pq = qparser.parse('%s "%s"~%d^%.1f' %
                                (phrase, phrase, slop, boost))
             # phrase queries have high priority

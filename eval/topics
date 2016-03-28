@@ -2,8 +2,8 @@
 <topics>
 <top>
 	<num>1</num>
-	<title>International Organized Crime</title>
-	<query>international organized crime</query>
+	<title>User Behavior</title>
+	<query>title:user behavior</query>
 	<desc>Identify organizations that participate in international criminal
 	activity, the activity, and, if possible, collaborating organizations
 	and the countries involved.</desc>
@@ -15,8 +15,8 @@
 
 <top>
 	<num>2</num>
-	<title>International Organized Crime</title>
-	<query>international organized crime</query>
+	<title>Chris Manning at NIPS</title>
+	<query>authors:christopher manning venue:nips</query>
 	<desc>Identify organizations that participate in international criminal
 	activity, the activity, and, if possible, collaborating organizations
 	and the countries involved.</desc>
@@ -28,8 +28,8 @@
 
 <top>
 	<num>3</num>
-	<title>International Organized Crime</title>
-	<query>international organized crime</query>
+	<title>Query Optimization in 2013</title>
+	<query>query optimisation 2013</query>
 	<desc>Identify organizations that participate in international criminal
 	activity, the activity, and, if possible, collaborating organizations
 	and the countries involved.</desc>
@@ -41,8 +41,8 @@
 
 <top>
 	<num>4</num>
-	<title>International Organized Crime</title>
-	<query>international organized crime</query>
+	<title>Information Retrieval</title>
+	<query>title:"information retrieval"</query>
 	<desc>Identify organizations that participate in international criminal
 	activity, the activity, and, if possible, collaborating organizations
 	and the countries involved.</desc>
@@ -54,8 +54,8 @@
 
 <top>
 	<num>5</num>
-	<title>International Organized Crime</title>
-	<query>international organized crime</query>
+	<title>Information Retrieval</title>
+	<query>Information Retrieval</query>
 	<desc>Identify organizations that participate in international criminal
 	activity, the activity, and, if possible, collaborating organizations
 	and the countries involved.</desc>
@@ -67,8 +67,8 @@
 
 <top>
 	<num>6</num>
-	<title>International Organized Crime</title>
-	<query>international organized crime</query>
+	<title>Chris Buckley about TREC</title>
+	<query>trec authors:chris buckley</query>
 	<desc>Identify organizations that participate in international criminal
 	activity, the activity, and, if possible, collaborating organizations
 	and the countries involved.</desc>
@@ -80,8 +80,8 @@
 
 <top>
 	<num>7</num>
-	<title>International Organized Crime</title>
-	<query>international organized crime</query>
+	<title>Sentiment Analysis in 2010</title>
+	<query>year:2010 title:sentiment analysis</query>
 	<desc>Identify organizations that participate in international criminal
 	activity, the activity, and, if possible, collaborating organizations
 	and the countries involved.</desc>
@@ -93,8 +93,8 @@
 
 <top>
 	<num>8</num>
-	<title>International Organized Crime</title>
-	<query>international organized crime</query>
+	<title>System Evaluation</title>
+	<query>system evaluation</query>
 	<desc>Identify organizations that participate in international criminal
 	activity, the activity, and, if possible, collaborating organizations
 	and the countries involved.</desc>
@@ -106,8 +106,8 @@
 
 <top>
 	<num>9</num>
-	<title>International Organized Crime</title>
-	<query>international organized crime</query>
+	<title>Recommender Systems</title>
+	<query>"recommender systems" "data mining"</query>
 	<desc>Identify organizations that participate in international criminal
 	activity, the activity, and, if possible, collaborating organizations
 	and the countries involved.</desc>
@@ -119,8 +119,8 @@
 
 <top>
 	<num>10</num>
-	<title>International Organized Crime</title>
-	<query>international organized crime</query>
+	<title>Deep Learning Publications at ICML 2015</title>
+	<query>deep learning venue:icml year:2015</query>
 	<desc>Identify organizations that participate in international criminal
 	activity, the activity, and, if possible, collaborating organizations
 	and the countries involved.</desc>
