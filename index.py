@@ -19,7 +19,7 @@ import HTMLParser
 TAGS = ('article', 'inproceedings')
 HTML_TAGS = ('i','ref','sub','sup','tt')
 FIELDS = ['title', 'author', 'year', 'journal', 'booktitle']
-DUMP_RANDOM_DOCS = False
+DUMP_RANDOM_DOCS = True
 
 
 class CustomAnalyzer(PythonAnalyzer):
@@ -60,19 +60,24 @@ class Indexer():
         self.ndocs = 0
         self.verbose = verbose
         if DUMP_RANDOM_DOCS:
-            N = 856
-            k = 100
+            open("eval/qrels_manual/random_doc_selection", "w").close()
+            N = 3166933
+            k = 150
             random.seed(0)
             self.randdocs = sorted(random.sample(range(1, N+1), k=k))
+            self.dblpdocs = [line.rstrip('\n') for line in open("eval/qrels_manual/testcollection")]
+            self.collsize = 0
+            self.dblpincoll = 0
         self.index(data_dir)
         self.complete_index()
 
         if self.verbose:
             print "Finished indexing. %d documents indexed in total." % self.ndocs
 
-    def extract_document(self, doc, index):
+    def extract_document(self, doc):
         with open("eval/qrels_manual/random_doc_selection", "a") as f:
-            f.write('%d) ' % (index+1))
+            self.collsize += 1
+            f.write('%d) ' % (self.collsize))
             key = doc['id'].encode("utf-8")
             title = doc['title'].encode("utf-8")
             authors = ''
@@ -141,8 +146,12 @@ class Indexer():
             if self.verbose and self.ndocs % 100000 == 0:
                 print "%d documents processed..." % self.ndocs
 
-            if DUMP_RANDOM_DOCS and self.ndocs in self.randdocs:
-                self.extract_document(doc, self.randdocs.index(self.ndocs))
+            if DUMP_RANDOM_DOCS:
+                if doc['id'] in self.dblpdocs:
+                    self.extract_document(doc)
+                    self.dblpincoll += 1
+                elif (self.ndocs in self.randdocs) and (self.collsize+(len(self.dblpdocs)-self.dblpincoll) < 300):
+                    self.extract_document(doc)
 
         except Exception, e:
             print "Indexing error:", e

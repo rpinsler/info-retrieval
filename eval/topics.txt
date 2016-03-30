@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<topics>
+<top>
+	<num>1</num>
+	<title>User Behavior</title>
+	<query>title:user behavior</query>
+	<desc>Identify records that deal with the behavior of users of software or hardware
+		systems. </desc>
+	<narr>A document is considered relevant if it studies the bahavior of users
+		with respect to some software system from the information retrieval domain.
+		Records that investigate the behavior of algorithms or systems are irrelevant.</narr>
+</top>
+
+<top>
+	<num>2</num>
+	<title>Christopher Manning at NIPS</title>
+	<query>authors:christopher manning venue:nips</query>
+	<desc>List all publication from NIPS authored by Christopher D. Manning.</desc>
+	<narr>Publications that are not from Christoper D. Manning or that were not
+		published at NIPS should not be included.</narr>
+</top>
+
+<top>
+	<num>3</num>
+	<title>Query Optimisation in 2013</title>
+	<query>query optimisation 2013</query>
+	<desc>Identify publications about query optimization published in 2013.</desc>
+	<narr>Documents are relevant if they are about the optimization of queries.
+		Other optimization topics are not of interest. Publications that were not
+		released in 2013 are irrelevant as well.
+	</narr>
+</top>
+<top>
+	<num>4</num>
+	<title>Information Retrieval</title>
+	<query>title:"information retrieval"</query>
+	<desc>List documents that contain the phrase "information retrieval".</desc>
+	<narr></narr>
+</top>
+
+<top>
+	<num>5</num>
+	<title>Auto-Completion at SIGIR</title>
+	<query>auto-completion sigir</query>
+	<desc>Find publications about auto-completion at the SIGIR conference.</desc>
+	<narr></narr>
+</top>
+
+<top>
+	<num>6</num>
+	<title>Chris Buckley about TREC</title>
+	<query>trec authors:chris buckley</query>
+	<desc>Retrieve documents from Chris Buckley where he writes about TREC or
+		that were published at TREC.</desc>
+	<narr>Publications from Chris Buckley that are not directly about TREC but
+		were accepted at the TREC conference are considered relevant as well.</narr>
+</top>
+
+<top>
+	<num>7</num>
+	<title>Sentiment Analysis in 2010</title>
+	<query>year:2010 title:sentiment analysis</query>
+	<desc>Identify publications from 2010 about sentiment analysis.</desc>
+	<narr>>Publications have to be from 2010 and must analyze sentiments
+		of users, often in a social media context. Documents performing
+		other analyses do not qualify.</narr>
+</top>
+
+<top>
+	<num>8</num>
+	<title>System Evaluation</title>
+	<query>system evaluation</query>
+	<desc>Identify records which evaluate a software system or discuss the
+		evaluation approaches for this purpose.</desc>
+	<narr>Documents are relevant if they describe the evaluation of some kind of
+		software system. Evaluations of models, algorithms or other
+		approaches without reference to some larger system should not be included
+	</narr>
+</top>
+
+<top>
+	<num>9</num>
+	<title>Data Mining for Recommender Systems</title>
+	<query>"recommender systems" "data mining"</query>
+	<desc>List publications which apply data mining techniques to improve
+		recommender systems in some way. </desc>
+	<narr>Relevant documents closely match the terms "recommender systems" and
+		"data mining". Documents that are only about recommender systems in
+		general are not relevant. Similarly, publications about data mining
+		related techniques with no reference to recommender systems are
+		irrelevant.
+	</narr>
+</top>
+
+<top>
+	<num>10</num>
+	<title>Deep Learning Publications at ICML 2015</title>
+	<query>deep learning venue:icml year:2015</query>
+	<desc>Identify publications from ICML 2015 that deal with recent advances
+		in deep learning or applications thereof.</desc>
+	<narr>Relevant documents often include the prefix "deep" for describing models
+		or approaches, e.g. deep neural networks or deep reinforcement learning.
+		Publications using recurrent or convolutional neural networks also often
+		use deep architectures and are therefore relevant. Other learning approaches
+		that use shallow models should not be included.
+	</narr>
+</top>
+</topics>

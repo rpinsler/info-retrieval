@@ -52,6 +52,7 @@ def parse_element(elem):
 
 if __name__ == "__main__":
     tree = etree.parse("eval/topics")
+    results = []
     for element in tree.iter():
         if element.tag == 'num':
             topic_num = int(element.text)
@@ -89,4 +90,11 @@ if __name__ == "__main__":
                             nretrieved = nresults
                             break
                         f.write('%s\t0\t%s\t1\n' % (topic_num, d['key']))
+                        if d['key'] not in results:
+                            results.append(d['key'])
                 nretrieved += nfetch
+    print "#Results: " + str(len(results))
+    open("eval/qrels_manual/testcollection", 'w').close()
+    with open("eval/qrels_manual/testcollection", "a") as rf:
+        for res in results:
+            rf.write('%s\n' % res)
