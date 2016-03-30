@@ -1,6 +1,7 @@
 import lucene
 import os
 import sys
+import json
 from org.apache.lucene.analysis.standard import StandardAnalyzer
 from org.apache.lucene.util import Version
 from org.apache.lucene.analysis.miscellaneous import PerFieldAnalyzerWrapper
@@ -14,14 +15,18 @@ base_dir = os.path.expanduser("~") + "/Semester_NTU/" + \
 sys.path.insert(0, base_dir)
 from search import Searcher
 from index import CustomAnalyzer
+from utils import check_config
 
 INDEX_DIR = 'index'
 FIELDS = ['title', 'authors', 'year', 'venue']
 
+with open('config.json') as f:
+    config = json.load(f)
+config = check_config(config)
+
 lucene.initVM()
 vm_env = lucene.getVMEnv()
-config = {'lowercase': False, 'stemming': True, 'stopwords': True}
-title_analyzer = CustomAnalyzer(config)
+title_analyzer = CustomAnalyzer(config['titleAnalyzer'])
 per_field = HashMap()
 per_field.put("title", title_analyzer)
 analyzer = PerFieldAnalyzerWrapper(
@@ -58,7 +63,7 @@ def search():
         return render_template('search.html', results=[], metadata=None,
                                query=query, adv_query=adv_query)
 
-    docs, duration = searcher.search(query=query, adv_query=adv_query, N=10)
+    docs, duration = searcher.search(query=query, adv_query=adv_query, N=config['topN'])
     lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet mauris eu tortor" + \
     		 "interdum tempor. Sed vulputate odio odio. Sed arcu neque, accumsan et urna quis, ultrices" + \
     		 "consectetur turpis. Donec eu euismod sem, nec aliquam velit. Donec ac tristique mi."
@@ -76,9 +81,6 @@ def search():
                             key=d['id'], title=d['title'][:-1], text=lipsum,
                             authors=authors,
                             year=d['year'], venue=d['venue']))
-    # results = [dict(title=doc[0], text=lipsum, rank=doc[2], score=doc[3],
-    #            key=doc[4], authors=doc[5], year=doc[6], venue=doc[7])
-    #            for doc in docs]
     metadata = dict(time=round(duration, 2))
     return render_template('search.html', results=results, metadata=metadata,
                            query=query, adv_query=adv_query)

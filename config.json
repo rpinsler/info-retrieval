@@ -1,0 +1,7 @@
+{"topN": 10,
+ "titleAnalyzer": {
+ 	"lowercase": true,
+ 	"stemming": true,
+ 	"stopwords": true
+ }
+}
