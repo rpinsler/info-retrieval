@@ -11,7 +11,6 @@ report/*.sty
 report/*.aux
 report/*.log
 report/*.synctex.gz
-report/report.bbl
 report/report.blg
 report/report.out
 report/report.dvi

@@ -126,7 +126,7 @@
 %\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
 % --- End of Author Metadata ---
 
-\title{Development of a Search Engine and Applications in IR}
+\title{Developing a Search Engine and IR Applications using DBLP dataset and PyLucene}
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -239,26 +239,19 @@ This study reports the development of a search engine that consists of indexing 
 
 % --------------------------------------------------------------------------------------------------------------------
 \section{Introduction}
-A search engine is an Information Retrieval (IR) system designed to help users find information stored on a computer system. In particular, a web-search engine is designed to search for information on the World Wide Web. The web was initially indexed by human until the 1990s when more and more web servers went online. Human-maintained lists are subjective and expensive to build and maintain, thus cannot scale the web effectively. It was not until a landmark paper by Google~\cite{Brin2012} that addresses both the issues of search quality and scalability of an automated web-search engine. Google introduced PageRank, uses the anchor text, proximity information, etc to improve the search quality dramatically and built a practical and automated web-search engine by fast crawling and query processing technology as well as robust database and operating system~\cite{Brin2012}.  
+A search engine is an Information Retrieval (IR) system designed to help users find information stored on a computer system. In particular, a web-search engine is designed to search for information on the World Wide Web. The web was initially indexed by human until the 1990s when more and more web servers went online. Human-maintained lists are subjective and expensive to build and maintain, thus cannot scale the web effectively. It was not until a landmark paper by Google~\cite{Brin2012} that addresses both the issues of search quality and scalability of an automated web-search engine. Google introduced PageRank, uses the anchor text, proximity information, etc. to improve the search quality dramatically and built a practical and automated web-search engine by fast crawling and query processing technology as well as robust database and operating system~\cite{Brin2012}.  
 
 The web is a vast collection of completely uncontrolled heterogeneous documents; web documents have extreme variation both in terms of internal and external meta information. Big data refers to datasets that limits the capacity of traditional data processing systems to conduct effective analysis in terms of its data volume, quality, variety in data representation / structure, and acquisition speed; hence requiring new processing technologies~\cite{Chen2014}. All these add to the complexity of IR, which pose enormous challenge but presents unprecedented opportunity for new knowledge discovery in real-time that improves decision making. 
 
-The objective of this study is to learn and practice the building blocks of a basic search engine using open-source Application Programming Interface (API) and applications in Information Retrieval (IR). The organization of this report is as follows. Recent development of search engine and IR are covered in Section 2. Section 3 provide information of the experimental setup such as dataset and API used. The results of the search engine built and IR applications are given in Section 4 with conclusion in Section 5.
+The objective of this study is to learn and practice the building blocks of a basic search engine using open-source Application Programming Interface (API) and applications in Information Retrieval (IR). The organization of this report is as follows. Section~\ref{sec:se} provides information of the different aspects of the search engine built such as indexing, query processing, retrieval evaluation, and user interface. The IR applications are provided in Section~\ref{sec:ir} and conclusion in Section~\ref{sec:conc}.
 
-% --------------------------------------------------------------------------------------------------------------------
-\section{Recent Development}
-\textit{\textbf{Elaborate on the recent development in search engine and information retrieval: personalised mobile search engine [...]}}
-% --------------------------------------------------------------------------------------------------------------------
-\section{Experimental Setup}
-\textit{\textbf{Elaborate on DBLP dataset, Lucene API}}
-
-\section{System Overview}
+\section{Search Engine}\label{sec:se}
 
 The search engine is able to index and search publication records listed in the dblp computer science bibliography (DBLP)~\cite{dblp}. It is built on top of PyLucene, a Python extension of the open-source software library Lucene\footnote{\url{https://lucene.apache.org}} that provides text indexing and search capabilities.
 
 Publication records from DBLP are provided in a single XML file. The dataset comprises of various kinds of record types, such as articles published in a journal or magazine (\emph{article}), papers published in a conference or workshop proceedings (\emph{inproceedings}), books, and PhD theses. From those, only documents that are classified as \emph{article} or \emph{inproceedings} are considered.
 
-\section{Indexing}
+\subsection{Indexing}
 
 Indexing the DBLP dataset is a multi-step process. First, each record has to be extracted from the XML file before it can be further processed. Next, preprocessing is applied to match the expected input format. Finally, the records are processed and indexed through the PyLucene API. Listing \ref{lst:indexer} gives an overview of the Indexer class that provides above functionality. It takes as input the file to be indexed, the desired index storage location and an analyzer instance that we will introduce later. By calling its own index function, it triggers the indexing process (Listing \ref{lst:indexer}, line 12). In the following, we explain each step in more detail.
 
@@ -326,7 +319,7 @@ X & X & X & 417.94 ($\pm0\%$) & 288\,710 ($-34\%$) \\
 
 Applying lowercase conversion or stemming reduces the vocabulary significantly, whereas the removal of stopwords has nearly no impact. This is expected, since the first two techniques are able to map multiple tokens onto the same term whereas the exclusion of stopwords decreases the vocabulary size only by the number of stopwords. By combining multiple processing steps, the vocabulary can be further reduced, leading to a reduction of to up a third of the original size when no further processing is applied. In terms of indexing speed, we found that the additional processing steps are negligible. In particular, there seems to be no positive correlation between indexing speed and the number of processing steps that are applied. One reason for this is that while processing each document is more time-consuming, the cost for indexing a processed document is actually reduced. Therefore, we conclude that, under the given evaluation criteria, it is recommended to apply all three processing techniques due to the reduction in vocabulary size. However, this also has an effect on other properties of the system, e.g. the quality of search results, which might not be desired.
 
-\section{Search} \label{sec:search}
+\subsection{Search} \label{sec:search}
 
 The index can now be used to retrieve a ranked list of documents to a given query, which may be a combination of keywords and phrases. Those search capabilities are bundled in the Searcher class presented in Listing \ref{lst:searcher}. The main search logic is part of the \emph{search} function as outlined in Listing \ref{lst:search}, whereas phrase queries are processed using \emph{extract\_pq}.  
 
@@ -345,12 +338,29 @@ The index can now be used to retrieve a ranked list of documents to a given quer
 
 \textbf{Query results} \quad The search returns the $N$ most relevant documents along with their ranks, scores, ids and snippets, where $N$ is a configurable parameter. Relevance is determined based on Lucene's internal scoring function. It also measures the time needed to retrieve the results.
 
-\section{Evaluation}
+\subsection{Evaluation}
 
-In order to evaluate the quality of search results, we run 10 queries on our search engine and measure performance in terms of precision, recall and the F1 score against a labeled test collection. As we are specifically interested in the performance for the top-10 results, the slightly modified metrics precision@K and recall@K are used:
-
-define metrics here...
-
+In order to evaluate the quality of search results, we run 10 queries on our search engine and measure performance in terms of precision, recall and the F1 score against a labeled test collection. As we are specifically interested in the performance for the top-10 results, the slightly modified metrics precision@K and recall@K are used. Using Table~\ref{tab:eval}, retrieval precision is defined by, 
+\begin{equation}
+P=\frac{tp}{tp+fp}
+\end{equation}
+Retrieval recall is defined by,
+\begin{equation}
+R=\frac{tp}{tp+fn}
+\end{equation}
+Retrieval $F_1$ score is define by,
+\begin{equation}
+F_1=\frac{PR}{P+R}
+\end{equation}
+\begin{table}\label{tab:eval}
+\centering
+\caption{Search engine retrieval evaluation: tp - true positive, fp - false positive, fn - false negative, tn - true negative.} \label{tbl:app1}
+\begin{tabular}{|c|c|c||c|} \hline
+ & Relevant & Nonrelevant\\ \hline
+Retrieved & tp & fp \\ \hline
+Not Retrieved & fn & tn\\ \hline
+\end{tabular}
+\end{table}
 where $K=10$ in our case. In contrast to the usual recall metric, it is possible that a perfect system cannot achieve a recall@K value of 1. This happens when there are more than $K$ relevant documents in the test collection. To account for this, we state the overall number of relevant documents for each test query, $n_{rel}$, as well as the precision that is achieved as the maximum recall value is reached, i.e. after all (relevant) documents have been retrieved by the system. This is also known as R-precision.
 
 As the search engine is specifically built to retrieve DBLP records, it is reasonable to use the same\footnote{Note that if we wanted to utilize the results to improve performance, special care has to be taken to avoid overfitting.} dataset for evaluation. However, due to the large collection size, we are not able to manually assign relevance judgements to each document for all queries. A naive alternative would be to use a small random subset of the documents. In many cases, this subset will not contain any relevant documents at all though. Large web companies instead employ an approach called \emph{pooling}, where the top-N results from different search engines across all test queries are merged into a single collection, which is then labeled by human judges.  
@@ -382,7 +392,7 @@ Some query & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
 
 add interpretation here...   
 
-\section{User Interface}
+\subsection{User Interface}
 
 There are two ways to interact with the search engine: via a text-based command line interface or via a web UI. The latter is built with Flask\footnote{\url{http://flask.pocoo.org}}, a leightweight Python web framework that leverages Jinja2\footnote{\url{http://jinja.pocoo.org}} as a templating engine. This allows to easily create HTML documents from within Python. Additionally, we incorporate the web framework Bootstrap\footnote{\url{http://getbootstrap.com}} to achieve responsive web design. Figure \ref{fig:search} depicts the search results for an example query. As the UI is not our focus, we omit further implementation details; the interested reader is referred to the source code.
 
@@ -393,7 +403,7 @@ There are two ways to interact with the search engine: via a text-based command 
 \label{fig:search}
 \end{figure*}
 
-\section{Applications in IR}
+\section{Applications in IR} \label{sec:ir}
 We implement two applications based on dblp data. The first one is to find the top-10 most popular research topics of a specific year. The second one is finding top-10 similar publication venues and years with a given publication venue and year. Only paper titles are used in both application.
 
 In this section, the related techniques and the detailed implementations of the applications are demonstrated, followed by the experiment results.
@@ -495,14 +505,17 @@ For retrieving popular research topics, we have the results as follows:
 For finding similar publication venues and years, we firstly learn the topics as follows:
 
 The results of the queries are given as:
-\section{Conclusions}
+\section{Conclusions} \label{sec:conc}
+A search engine and IR applications are built using PyLucene and dblp computer science bibliography dataset in this study. Various aspects of building a search engine such as indexing, query processing, retrieval evaluation, and user interface are covered. For IR applications, the top 10 most popular topics for each year and most similar publication venue and year are retrieved. The key computational functions, code snippets, and algorithms are included to elucidate the process. 
 
+\section{Acknowledgements}
+The authors would like to thank Assoc. Prof. Aixin Sun for the comprehensive and organized teaching of the various topics in information retrieval and analysis.
 %
 % The following two commands are all you need in the
 % initial runs of your .tex file to
 % produce the bibliography for the citations in your paper.
 \bibliographystyle{abbrv}
-\bibliography{report}  % sigproc.bib is the name of the Bibliography in this case
+\bibliography{ir}  % sigproc.bib is the name of the Bibliography in this case
 % You must have a proper ".bib" file
 %  and remember to run:
 % latex bibtex latex latex
