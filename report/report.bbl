@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+
+\bibitem{blei2003latent}
+D.~M. Blei, A.~Y. Ng, and M.~I. Jordan.
+\newblock Latent dirichlet allocation.
+\newblock {\em the Journal of machine Learning research}, 3:993--1022, 2003.
+
+\bibitem{dblp}
+M.~Ley et~al.
+\newblock dblp computer science bibliography dataset.
+\newblock \url{http://dblp.uni-trier.de/xml}, 2016.
+\newblock last accessed: 18-March-2016.
+
+\bibitem{Leung2013}
+K.~W.~T.~Leung, D.~L.~Lee and W.~C.~Lee.
+\newblock PMSE: A personalized mobile search engine.
+\newblock {\em IEEE Transactions on Knowledge and Data Engineering}, 4:820--834, 2013.
+
+\bibitem{Moran2015}
+M.~Moran and B.~Hunt.
+\newblock Search Engine Marketing, inc.: Driving Search Traffic to Your Company's Web Site.
+\newblock 2015.
+
+\bibitem{Chen2014}
+M.~Chen, S.~Mao and Y.~Liu.
+\newblock Big data: A survey
+\newblock {\em Mobile Networks and Applications}, 2:171--209, 2014.
+
+\bibitem{Brin2012}
+S.~Brin and L.~Page.
+\newblock Reprint of: The anatomy of a large-scale hypertextual web search engine.
+\newblock {\em Computer Networks}, 18:3825--3833, 2012.
+
+%\bibitem{Foley2015}
+%J.~Foley, M.~Bendersky and %V.~Josifovski.
+%\newblock Learning to Extract %Local Events from the Web.
+%\newblock {\em Proceedings of %the 38th International ACM SIGIR %Conference on Research and %Development in Information %Retrieval}, 423--432, 2015.
+
+\end{thebibliography}
+
