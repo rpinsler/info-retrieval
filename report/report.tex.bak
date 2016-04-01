@@ -483,7 +483,7 @@ Social Media & social online media networks community network behavior use inter
 
 \begin{table}
 \centering
-\caption{Top-10 most similar venues \& years to ``IEEE Trans. Knowl. Data Eng. 2014''} \label{tbl:simvy}
+\caption{Top-10 most similar venues \& years to ``IEEE Trans. Knowl. Data Eng. 2014''} \label{tbl:app2}
 \begin{tabular}{|c|c|c||c|} \hline
 Rank & Venue & Year & Similarity\\ \hline
 1 & IEEE Trans. Knowl. Data Eng. & 2015 & 0.9898 \\ \hline
@@ -500,11 +500,11 @@ Rank & Venue & Year & Similarity\\ \hline
 \end{table}
 
 \subsection{Application Experiments}
-For retrieving popular research topics, we have the results as in Table \ref{tbl:poptop}. As we can see, most of the phases are meaningful topics such as ``wireless sensor networks'', ``cloud computing'' and ``neural network''. Thus, we validate the effectiveness of our proposed method.
+For retrieving popular research topics, we have the results as in \ref{tbl:app1}
 
-For finding similar publication venues and years, we firstly learn the topics as shown in Table \ref{tbl:topics}. The learnt topics are meaningful and can be concluded, so that they can offer a better effectiveness when being used for mining similar venues and years.
+For finding similar publication venues and years, we firstly learn the topics as follows:
 
-Furthermore, an example of finding similar venues and years are given in Table \ref{tbl:simvy}. We query for finding similar venues and years for ``IEEE Trans. Knowl. Data Eng. 2014''. And the results shows that ``IEEE Trans. Knowl. Data Eng. 2015'' and ``IEEE Trans. Knowl. Data Eng. 2012'' are the most similar venues and years to it, which is quite intuitive, because they are the same journal with different years. Moreover, we also have ``CIKM'' and ``WAIM'' included since they are about Data Engineering as well. Besides, we can observe that the year of the top-ranked ones are more close to 2013, which also proves the correctness of our results. Therefore, for mining similar venues and years, by adopting LDA model and cosine similarity, our method is both efficient and effective.
+The results of the queries are given as:
 \section{Conclusions} \label{sec:conc}
 A search engine and IR applications are built using PyLucene and dblp computer science bibliography dataset in this study. Various aspects of building a search engine such as indexing, query processing, retrieval evaluation, and user interface are covered. For IR applications, the top 10 most popular topics for each year and most similar publication venue and year are retrieved. The key computational functions, code snippets, and algorithms are included to elucidate the process.
 
