@@ -8,6 +8,9 @@ from org.apache.lucene.index import DirectoryReader, Term
 from java.io import File
 import re
 import time
+import urllib
+import lxml
+from lxml import html
 
 FIELDS = ['title', 'authors', 'year', 'venue']
 
@@ -19,7 +22,7 @@ class Searcher():
         self.analyzer = analyzer
         self.verbose = verbose
 
-    def search(self, query='', adv_query=None, N=0):
+    def search(self, query='', adv_query=None, N=0, searchafter=None):
         query = query.strip()
         search_query = BooleanQuery()
 
@@ -37,23 +40,16 @@ class Searcher():
 
         # evaluate phrases of standard query on all fields
         if query != '':
-            # for field in FIELDS:
-                # pq, q = self.extract_phrase_query(query, field)
             pq, q = self.extract_phrase_query(query, 'content')
             if pq is not None:
                 # phrase queries have high priority
                 search_query.add(pq, BooleanClause.Occur.MUST)
-                # search_query.add(pq, BooleanClause.Occur.SHOULD)
             query = q
 
         # evaluate remaining keywords on all fields
         if query != '':
-            # mfqparser = MultiFieldQueryParser(Version.LUCENE_CURRENT, FIELDS,
-            #                                   self.analyzer)
-            # mfq = MultiFieldQueryParser.parse(mfqparser, query)
             q = QueryParser(Version.LUCENE_CURRENT, 'content',
                             self.analyzer).parse(query)
-            # search_query.add(mfq, BooleanClause.Occur.SHOULD)
             search_query.add(q, BooleanClause.Occur.SHOULD)
 
         # evaluate advanced query options
@@ -71,28 +67,25 @@ class Searcher():
                     search_query.add(q, BooleanClause.Occur.MUST)
 
         start = time.clock()
-        docs = self.searcher.search(search_query, N).scoreDocs
+
+        # implement some basic paging
+        if searchafter is not None:
+            topdocs = self.searcher.searchAfter(searchafter, search_query,
+                                                N).scoreDocs
+        else:
+            topdocs = self.searcher.search(search_query, N)
+
         end = time.clock()
         duration = end-start
+        docs = topdocs.scoreDocs
+        metadata = {'duration': duration, 'N': N,
+                    'totalhits': topdocs.totalHits}
 
         if self.verbose:
             print "Lucene query: " + str(search_query)
-            print "%s total matching document(s)." % len(docs)
-            if len(docs) > 0:
-                print
-                print "Result list:"
+            self.show_results(docs, metadata)
 
-                for i, doc in enumerate(docs):
-                    d = self.searcher.doc(doc.doc)
-                    try:
-                        # trying to convert doc into string might
-                        # cause ascii error
-                        print str(i+1) + ") " + str(d)
-                    except Exception, e:
-                                print e
-
-        # return top N results along with rank, scores, docID and snippets
-        return docs, duration
+        return docs, metadata
 
     def extract_phrase_query(self, q, field, slop=0, boost=5):
         phrases = re.findall(r'"([^"]*)"', q)
@@ -125,7 +118,7 @@ class Searcher():
     def search_year(self, q_year):
         search_query = BooleanQuery()
         q = QueryParser(Version.LUCENE_CURRENT, 'content',
-                            self.analyzer).parse(q_year)
+                        self.analyzer).parse(q_year)
         search_query.add(q, BooleanClause.Occur.MUST)
         docs = self.searcher.search(search_query, 0x7fffffff).scoreDocs
         titles = []
@@ -164,3 +157,58 @@ class Searcher():
             print "Execute search."
 
             self.search(query, adv_query, N)
+
+    def show_results(self, results, metadata):
+        print "%d results found (%.2fs)" % \
+            (metadata['totalhits'], metadata['duration'])
+        print "Showing only top %d" % metadata['N']
+        if len(results) > 0:
+            print
+            print "Result list:"
+
+            for i, doc in enumerate(results):
+                d = self.searcher.doc(doc.doc)
+                try:
+                    # trying to convert doc into string might
+                    # cause ascii error
+                    # print str(i+1) + ") " + str(d)
+                    authors = ''
+                    for author in d.getValues('authors'):
+                        authors += author.encode("utf-8") + ', '
+                    authors = authors[:-2]
+                    print "%d) %s (relevance: %.2f)" % (i, d['id'], doc.score)
+                    print "%s - %s - %s" % (authors, str(d['venue']), str(d['year']))
+                    print "some snippet...."
+                except UnicodeEncodeError, e:
+                            print e
+
+    def retrieve_snippet(self, docurl):
+        # import pdb; pdb.set_trace()
+        if docurl == None:
+            return None
+        response = urllib.urlopen(docurl)
+        doc = lxml.html.parse(response).getroot()
+        abstract = doc.find_class('abstract')
+        if len(abstract) == 0:
+            abstract = doc.find_class('Abstract')
+        else:
+            abstract = abstract[0]
+        if len(abstract) == 0:
+            abstract = doc.get_element_by_id("abstract", None)
+        else:
+            abstract = abstract[0]
+        if abstract is None:
+            abstract = doc.get_element_by_id("Abstract", None)
+        if abstract is None:
+            elements = doc.xpath("//p")
+            if len(elements) == 0:
+                return None
+            lens = [len(elem.text) if elem.text is not None else 0 for elem in elements]
+            abstract = [elements[lens.index(max(lens))]]
+        else:
+            return None
+
+        for elem in abstract:
+            if elem.tag == 'p':
+                return elem.text[:150] + "..."
+        return None

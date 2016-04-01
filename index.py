@@ -127,6 +127,8 @@ class Indexer():
 
                 if ch.tag in FIELDS:
                     doc.add(TextField('content', ch.text, Field.Store.NO))
+                # elif ch.tag == 'ee':
+                #     doc.add(StringField('ee', ch.text, Field.Store.YES))
                 else:
                     continue
 
