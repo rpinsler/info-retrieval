@@ -1,5 +1,5 @@
 *.pyc
-*.py~
+*~
 
 data/
 index/
@@ -10,7 +10,6 @@ report/sig-*
 report/*.sty
 report/*.aux
 report/*.log
-report/*.bbl
 report/*.bak
 report/*.synctex.gz
 report/report.blg
