@@ -7,7 +7,7 @@
 	<desc>Identify records that deal with the behavior of users of software or hardware
 		systems. </desc>
 	<narr>A document is considered relevant if it studies the bahavior of users
-		with respect to some software system from the information retrieval domain.
+		with respect to some software or hardware system from the information retrieval domain.
 		Records that investigate the behavior of algorithms or systems are irrelevant.</narr>
 </top>
 
@@ -74,7 +74,7 @@
 		evaluation approaches for this purpose.</desc>
 	<narr>Documents are relevant if they describe the evaluation of some kind of
 		software system. Evaluations of models, algorithms or other
-		approaches without reference to some larger system should not be included
+		approaches without reference to some larger system should not be included.
 	</narr>
 </top>
 

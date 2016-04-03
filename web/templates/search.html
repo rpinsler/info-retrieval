@@ -72,11 +72,12 @@
     <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-12 excerpet">
             <h4 class="title"><strong class="score" title="Relevance score: {{ result.score }}">{{result.rank}}</strong><a href="http://dblp.uni-trier.de/rec/{{result.key}}">{{ result.title }}</a></h4>
-            <span class="text-success">{{ result.authors }} - {{ result.year }} - {{ result.venue }}</span>
+            <span>{{ result.authors }}</span>
+            <span>{{ result.year }} - {{ result.venue }}</span>
             <a href="#" data-toggle="tooltip" title="{{ result.key }}"><span class="glyphicon glyphicon-link"></span></a>
             <p class="snippet">{{ result.text }}</p>
-            <span class="text-muted">Relevance: {{ result.score }}</span>
-            <!--<span class="text-info">Relevance score: {{ result.score }}</span>-->
+            <!--<span class="text-muted">Relevance: {{ result.score }}</span>-->
+            <span class="text-info">Relevance score: {{ result.score }}</span>
           </div>
           <span class="clearfix borda"></span>
         </article>
@@ -88,6 +89,7 @@
 {% block js_footer %}
 {{ super() }}
 <script type="text/javascript">
+  // re-insert values after search has been performed
   $("#i_search").val('{{query}}')
   {% if adv_query %}
   $("#i_title").val('{{adv_query.title}}')
@@ -98,6 +100,7 @@
 </script>
 
 <script type="text/javascript">
+    // fix bug that dropdown disappears on click
     $('.dropdown-menu input, .dropdown-menu label, .dropdown-menu div').click(function(e) {
         e.stopPropagation();
     });

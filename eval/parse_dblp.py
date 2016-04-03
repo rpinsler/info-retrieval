@@ -8,7 +8,7 @@ API_URL = "http://dblp.uni-trier.de/search/publ/api?"
 
 def parse(context):
     """
-    http://lxml.de/parsing.html#modifying-the-tree
+    Parses results from DBLP search API.
     Based on Liza Daly's fast_iter
     http://www.ibm.com/developerworks/xml/library/x-hiperfparse/
     See also http://effbot.org/zone/element-iterparse.htm
@@ -22,6 +22,7 @@ def parse(context):
         key = parse_element(elem)
         if key is not None:
             res.append({'key': key, 'score': score})
+
         # It's safe to call clear() here because no descendants will be
         # accessed
         elem.clear()
@@ -34,6 +35,9 @@ def parse(context):
 
 
 def parse_element(elem):
+    """
+    Extracts key from result if is of the right record type.
+    """
     key = None
     try:
         for el in elem:
@@ -41,7 +45,7 @@ def parse_element(elem):
                 for ch in el:
                     key = None
                     if ch.tag == 'type' and ch.text not in RECORD_TYPES:
-                        return
+                        return None
                     elif ch.tag == 'url':
                         key = ch.text[20:]
 
@@ -50,8 +54,16 @@ def parse_element(elem):
     return key
 
 
+def build_dblp_query(q):
+    q = q.replace('authors', 'author')
+    phrases = re.findall(r'"([^"]*)"', q)
+    for phrase in phrases:
+        p = phrase.replace('"', '').replace(' ', '.')
+        q = q.replace('"%s"' % phrase, p)
+    return q
+
 if __name__ == "__main__":
-    tree = etree.parse("eval/topics")
+    tree = etree.parse("eval/topics.txt")
     results = []
     for element in tree.iter():
         if element.tag == 'num':
@@ -65,11 +77,7 @@ if __name__ == "__main__":
             maxscore = 0
             while nretrieved < nresults:
                 q = element.text
-                q = q.replace('authors', 'author')
-                phrases = re.findall(r'"([^"]*)"', q)
-                for phrase in phrases:
-                    p = phrase.replace('"', '').replace(' ', '.')
-                    q = q.replace('"%s"' % phrase, p)
+                q = build_dblp_query(q)
                 query = urllib.urlencode({'q': q, 'h': nfetch,
                                           'f': nretrieved, 'format': 'xml'})
                 print "Retrieving %s" % (API_URL + query)
@@ -80,12 +88,14 @@ if __name__ == "__main__":
 
                 with open("eval/qrels_dblp/qrels_%d" % topic_num, "a") as f:
                     res, nresults = parse(context)
-                    if nretrieved == 0:
+                    if nretrieved == 0:  # first fetch
                         maxscore = res[min(10, len(res))-1]['score']
-                        for d in res[:10]:
+                        for d in res[:10]:  # process top10
                             f.write('%s\t0\t%s\t1\n' % (topic_num, d['key']))
+                            if d['key'] not in results:
+                                results.append(d['key'])
                         res = res[10:]
-                    for d in res:
+                    for d in res:  # process results past top10 with same score
                         if d['score'] < maxscore:
                             nretrieved = nresults
                             break

@@ -1,31 +1,36 @@
-import os
 from collections import Counter
 
 import nltk
 from nltk import word_tokenize
 from nltk.tag.perceptron import PerceptronTagger
 
-import lucene
-from org.apache.lucene.analysis.standard import StandardAnalyzer
-from org.apache.lucene.util import Version
-from org.apache.lucene.analysis.miscellaneous import PerFieldAnalyzerWrapper
-from java.util import HashMap
-
 from search import Searcher
-from index import CustomAnalyzer
 
 
 class PopularTopics:
+    """
+    Retrieves popular research topics for given year.
+    """
+
     def __init__(self, index_dir, analyzer):
+        """
+        Initializes searcher.
+        """
         self.searcher = Searcher(index_dir, analyzer)
 
     def dict_append(self, entity, f_dist):
+        """
+        Adds entity to dictionary.
+        """
         entity = ' '.join(entity)
         if entity not in f_dist:
             f_dist[entity] = 0
         f_dist[entity] += 1
 
     def get_popular_topics(self, q_year, top_k):
+        """
+        Retrieves popular research topics for given year.
+        """
         titles = self.searcher.search_year(q_year)
         unigram_dist = {}
         bigram_dist = {}
@@ -41,6 +46,8 @@ class PopularTopics:
             text = word_tokenize(title)
             sentence = nltk.tag._pos_tag(text, tagset, tagger)
             result = cp.parse(sentence)
+
+            # retrieve uni-, bi- and trigrams from result set
             for node in list(result):
                 if isinstance(node, nltk.tree.Tree):
                     entity = zip(*list(node))[0]
@@ -53,7 +60,8 @@ class PopularTopics:
                     else:
                         self.dict_append(entity, ngram_dist)
 
-        unigram_result = Counter(unigram_dist).most_common(int(len(unigram_dist) * 0.01) + top_k)[int(len(unigram_dist) * 0.01):]
+        top1p = int(len(unigram_dist) * 0.01)
+        unigram_result = Counter(unigram_dist).most_common(top1p + top_k)[top1p:]
         bigram_result = Counter(bigram_dist).most_common(top_k)
         trigram_result = Counter(trigram_dist).most_common(top_k)
 
