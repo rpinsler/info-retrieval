@@ -299,7 +299,7 @@ The processing applied to each of those TextFields is determined by the analyzer
 \lstset{caption={CustomAnalyzer class}, label={lst:customanalyzer}}
 \pythonexternal{snippets/class_customanalyzer.py}
 
-During our experiments, we measure the speed of indexing (including parsing and analyzing the documents) in seconds, $t_\text{ind}$, as well as the number of terms in the vocabulary, $|V_\text{title}|$. The results are shown in Table \ref{tbl:evalindex}. Note that indexing speed slightly varied over different runs (not shown).
+During our experiments, we measure the speed of indexing (including parsing and analyzing the documents) in seconds, $t_\text{ind}$, as well as the number of terms in the vocabulary, $|V_\text{title}|$. The results for the most interesting combinations are shown in Table \ref{tbl:evalindex}. Note that indexing speed slightly varied over different runs (not shown).
 
 \begin{table}[th]
 \centering
@@ -369,30 +369,30 @@ As the search engine is specifically built to retrieve DBLP records, it is reaso
 
 A similar approach can be applied by using the DBLP search API, which accepts standard and advanced queries with both keywords and phrases as defined in Section \ref{sec:search}. Results are returned in XML format and can be post-filtered to remove irrelevant publication types. One issue is that hits are ranked by a coarse relevance score that does not always allow to extract a distinct top 10 for a given query. If there are hits beyond the top 10 that have the same score as the 10-th result, we include them as well. To improve diversity, we additionally augment the test collection with a disjunct set of random documents from the original dataset. In total, the test collection comprises of 300 documents.
 
-We manually added relevance judgments for every document in the test collection with respect to each query. Inter-rater agreement is estimated to be X according to the kappa measure, which we calculated on another test query. Following TREC conventions, we derive test queries from topics with specific information needs and use the TREC file format to store topic definitions and relevance judgments. The results for each query are shown in Table \ref{tbl:evalsearch}.
+We manually added relevance judgments for every document in the test collection with respect to each query. Following TREC conventions, we derive test queries from topics with specific information needs and use the TREC file format to store topic definitions and relevance judgments. The results for each query are shown in Table \ref{tbl:evalsearch}.
 
 \begin{table*}[th]
 \centering
 \caption{Evaluation of search results} \label{tbl:evalsearch}
 \begin{tabular}{lrrrrr}
 % \hline
-Query & $n_\text{rel}$ & Precision@10 & Recall@10 & F1@10 & R-precision \\
+Query & $n_\text{rel}$ & Precision@10 & Recall@10 & $F_1$@10 & R-precision \\
 \hline
-title:user behavior & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
-authors:christopher manning venue:nips & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
-query optimisation 2013 & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
-title:"information retrieval`` & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
-auto-completion sigir & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
-trec authors:chris buckley & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
-year:2010 title:sentiment analysis & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
-system evaluation & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
-"recommender systems`` "data mining`` & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
-deep learning venue:icml year:2015 & 1337 & 0.42 & 0.42 & 0.42 & 0.42 \\
+title:user behavior & 89 & 1.00 & 0.11 & 0.20 & 0.93 \\
+authors:christopher manning venue:nips & 10 & 1.00 & 1.00 & 1.00 & 1.00 \\
+query optimisation 2013 & 2 & 0.67 & 1.00 & 0.80 & 0.50 \\
+title:"information retrieval`` & 41 & 1.00 & 0.24 & 0.39 & 0.98 \\
+auto-completion sigir & 7 & 1.00 & 1.00 & 1.00 & 1.00 \\
+trec authors:chris buckley & 13 & 1.00 & 0.77 & 0.87 & 1.00 \\
+year:2010 title:sentiment analysis & 47 & 1.00 & 0.21 & 0.35 & 1.00 \\
+system evaluation & 30 & 0.90 & 0.30 & 0.45 & 0.80 \\
+"recommender systems`` "data mining`` & 5 & 0.83 & 1.00 & 0.91 & 0.80 \\
+deep learning venue:icml year:2015 & 12 & 1.00 & 0.67 & 0.80 & 1.00 \\
 % \hline
 \end{tabular}
 \end{table*}
 
-add interpretation here...   
+As can be seen, precision@10 is constantly very high except for the third query due to the low absolute number of relevant documents (only two out of the three received documents are relevant). In contrast to that, recall@10---and therefore also the $F_1$ score---significantly drops when $n_\text{rel} > 10$, which is expected. In those cases, R-precision is much more reliable. Overall, the evaluation suggests that the results of our search engine are both precise and complete. However, one issue we encountered during evaluation is that it is very hard, for both human and machine, to infer whether a publication record truly matches the underlying information need, given only the metadata. Therefore, very often the only viable option is to perform simple term matching. This should be taken into consideration when evaluating the results.
 
 \subsection{User Interface}
 
@@ -406,17 +406,17 @@ There are two ways to interact with the search engine: via a text-based command 
 \end{figure*}
 
 \section{Applications in IR} \label{sec:ir}
-We implement two applications based on the DBLP dataset. First, we are interested in finding the top-10 most popular research topics of a specific year. The second application retrieves the top-10 most similar publication venues to a given venue and year. Only paper titles are used in both applications.
+We implement two applications based on the DBLP dataset using the nltk\footnote{\url{http://www.nltk.org}} Python package. First, we are interested in finding the top-10 most popular research topics of a specific year as shown in Listing \ref{lst:popular_topics}. The second application retrieves the top-10 most similar publication venues to a given venue and year. Only paper titles are used in both applications.
 
 In this section, related techniques and implementation details of the applications are demonstrated, followed by the experimental results.
 
 \subsection{Popular research topics}
 Before mining popular research topics from paper titles, we need to firstly extract topics from the data. In our application, we identify meaningful topics from titles based on the patterns of words. More precisely, given a query (e.g. "2014``), we have the following process for topic extraction:
 \begin{enumerate}
-  \item Retrieve titles of all papers from 2014 using the index.
-  \item Tokenize each title, remove punctuation and stop words.
-  \item Use part-of-speech tagger\footnote{\url{http://nlp.stanford.edu/software/tagger.shtml}} to assign parts of speech to each word, such as noun, verb, adjective, etc.
-  \item Extract topics from the tagged words based on a given pattern, using regular expression tools.
+  \item Retrieve titles of all papers published in 2014 using the index (Listing \ref{lst:popular_topics}, line 2).
+  \item Tokenize each title, remove punctuation and stop words (Listing \ref{lst:popular_topics}, lines 11-13).
+  \item Use a part-of-speech tagger\footnote{\url{http://nlp.stanford.edu/software/tagger.shtml}} to assign parts of speech to each word, such as noun, verb, adjective, etc. (Listing \ref{lst:popular_topics}, line 14).
+  \item Extract topics from the tagged words based on a given pattern, using regular expression tools (Listing \ref{lst:popular_topics}, lines 9-10 and 15).
 \end{enumerate}
 The key point of topic extraction is to define the word pattern of a topic. From the observation of real topic names, we can conclude that:
 \begin{itemize}
@@ -424,24 +424,24 @@ The key point of topic extraction is to define the word pattern of a topic. From
   \item Adjectives always come before nouns for a topic name.
   \item Normally, a topic consists of less than four words.
 \end{itemize}
-Therefore, in the last step, we define the pattern for topics as \mbox{adj+adj+...+noun+...+noun}. Moreover, only unigrams, bigrams and trigrams are considered in this application. We ignore those unigram terms with very high (top 1\%) frequency because they may be some widely-used terminology in many different topics. After the topic identification, we count the frequency of each topic that appeared in the titles. Finally, the top-10 most frequent topics will be returned.
+Therefore, in the last step, we define the pattern for topics as \mbox{adj+adj+...+noun+...+noun}. Moreover, only unigrams, bigrams and trigrams are considered in this application. We ignore those unigram terms with very high (top 1\%) frequency because they may be some widely-used terminology in many different topics. After the topic identification, we count the frequency of each topic that appeared in the titles. Finally, the top-10 most frequent topics will be returned (Listing \ref{lst:popular_topics}, lines 26-34).
 
 \lstset{caption={Finding popular topics for a given year}, label={lst:popular_topics}}
 \pythonexternal{snippets/popular_topics.py}
 
 \subsection{Similar publication venues}
-For retrieving similar publication venues and years, firstly we need to measure the similarity between two (venue, year) pairs (e.g. how similar are "TKDE'14" and "CIKM'15") using the paper titles. One simple way is to firstly tokenize every title of each (venue, year) pair, use a bag-of-words model and finally compute the cosine similarity of the word frequency vectors between them, which is defined as:
+For retrieving similar publication venues and years, we additionally make use of the lda\footnote{\url{https://pythonhosted.org/lda}}, numpy\footnote{\url{http://www.numpy.org/}} and scikit-learn\footnote{\url{http://scikit-learn.org}} packages. Firstly we need to measure the similarity between two <venue, year> pairs (e.g. how similar are "TKDE'14" and "CIKM'15") using the paper titles. One simple way is to firstly tokenize every title of each <venue, year> pair, use a bag-of-words model and finally compute the cosine similarity of the word frequency vectors between them, which is defined as:
 \begin{equation*}
   Sim_{i, j} = \frac{\sum_{k\in W}freq_{i,k} \cdot freq_{j,k}}{\sqrt{\sum_{k\in W}freq_{i,k}^2}\sqrt{\sum_{k\in W}freq_{j,k}^2}},
 \end{equation*}
-where i, j are two (venue, year) pairs. $W$ refers to the collection containing all the words which appeared in the corpus. $freq_{i,k}$ is the frequency of word $k$ that appeared in the $i$-th venue and year.
+where i, j are two <venue, year> pairs. $W$ refers to the collection containing all the words which appeared in the corpus. $freq_{i,k}$ is the frequency of word $k$ that appeared in the $i$-th venue and year.
 
-However, based on our statistical analysis, the dimensionality is too high, which makes it very inefficient to compute similarity. Besides, the data may also be very noisy, containing many words that only appear once in the whole dataset. To address the aforementioned problems, we adopted Latent Dirichlet allocation (LDA)\cite{blei2003latent} to learn latent topics from the data. Instead of using word frequency vectors, the similarity is defined based on the cosine similarity between the topic distribution of two (venue, year) pairs. Thus, for a given (venue, year) query, we compute topic similarities between it and every other (venue, year) pair, which is given by:
+However, based on our statistical analysis, the dimensionality is too high, which makes it very inefficient to compute similarity. Besides, the data may also be very noisy, containing many words that only appear once in the whole dataset. To address the aforementioned problems, we adopted Latent Dirichlet allocation (LDA)\cite{blei2003latent} to learn latent topics from the data. Instead of using word frequency vectors, the similarity is defined based on the cosine similarity between the topic distribution of two <venue, year> pairs. Thus, for a given <venue, year> query, we compute topic similarities between it and every other <venue, year> pair, which is given by:
 
 \begin{equation*}
   Sim_{i, j} = \frac{\sum_{z\in Z}\theta_{i,z} \cdot \theta_{j,z}}{\sqrt{\sum_{z\in Z}\theta_{i,z}^2}\sqrt{\sum_{z\in Z}\theta_{j,z}^2}},
 \end{equation*}
-where Z is the topic set and $\theta_{i,z}$ is the probability of the $i$-th (venue, year) pair belonging to topic $z$. Then, based on the similarity, the top-10 most similar venues are returned.
+where Z is the topic set and $\theta_{i,z}$ is the probability of the $i$-th <venue, year> pair belonging to topic $z$. Then, based on the similarity, the top-10 most similar venues are returned.
 
 \begin{figure}[th]
 \centering
@@ -510,10 +510,10 @@ Rank & Venue & Year & Similarity\\
 \subsection{Application Experiments}
 For retrieving popular research topics, we have the results as in Table \ref{tbl:poptop}. As we can see, most of the phrases are meaningful topics such as ``wireless sensor networks'', ``cloud computing'' and ``neural network''. Thus, we validate the effectiveness of our proposed method.
 
-In order to find similar publication venues and years, we firstly learn the topics as shown in Table \ref{tbl:topics}. These can then be used to find similar venues and years. An example is shown in Table \ref{tbl:simvy}, where the most similar venues and years for the query ``IEEE Trans. Knowl. Data Eng. 2014'' are listed. According to that, ``IEEE Trans. Knowl. Data Eng. 2015'' and ``IEEE Trans. Knowl. Data Eng. 2012'' are the most similar venues and years to it, which is quite intuitive, because they are the same journal with different years. Moreover, we also have ``CIKM'' and ``WAIM'' included since they are about data engineering as well. Besides, we can observe that the year of the top-ranked ones are more close to 2013, which also suggests the correctness of our results. This shows that by adopting the LDA model combined with cosine similarity, we are able to efficiently and effectively mine similar (venue, year) pairs.
+In order to find similar publication venues and years, we firstly learn the topics as shown in Table \ref{tbl:topics}. These can then be used to find similar venues and years. An example is shown in Table \ref{tbl:simvy}, where the most similar venues and years for the query ``IEEE Trans. Knowl. Data Eng. 2014'' are listed. According to that, ``IEEE Trans. Knowl. Data Eng. 2015'' and ``IEEE Trans. Knowl. Data Eng. 2012'' are the most similar venues and years to it, which is quite intuitive, because they are the same journal with different years. Moreover, we also have ``CIKM'' and ``WAIM'' included since they are about data engineering as well. Besides, we can observe that the year of the top-ranked ones are more close to 2013, which also suggests the correctness of our results. This shows that by adopting the LDA model combined with cosine similarity, we are able to efficiently and effectively mine similar <venue, year> pairs.
 
 \section{Conclusions} \label{sec:conc}
-In this study, a search engine and two example IR applications have been built using PyLucene and the DBLP dataset. Various aspects of building a search engine such as indexing, query processing, retrieval evaluation and user interface are covered. Moreover, the top-10 most popular topics for each year and most similar (venue, year) pairs are retrieved. The key computational functions, code snippets, and algorithms are included to elucidate the process. 
+In this study, a search engine and two example IR applications have been built using PyLucene and the DBLP dataset. Various aspects of building a search engine such as indexing, query processing, retrieval evaluation and user interface are covered. Moreover, the top-10 most popular topics for each year and most similar <venue, year> pairs are retrieved. The key computational functions, code snippets and algorithms are included to elucidate the process. Evaluations of both the search engine and the applications have underlined the correctness of our approach.
 
 \section{Acknowledgements}
 The authors would like to thank Assoc. Prof. Aixin Sun for the comprehensive and organized teaching of the various topics in information retrieval and analysis.
