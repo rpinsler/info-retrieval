@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+<query id="104214">:filter:author:christopher* manning* :filter:venue:nips*</query>
+<status code="200">OK</status>
+<time unit="msecs">11.30</time>
+<completions total="1" computed="1" sent="1">
+<c sc="10" dc="10" oc="10" id="6323210">:filter:venue:nips</c>
+</completions>
+<hits total="10" computed="10" sent="10" first="0">
+<hit score="3" id="470337">
+<info><title>Global Belief Recursive Neural Networks.</title><authors><author>Romain Paulus</author><author>Richard Socher</author><author>Christopher D. Manning</author></authors><venue>NIPS</venue><pages>2888-2896</pages><year>2014</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/nips/PaulusSM14</url></info>
+<url>URL#470337</url>
+</hit>
+<hit score="3" id="470358">
+<info><title>Simple MAP Inference via Low-Rank Relaxations.</title><authors><author>Roy Frostig</author><author>Sida I. Wang</author><author>Percy Liang</author><author>Christopher D. Manning</author></authors><venue>NIPS</venue><pages>3077-3085</pages><year>2014</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/nips/FrostigWLM14</url></info>
+<url>URL#470358</url>
+</hit>
+<hit score="3" id="470379">
+<info><title>Learning Distributed Representations for Structured Output Prediction.</title><authors><author>Vivek Srikumar</author><author>Christopher D. Manning</author></authors><venue>NIPS</venue><pages>3266-3274</pages><year>2014</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/nips/SrikumarM14</url></info>
+<url>URL#470379</url>
+</hit>
+<hit score="3" id="715748">
+<info><title>Reasoning With Neural Tensor Networks for Knowledge Base Completion.</title><authors><author>Richard Socher</author><author>Danqi Chen</author><author>Christopher D. Manning</author><author>Andrew Y. Ng</author></authors><venue>NIPS</venue><pages>926-934</pages><year>2013</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/nips/SocherCMN13</url></info>
+<url>URL#715748</url>
+</hit>
+<hit score="3" id="715749">
+<info><title>Zero-Shot Learning Through Cross-Modal Transfer.</title><authors><author>Richard Socher</author><author>Milind Ganjoo</author><author>Christopher D. Manning</author><author>Andrew Y. Ng</author></authors><venue>NIPS</venue><pages>935-943</pages><year>2013</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/nips/SocherGMN13</url></info>
+<url>URL#715749</url>
+</hit>
+<hit score="3" id="951389">
+<info><title>Convolutional-Recursive Deep Learning for 3D Object Classification.</title><authors><author>Richard Socher</author><author>Brody Huval</author><author>Bharath Putta Bath</author><author>Christopher D. Manning</author><author>Andrew Y. Ng</author></authors><venue>NIPS</venue><pages>665-673</pages><year>2012</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/nips/SocherHBMN12</url></info>
+<url>URL#951389</url>
+</hit>
+<hit score="3" id="1178551">
+<info><title>Dynamic Pooling and Unfolding Recursive Autoencoders for Paraphrase Detection.</title><authors><author>Richard Socher</author><author>Eric H. Huang</author><author>Jeffrey Pennington</author><author>Andrew Y. Ng</author><author>Christopher D. Manning</author></authors><venue>NIPS</venue><pages>801-809</pages><year>2011</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/nips/SocherHPNM11</url></info>
+<url>URL#1178551</url>
+</hit>
+<hit score="3" id="2502854">
+<info><title>Log-Linear Models for Label Ranking.</title><authors><author>Ofer Dekel</author><author>Christopher D. Manning</author><author>Yoram Singer</author></authors><venue>NIPS</venue><pages>497-504</pages><year>2003</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/nips/DekelMS03</url></info>
+<url>URL#2502854</url>
+</hit>
+<hit score="3" id="2589852">
+<info><title>Fast Exact Inference with a Factored Model for Natural Language Parsing.</title><authors><author>Dan Klein</author><author>Christopher D. Manning</author></authors><venue>NIPS</venue><pages>3-10</pages><year>2002</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/nips/KleinM02</url></info>
+<url>URL#2589852</url>
+</hit>
+<hit score="3" id="2666735">
+<info><title>Natural Language Grammar Induction Using a Constituent-Context Model.</title><authors><author>Dan Klein</author><author>Christopher D. Manning</author></authors><venue>NIPS</venue><pages>35-42</pages><year>2001</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/nips/KleinM01</url></info>
+<url>URL#2666735</url>
+</hit>
+</hits>
+</result>

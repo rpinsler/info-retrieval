@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+<query id="104242">:filter:year:2010* :filter:title:sentiment* analysis*</query>
+<status code="200">OK</status>
+<time unit="msecs">41.94</time>
+<completions total="1" computed="1" sent="1">
+<c sc="50" dc="49" oc="50" id="6391814">analysis</c>
+</completions>
+<hits total="49" computed="49" sent="49" first="0">
+<hit score="5" id="1346893">
+<info><title>Using Feedback Tags and Sentiment Analysis to Generate Sharable Learning Resources Investigating Automated Sentiment Analysis of Feedback Tags in a Programming Course.</title><authors><author>Stephen Cummins</author><author>Liz Burd</author><author>Andrew Hatch</author></authors><venue>ICALT</venue><pages>653-657</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icalt/CumminsBH10</url></info>
+<url>URL#1346893</url>
+</hit>
+<hit score="4" id="1337505">
+<info><title>Sentiment analysis of online product reviews with Semi-supervised topic sentiment mixture model.</title><authors><author>Wei Wang</author></authors><venue>FSKD</venue><pages>2385-2389</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/fskd/Wang10c</url></info>
+<url>URL#1337505</url>
+</hit>
+<hit score="4" id="1414920">
+<info><title>Sentiment Analysis Reloaded - A Comparative Study on Sentiment Polarity Identification Combining Machine Learning and Subjectivity Features.</title><authors><author>Ulli Waltinger</author></authors><venue>WEBIST</venue><pages>203-210</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/webist/Waltinger10</url></info>
+<url>URL#1414920</url>
+</hit>
+<hit score="3" id="1241758">
+<info><title>Using text mining and sentiment analysis for online forums hotspot detection and forecast.</title><authors><author>Nan Li</author><author>Desheng Dash Wu</author></authors><venue>Decision Support Systems</venue><volume>48</volume><number>2</number><pages>354-368</pages><year>2010</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/dss/LiW10</url></info>
+<url>URL#1241758</url>
+</hit>
+<hit score="3" id="1246257">
+<info><title>DASA: Dissatisfaction-oriented Advertising based on Sentiment Analysis.</title><authors><author>Guang Qiu</author><author>Xiaofei He</author><author>Feng Zhang</author><author>Yuan Shi</author><author>Jiajun Bu</author><author>Chun Chen</author></authors><venue>Expert Syst. Appl.</venue><volume>37</volume><number>9</number><pages>6182-6191</pages><year>2010</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/eswa/QiuHZSBC10</url></info>
+<url>URL#1246257</url>
+</hit>
+<hit score="3" id="1262174">
+<info><title>Sentiment Analysis of Surveys using Both Numeric Ratings.</title><authors><author>Gongzhu Hu</author></authors><venue>I. J. Comput. Appl.</venue><volume>17</volume><number>4</number><pages>196-203</pages><year>2010</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/isca/Hu10</url></info>
+<url>URL#1262174</url>
+</hit>
+<hit score="3" id="1270134">
+<info><title>Aspect-based sentiment analysis of movie reviews on discussion boards.</title><authors><author>Tun Thura Thet</author><author>Jin-Cheon Na</author><author>Christopher S. G. Khoo</author></authors><venue>J. Information Science</venue><volume>36</volume><number>6</number><pages>823-848</pages><year>2010</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/jis/ThetNK10</url></info>
+<url>URL#1270134</url>
+</hit>
+<hit score="3" id="1290478">
+<info><title>Microblogging for Micro Sentiment Analysis and Opinion Mining.</title><authors><author>Alexander Pak</author><author>Patrick Paroubek</author></authors><venue>TAL</venue><volume>51</volume><number>3</number><pages>75-100</pages><year>2010</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/tal/PakP10</url></info>
+<url>URL#1290478</url>
+</hit>
+<hit score="3" id="1290480">
+<info><title>Shaping the Course of a Conversation through Sentiment Analysis on Speech Transcripts.</title><authors><author>Frédérik Cailliau</author><author>Ariane Cavet</author></authors><venue>TAL</venue><volume>51</volume><number>3</number><pages>131-154</pages><year>2010</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/tal/CailliauC10</url></info>
+<url>URL#1290480</url>
+</hit>
+<hit score="3" id="1302115">
+<info><title>Leveraging sentiment analysis for topic detection.</title><authors><author>Keke Cai</author><author>W. Scott Spangler</author><author>Ying Chen</author><author>Li Zhang 0007</author></authors><venue>Web Intelligence and Agent Systems</venue><volume>8</volume><number>3</number><pages>291-302</pages><year>2010</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/wias/CaiSCZ10</url></info>
+<url>URL#1302115</url>
+</hit>
+<hit score="3" id="1305106">
+<info><title>Sentiment Analysis with Global Topics and Local Dependency.</title><authors><author>Fangtao Li</author><author>Minlie Huang</author><author>Xiaoyan Zhu</author></authors><venue>AAAI</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/aaai/LiHZ10</url></info>
+<url>URL#1305106</url>
+</hit>
+<hit score="3" id="1306577">
+<info><title>A Study of Information Retrieval Weighting Schemes for Sentiment Analysis.</title><authors><author>Georgios Paltoglou</author><author>Mike Thelwall</author></authors><venue>ACL</venue><pages>1386-1395</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/acl/PaltoglouT10</url></info>
+<url>URL#1306577</url>
+</hit>
+<hit score="3" id="1307422">
+<info><title>Comparison of Feature Selection Methods for Sentiment Analysis.</title><authors><author>Chris Nicholls</author><author>Fei Song</author></authors><venue>Canadian Conference on AI</venue><pages>286-289</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/ai/NichollsS10</url></info>
+<url>URL#1307422</url>
+</hit>
+<hit score="3" id="1320559">
+<info><title>Chinese Sentiment Orientation Analysis.</title><authors><author>Wenbin Pan</author><author>Yanquan Zhou</author></authors><venue>CIS</venue><pages>1-5</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/cis/PanZ10</url></info>
+<url>URL#1320559</url>
+</hit>
+<hit score="3" id="1322432">
+<info><title>Language-Specific Sentiment Analysis in Morphologically Rich Languages.</title><authors><author>Hayeon Jang</author><author>Hyopil Shin</author></authors><venue>COLING</venue><pages>498-506</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/coling/JangS10</url></info>
+<url>URL#1322432</url>
+</hit>
+<hit score="3" id="1323699">
+<info><title>Learning and Knowledge-Based Sentiment Analysis in Movie Review Key Excerpts.</title><authors><author>Björn W. Schuller</author><author>Tobias Knaup</author></authors><venue>COST 2102 Training School</venue><pages>448-472</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/cost/SchullerK10</url></info>
+<url>URL#1323699</url>
+</hit>
+<hit score="3" id="1327588">
+<info><title>A New Method of Selecting Pivot Features for Structural Correspondence Learning in Domain Adaptive Sentiment Analysis.</title><authors><author>Yanbo Zhang</author><author>Youli Qu</author><author>Junsan Zhang</author></authors><venue>DBTA</venue><pages>1-3</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/dbta/ZhangQZ10</url></info>
+<url>URL#1327588</url>
+</hit>
+<hit score="3" id="1329703">
+<info><title>Multi Grain Sentiment Analysis using Collective Classification.</title><authors><author>S. Shivashankar</author><author>Balaraman Ravindran</author></authors><venue>ECAI</venue><pages>823-828</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/ecai/ShivashankarR10</url></info>
+<url>URL#1329703</url>
+</hit>
+<hit score="3" id="1331187">
+<info><title>Sentiment Analysis in Student Experiences of Learning.</title><authors><author>Sunghwan Mac Kim</author><author>Rafael A. Calvo</author></authors><venue>EDM</venue><pages>111-120</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/edm/KimC10</url></info>
+<url>URL#1331187</url>
+</hit>
+<hit score="3" id="1331770">
+<info><title>Holistic Sentiment Analysis Across Languages: Multilingual Supervised Latent Dirichlet Allocation.</title><authors><author>Jordan L. Boyd-Graber</author><author>Philip Resnik</author></authors><venue>EMNLP</venue><pages>45-55</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/emnlp/Boyd-GraberR10</url></info>
+<url>URL#1331770</url>
+</hit>
+<hit score="3" id="1338134">
+<info><title>Expressions of graduality for sentiments analysis - A survey.</title><authors><author>Fabon Dzogang</author><author>Marie-Jeanne Lesot</author><author>Maria Rifqi</author><author>Bernadette Bouchon-Meunier</author></authors><venue>FUZZ-IEEE</venue><pages>1-7</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/fuzzIEEE/DzogangLRB10</url></info>
+<url>URL#1338134</url>
+</hit>
+<hit score="3" id="1344955">
+<info><title>Sentiment Extraction: Integrating Statistical Parsing, Semantic Analysis, and Common Sense Reasoning.</title><authors><author>Lokendra Shastri</author><author>Anju G. Parvathy</author><author>Abhishek Kumar</author><author>John Wesley</author><author>Rajesh Balakrishnan</author></authors><venue>IAAI</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/iaai/ShastriPKWB10</url></info>
+<url>URL#1344955</url>
+</hit>
+<hit score="3" id="1362620">
+<info><title>Exploiting Combined Multi-level Model for Document Sentiment Analysis.</title><authors><author>Si Li 0001</author><author>Hao Zhang 0022</author><author>Weiran Xu</author><author>Guang Chen</author><author>Jun Guo</author></authors><venue>ICPR</venue><pages>4141-4144</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icpr/LiZXCG10</url></info>
+<url>URL#1362620</url>
+</hit>
+<hit score="3" id="1365388">
+<info><title>Improvements of Webometrics by Using Sentiment Analysis for Better Accessibility of the Web.</title><authors><author>Radek Malinský</author><author>Ivan Jelínek</author></authors><venue>ICWE Workshops</venue><pages>581-586</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icwe/MalinskyJ10</url></info>
+<url>URL#1365388</url>
+</hit>
+<hit score="3" id="1366014">
+<info><title>The Wisdom of Bookies? Sentiment Analysis Versus. the NFL Point Spread.</title><authors><author>Yancheng Hong</author><author>Steven Skiena</author></authors><venue>ICWSM</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icwsm/HongS10</url></info>
+<url>URL#1366014</url>
+</hit>
+<hit score="3" id="1371195">
+<info><title>&apos;Beautiful picture of an ugly place&apos;. Exploring photo collections using opinion and sentiment analysis of user comments.</title><authors><author>Slava Kisilevich</author><author>Christian Rohrdantz</author><author>Daniel A. Keim</author></authors><venue>IMCSIT</venue><pages>419-428</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/imcsit/KisilevichRK10</url></info>
+<url>URL#1371195</url>
+</hit>
+<hit score="3" id="1378148">
+<info><title>Estimating sentiment orientation in social media for intelligence monitoring and analysis.</title><authors><author>Richard Colbaugh</author><author>Kristin Glass</author></authors><venue>ISI</venue><pages>135-137</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/isi/ColbaughG10a</url></info>
+<url>URL#1378148</url>
+</hit>
+<hit score="3" id="1381921">
+<info><title>A framework for employee appraisals based on sentiment analysis.</title><authors><author>Darah Aqel</author><author>Sunil Vadera</author></authors><venue>ISWSA</venue><pages>8</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/iswsa/AqelV10</url></info>
+<url>URL#1381921</url>
+</hit>
+<hit score="3" id="1385817">
+<info><title>Towards Sentiment Analysis of Financial Texts in Croatian.</title><authors><author>Zeljko Agic</author><author>Nikola Ljubesic</author><author>Marko Tadic</author></authors><venue>LREC</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/lrec/AgicLT10</url></info>
+<url>URL#1385817</url>
+</hit>
+<hit score="3" id="1385849">
+<info><title>SentiWordNet 3.0: An Enhanced Lexical Resource for Sentiment Analysis and Opinion Mining.</title><authors><author>Stefano Baccianella</author><author>Andrea Esuli</author><author>Fabrizio Sebastiani 0001</author></authors><venue>LREC</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/lrec/BaccianellaES10</url></info>
+<url>URL#1385849</url>
+</hit>
+<hit score="3" id="1385853">
+<info><title>Sentiment Analysis in the News.</title><authors><author>Alexandra Balahur</author><author>Ralf Steinberger</author><author>Mijail Alexandrov Kabadjov</author><author>Vanni Zavarella</author><author>Erik Van der Goot</author><author>Matina Halkia</author><author>Bruno Pouliquen</author><author>Jenya Belyaeva</author></authors><venue>LREC</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/lrec/BalahurSKZGHPB10</url></info>
+<url>URL#1385853</url>
+</hit>
+<hit score="3" id="1386215">
+<info><title>Twitter as a Corpus for Sentiment Analysis and Opinion Mining.</title><authors><author>Alexander Pak</author><author>Patrick Paroubek</author></authors><venue>LREC</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/lrec/PakP10</url></info>
+<url>URL#1386215</url>
+</hit>
+<hit score="3" id="1386263">
+<info><title>SentiWS - A Publicly Available German-language Resource for Sentiment Analysis.</title><authors><author>Robert Remus</author><author>Uwe Quasthoff</author><author>Gerhard Heyer</author></authors><venue>LREC</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/lrec/RemusQH10</url></info>
+<url>URL#1386263</url>
+</hit>
+<hit score="3" id="1386264">
+<info><title>United we Stand: Improving Sentiment Analysis by Joining Machine Learning and Rule Based Methods.</title><authors><author>Vassiliki Rentoumi</author><author>Stefanos Petrakis</author><author>Manfred Klenner</author><author>George A. Vouros</author><author>Vangelis Karkaletsis</author></authors><venue>LREC</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/lrec/RentoumiPKVK10</url></info>
+<url>URL#1386264</url>
+</hit>
+<hit score="3" id="1386426">
+<info><title>GermanPolarityClues: A Lexical Resource for German Sentiment Analysis.</title><authors><author>Ulli Waltinger</author></authors><venue>LREC</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/lrec/Waltinger10</url></info>
+<url>URL#1386426</url>
+</hit>
+<hit score="3" id="1388049">
+<info><title>Lexicon Based Sentiment Analysis of Urdu Text Using SentiUnits.</title><authors><author>Afraz Zahra Syed</author><author>Aslam Muhammad</author><author>Ana María Martínez Enríquez</author></authors><venue>MICAI</venue><pages>32-43</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/micai/SyedE10</url></info>
+<url>URL#1388049</url>
+</hit>
+<hit score="3" id="1394678">
+<info><title>The Effects of News Sentiment and Coverage on Credit Rating Analysis.</title><authors><author>Feng-Tse Tsai</author><author>Hsin-Min Lu</author><author>Mao-Wei Hung</author></authors><venue>PACIS</venue><pages>199</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/pacis/TsaiLH10</url></info>
+<url>URL#1394678</url>
+</hit>
+<hit score="3" id="1394702">
+<info><title>Effective Use of Linguistic Features for Sentiment Analysis of Korean.</title><authors><author>Hayeon Jang</author><author>Hyopil Shin</author></authors><venue>PACLIC</venue><pages>173-182</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/paclic/JangS10</url></info>
+<url>URL#1394702</url>
+</hit>
+<hit score="3" id="1399587">
+<info><title>基於網路社群之旅遊經驗及對應情境之情感意見分析研究 (Sentiment Analysis in Scenic Spot Experiences from Web Community Using Semantically Relevant Contextual Information) [In Chinese].</title><authors><author>Ke-chih Ning</author><author>Kun-chi Lai</author></authors><venue>ROCLING</venue><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/rocling/NingL10</url></info>
+<url>URL#1399587</url>
+</hit>
+<hit score="3" id="1403727">
+<info><title>A Collaborative System for Sentiment Analysis.</title><authors><author>Vassiliki Rentoumi</author><author>Stefanos Petrakis</author><author>Vangelis Karkaletsis</author><author>Manfred Klenner</author><author>George A. Vouros</author></authors><venue>SETN</venue><pages>411-416</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/setn/RentoumiPKKV10</url></info>
+<url>URL#1403727</url>
+</hit>
+<hit score="3" id="1404845">
+<info><title>S-PLASA+: adaptive sentiment analysis with application to sales performance prediction.</title><authors><author>Yang Liu 0008</author><author>Xiaohui Yu</author><author>Xiangji Huang</author><author>Aijun An</author></authors><venue>SIGIR</venue><pages>873-874</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/sigir/LiuYHA10</url></info>
+<url>URL#1404845</url>
+</hit>
+<hit score="3" id="1405764">
+<info><title>Probabilistic model-based sentiment analysis of twitter messages.</title><authors><author>Asli Çelikyilmaz</author><author>Dilek Hakkani-Tür</author><author>Junlan Feng</author></authors><venue>SLT</venue><pages>79-84</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/slt/CelikyilmazHF10</url></info>
+<url>URL#1405764</url>
+</hit>
+<hit score="3" id="1409709">
+<info><title>An Enterprise-Wide Intervention at IRS: A Longitudinal Analysis of Stakeholder Sentiments.</title><authors><author>Sandeep Purao</author><author>Kevin C. Desouza</author></authors><venue>TEAR</venue><pages>30-43</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/tear/PuraoD10</url></info>
+<url>URL#1409709</url>
+</hit>
+<hit score="3" id="1410286">
+<info><title>Automatic Sentiment Analysis Using the Textual Pattern Content Similarity in Natural Language.</title><authors><author>Jan Zizka</author><author>Frantisek Darena</author></authors><venue>TSD</venue><pages>224-231</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/tsd/ZizkaD10</url></info>
+<url>URL#1410286</url>
+</hit>
+<hit score="3" id="1414801">
+<info><title>A Categorized Sentiment Analysis of Chinese Reviews by Mining Dependency in Product Features and Opinions from Blogs.</title><authors><author>Hung-Yu Kao</author><author>Zi-Yu Lin</author></authors><venue>Web Intelligence</venue><pages>456-459</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/webi/KaoL10</url></info>
+<url>URL#1414801</url>
+</hit>
+<hit score="3" id="1414835">
+<info><title>An Adaptive Model for Probabilistic Sentiment Analysis.</title><authors><author>Xiaohui Yu</author><author>Yang Liu 0008</author><author>Aijun An</author></authors><venue>Web Intelligence</venue><pages>661-667</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/webi/YuLA10</url></info>
+<url>URL#1414835</url>
+</hit>
+<hit score="3" id="1415901">
+<info><title>Algorithms of BBS Opinion Leader Mining Based on Sentiment Analysis.</title><authors><author>Xiao Yu</author><author>Xu Wei</author><author>Xia Lin</author></authors><venue>WISM</venue><pages>360-369</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/wism/YuWL10</url></info>
+<url>URL#1415901</url>
+</hit>
+<hit score="3" id="1419469">
+<info><title>Automatic Expansion of a Social Network Using Sentiment Analysis.</title><authors><author>Hristo Tanev</author><author>Bruno Pouliquen</author><author>Vanni Zavarella</author><author>Ralf Steinberger</author></authors><venue>Data Mining for Social Network Data</venue><pages>9-29</pages><year>2010</year><type>Parts in Books or Collections</type><url>http://dblp.org/rec/series/anis/TanevPZS10</url></info>
+<url>URL#1419469</url>
+</hit>
+<hit score="3" id="1423361">
+<info><title>Sentiment Analysis and Subjectivity.</title><authors><author>Bing Liu</author></authors><venue>Handbook of Natural Language Processing</venue><pages>627-666</pages><year>2010</year><type>Reference Works</type><url>http://dblp.org/rec/reference/nlp/Liu10</url></info>
+<url>URL#1423361</url>
+</hit>
+</hits>
+</result>

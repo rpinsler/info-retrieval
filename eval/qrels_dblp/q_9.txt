@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+<query id="104253">recommender*.systems* data*.mining*</query>
+<status code="200">OK</status>
+<time unit="msecs">23.61</time>
+<completions total="1" computed="1" sent="1">
+<c sc="20" dc="10" oc="10" id="6898763">mining</c>
+</completions>
+<hits total="10" computed="10" sent="10" first="0">
+<hit score="2" id="256864">
+<info><title>Data Mining Methods for Recommender Systems.</title><authors><author>Xavier Amatriain</author><author>Josep M. Pujol</author></authors><venue>Recommender Systems Handbook</venue><pages>227-262</pages><year>2015</year><type>Reference Works</type><url>http://dblp.org/rec/reference/sp/AmatriainP15</url></info>
+<url>URL#256864</url>
+</hit>
+<hit score="2" id="501957">
+<info><title>Fuzzy Data-Mining Hybrid Methods for Recommender Systems.</title><authors><author>María N. Moreno García</author><author>Joel Pinho Lucas</author><author>Vivian F. López Batista</author></authors><venue>Soft Computing for Business Intelligence</venue><pages>327-344</pages><year>2014</year><type>Parts in Books or Collections</type><url>http://dblp.org/rec/series/sci/MorenoLB14</url></info>
+<url>URL#501957</url>
+</hit>
+<hit score="2" id="534683">
+<info><title>Data Mining Techniques and Preference Learning in Recommender Systems.</title><authors><author>Bandar Mohammed</author><author>Malek Mouhoub</author><author>Eisa Alanazi</author><author>Samira Sadaoui</author></authors><venue>Computer and Information Science</venue><volume>6</volume><number>4</number><pages>88-102</pages><year>2013</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/ccsecis/MohammedMAS13</url></info>
+<url>URL#534683</url>
+</hit>
+<hit score="2" id="594441">
+<info><title>Content-boosted matrix factorization techniques for recommender systems.</title><authors><author>Jennifer Nguyen</author><author>Mu Zhu</author></authors><venue>Statistical Analysis and Data Mining</venue><volume>6</volume><number>4</number><pages>286-301</pages><year>2013</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/sadm/NguyenZ13</url></info>
+<url>URL#594441</url>
+</hit>
+<hit score="2" id="1207109">
+<info><title>Data Mining Methods for Recommender Systems.</title><authors><author>Xavier Amatriain</author><author>Alejandro Jaimes</author><author>Nuria Oliver</author><author>Josep M. Pujol</author></authors><venue>Recommender Systems Handbook</venue><pages>39-71</pages><year>2011</year><type>Parts in Books or Collections</type><url>http://dblp.org/rec/reference/rsh/AmatriainJOP11</url></info>
+<url>URL#1207109</url>
+</hit>
+<hit score="2" id="1353776">
+<info><title>A Framework for Recommender Systems in E-Commerce Based on Distributed Storage and Data-Mining.</title><authors><author>Changjian Fu</author><author>Zhihua Leng</author></authors><venue>ICEE</venue><pages>3502-3505</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icee/FuL10</url></info>
+<url>URL#1353776</url>
+</hit>
+<hit score="2" id="1371331">
+<info><title>Sequential Bias, Online Product Reviews, and Recommender Systems.</title><authors><author>Selwyn Piramuthu</author></authors><venue>Industrial Conference on Data Mining - Workshops</venue><pages>5-13</pages><year>2010</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/incdm/Piramuthu10</url></info>
+<url>URL#1371331</url>
+</hit>
+<hit score="2" id="1625411">
+<info><title>The Application of Data-Mining to Recommender Systems.</title><authors><author>J. Schafer</author></authors><venue>Encyclopedia of Data Warehousing and Mining</venue><pages>45-50</pages><year>2009</year><type>Reference Works</type><url>http://dblp.org/rec/reference/dataware/Schafer09</url></info>
+<url>URL#1625411</url>
+</hit>
+<hit score="2" id="1745661">
+<info><title>Applying and Comparing Hidden Markov Model and Fuzzy Clustering Algorithms to Web Usage Data for Recommender Systems.</title><authors><author>Shaghayegh Sahebi</author><author>Farhad Oroumchian</author><author>Ramtin Khosravi</author></authors><venue>IADIS European Conf. Data Mining</venue><pages>179-181</pages><year>2008</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/iadis/SahebiOK08</url></info>
+<url>URL#1745661</url>
+</hit>
+<hit score="2" id="1793305">
+<info><title>Using Data Mining and Recommender Systems to Facilitate Large-Scale, Open, and Inclusive Requirements Elicitation Processes.</title><authors><author>Carlos Castro-Herrera</author><author>Chuan Duan</author><author>Jane Cleland-Huang</author><author>Bamshad Mobasher</author></authors><venue>RE</venue><pages>165-168</pages><year>2008</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/re/Castro-HerreraDCM08</url></info>
+<url>URL#1793305</url>
+</hit>
+</hits>
+</result>

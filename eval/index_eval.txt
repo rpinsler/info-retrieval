@@ -1,0 +1,31 @@
+{'lowercase': False, 'stemming': False, 'stopwords': False}
+Speed of indexing: 417.97s
+Size of vocabulary on title attribute: 436354
+
+{'lowercase': False, 'stemming': False, 'stopwords': True}
+Speed of indexing: 414.89s
+Size of vocabulary on title attribute: 436321
+
+{'lowercase': False, 'stemming': True, 'stopwords': False}
+Speed of indexing: 439.75s
+Size of vocabulary on title attribute: 365534
+
+{'lowercase': False, 'stemming': True, 'stopwords': True}
+Speed of indexing: 434.79s
+Size of vocabulary on title attribute: 365505
+
+{'lowercase': True, 'stemming': False, 'stopwords': False}
+Speed of indexing: 430.57s
+Size of vocabulary on title attribute: 346286
+
+{'lowercase': True, 'stemming': False, 'stopwords': True}
+Speed of indexing: 427.53s
+Size of vocabulary on title attribute: 346253
+
+{'lowercase': True, 'stemming': True, 'stopwords': False}
+Speed of indexing: 421.66s
+Size of vocabulary on title attribute: 288740
+
+{'lowercase': True, 'stemming': True, 'stopwords': True}
+Speed of indexing: 417.94s
+Size of vocabulary on title attribute: 288710

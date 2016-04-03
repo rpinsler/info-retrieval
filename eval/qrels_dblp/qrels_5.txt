@@ -1,0 +1,7 @@
+5	0	conf/sigir/LiDDCZB15	1
+5	0	conf/sigir/ZhangGKDDCGH15	1
+5	0	conf/sigir/JiangKCC14	1
+5	0	conf/sigir/LiDWDCZ14	1
+5	0	conf/sigir/MitraSRH14	1
+5	0	conf/sigir/Shokouhi13	1
+5	0	conf/sigir/ShokouhiR12	1

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+<query id="104255">deep* learning* :filter:venue:icml* :filter:year:2015*</query>
+<status code="200">OK</status>
+<time unit="msecs">29.36</time>
+<completions total="1" computed="1" sent="1">
+<c sc="12" dc="12" oc="12" id="6326237">:filter:year:2015</c>
+</completions>
+<hits total="12" computed="12" sent="12" first="0">
+<hit score="6" id="194518">
+<info><title>Simplicity of Kmeans Versus Deepness of Deep Learning: A Case of Unsupervised Feature Learning with Limited Data.</title><authors><author>Murat Dundar</author><author>Qiang Kou</author><author>Baichuan Zhang</author><author>Yicheng He</author><author>Bartek Rajwa</author></authors><venue>ICMLA</venue><pages>883-888</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icmla/DundarKZHR15</url></info>
+<url>URL#194518</url>
+</hit>
+<hit score="4" id="194069">
+<info><title>Learning Deep Temporal Representations for fMRI Brain Decoding.</title><authors><author>Orhan Firat</author><author>Emre Aksan</author><author>Ilke Öztekin</author><author>Fatos T. Yarman-Vural</author></authors><venue>MLMMI@ICML</venue><pages>25-34</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icml/FiratAOY15</url></info>
+<url>URL#194069</url>
+</hit>
+<hit score="4" id="194102">
+<info><title>Learning Transferable Features with Deep Adaptation Networks.</title><authors><author>Mingsheng Long</author><author>Yue Cao</author><author>Jianmin Wang 0001</author><author>Michael I. Jordan</author></authors><venue>ICML</venue><pages>97-105</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icml/LongC0J15</url></info>
+<url>URL#194102</url>
+</hit>
+<hit score="4" id="194169">
+<info><title>Asymmetric Transfer Learning with Deep Gaussian Processes.</title><authors><author>Melih Kandemir</author></authors><venue>ICML</venue><pages>730-738</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icml/Kandemir15</url></info>
+<url>URL#194169</url>
+</hit>
+<hit score="4" id="194206">
+<info><title>On Deep Multi-View Representation Learning.</title><authors><author>Weiran Wang</author><author>Raman Arora</author><author>Karen Livescu</author><author>Jeff A. Bilmes</author></authors><venue>ICML</venue><pages>1083-1092</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icml/WangALB15</url></info>
+<url>URL#194206</url>
+</hit>
+<hit score="4" id="194275">
+<info><title>Deep Learning with Limited Numerical Precision.</title><authors><author>Suyog Gupta</author><author>Ankur Agrawal</author><author>Kailash Gopalakrishnan</author><author>Pritish Narayanan</author></authors><venue>ICML</venue><pages>1737-1746</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icml/GuptaAGN15</url></info>
+<url>URL#194275</url>
+</hit>
+<hit score="4" id="194280">
+<info><title>Learning Deep Structured Models.</title><authors><author>Liang-Chieh Chen</author><author>Alexander G. Schwing</author><author>Alan L. Yuille</author><author>Raquel Urtasun</author></authors><venue>ICML</venue><pages>1785-1794</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icml/ChenSYU15</url></info>
+<url>URL#194280</url>
+</hit>
+<hit score="4" id="194330">
+<info><title>Deep Unsupervised Learning using Nonequilibrium Thermodynamics.</title><authors><author>Jascha Sohl-Dickstein</author><author>Eric A. Weiss</author><author>Niru Maheswaranathan</author><author>Surya Ganguli</author></authors><venue>ICML</venue><pages>2256-2265</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icml/Sohl-DicksteinW15</url></info>
+<url>URL#194330</url>
+</hit>
+<hit score="4" id="194336">
+<info><title>A Deeper Look at Planning as Learning from Replay.</title><authors><author>Harm Vanseijen</author><author>Rich Sutton</author></authors><venue>ICML</venue><pages>2314-2322</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icml/VanseijenS15</url></info>
+<url>URL#194336</url>
+</hit>
+<hit score="4" id="194422">
+<info><title>Layer-Specific Adaptive Learning Rates for Deep Networks.</title><authors><author>Bharat Singh</author><author>Soham De</author><author>Yangmuzi Zhang</author><author>Thomas Goldstein</author><author>Gavin Taylor</author></authors><venue>ICMLA</venue><pages>364-368</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icmla/SinghDZGT15</url></info>
+<url>URL#194422</url>
+</hit>
+<hit score="4" id="194464">
+<info><title>Deep Neural Networks with Parallel Autoencoders for Learning Pairwise Relations: Handwritten Digits Subtraction.</title><authors><author>Tianchuan Du</author><author>Li Liao</author></authors><venue>ICMLA</venue><pages>582-587</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icmla/DuL15</url></info>
+<url>URL#194464</url>
+</hit>
+<hit score="4" id="194516">
+<info><title>Zero Shot Deep Learning from Semantic Attributes.</title><authors><author>Philippe M. Burlina</author><author>Aurora C. Schmidt</author><author>I-Jeng Wang</author></authors><venue>ICMLA</venue><pages>871-876</pages><year>2015</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/icmla/BurlinaSW15</url></info>
+<url>URL#194516</url>
+</hit>
+</hits>
+</result>

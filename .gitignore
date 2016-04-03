@@ -15,5 +15,3 @@ report/*.synctex.gz
 report/report.blg
 report/report.out
 report/report.dvi
-eval/qrels*/
-eval/index_eval*.txt

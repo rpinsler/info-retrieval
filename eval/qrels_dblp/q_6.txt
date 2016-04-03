@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+<query id="104239">trec* :filter:author:chris* buckley*</query>
+<status code="200">OK</status>
+<time unit="msecs">6.11</time>
+<completions total="1" computed="1" sent="1">
+<c sc="18" dc="18" oc="18" id="6471570">buckley</c>
+</completions>
+<hits total="18" computed="18" sent="18" first="0">
+<hit score="4" id="1980542">
+<info><title>Examining Overfitting in Relevance Feedback: Sabir Research at TREC 2007.</title><authors><author>Chris Buckley</author></authors><venue>TREC</venue><year>2007</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/Buckley07</url></info>
+<url>URL#1980542</url>
+</hit>
+<hit score="4" id="2284241">
+<info><title>Looking at Limits and Tradeoffs: Sabir Research at TREC 2005.</title><authors><author>Chris Buckley</author></authors><venue>TREC</venue><year>2005</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/Buckley05</url></info>
+<url>URL#2284241</url>
+</hit>
+<hit score="4" id="2742695">
+<info><title>The TREC-9 Query Track.</title><authors><author>Chris Buckley</author></authors><venue>TREC</venue><year>2000</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/Buckley00</url></info>
+<url>URL#2742695</url>
+</hit>
+<hit score="4" id="2742696">
+<info><title>SabIR Research at TREC-9.</title><authors><author>Chris Buckley</author><author>Janet A. Walz</author></authors><venue>TREC</venue><year>2000</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/BuckleyW00</url></info>
+<url>URL#2742696</url>
+</hit>
+<hit score="4" id="2803904">
+<info><title>The TREC-8 Query Track.</title><authors><author>Chris Buckley</author><author>Janet A. Walz</author></authors><venue>TREC</venue><year>1999</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/BuckleyW99</url></info>
+<url>URL#2803904</url>
+</hit>
+<hit score="4" id="2803905">
+<info><title>SMART in TREC 8.</title><authors><author>Chris Buckley</author><author>Janet A. Walz</author></authors><venue>TREC</venue><year>1999</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/BuckleyW99a</url></info>
+<url>URL#2803905</url>
+</hit>
+<hit score="4" id="2858528">
+<info><title>SMART High Precision: TREC 7.</title><authors><author>Chris Buckley</author><author>Mandar Mitra</author><author>Janet A. Walz</author><author>Claire Cardie</author></authors><venue>TREC</venue><pages>230-243</pages><year>1998</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/BuckleyMWC98</url></info>
+<url>URL#2858528</url>
+</hit>
+<hit score="4" id="2907829">
+<info><title>TREC 6 High-Precision Track.</title><authors><author>Chris Buckley</author></authors><venue>TREC</venue><pages>69-71</pages><year>1997</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/Buckley97</url></info>
+<url>URL#2907829</url>
+</hit>
+<hit score="4" id="2907833">
+<info><title>Using Clustering and SuperConcepts Within SMART: TREC 6.</title><authors><author>Chris Buckley</author><author>Mandar Mitra</author><author>Janet A. Walz</author><author>Claire Cardie</author></authors><venue>TREC</venue><pages>107-124</pages><year>1997</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/BuckleyMWC97</url></info>
+<url>URL#2907833</url>
+</hit>
+<hit score="4" id="2952073">
+<info><title>Using Query Zoning and Correlation Within SMART: TREC 5.</title><authors><author>Chris Buckley</author><author>Amit Singhal</author><author>Mandar Mitra</author></authors><venue>TREC</venue><year>1996</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/BuckleySM96</url></info>
+<url>URL#2952073</url>
+</hit>
+<hit score="4" id="2993229">
+<info><title>New Retrieval Approaches Using SMART: TREC 4.</title><authors><author>Chris Buckley</author><author>Amit Singhal</author><author>Mandar Mitra</author></authors><venue>TREC</venue><year>1995</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/BuckleySM95</url></info>
+<url>URL#2993229</url>
+</hit>
+<hit score="4" id="3032224">
+<info><title>Automatic Query Expansion Using SMART: TREC 3.</title><authors><author>Chris Buckley</author><author>Gerard Salton</author><author>James Allan</author><author>Amit Singhal</author></authors><venue>TREC</venue><pages>69-80</pages><year>1994</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/BuckleySAS94</url></info>
+<url>URL#3032224</url>
+</hit>
+<hit score="4" id="3066958">
+<info><title>Automatic Routing and Ad-hoc Retrieval Using SMART: TREC 2.</title><authors><author>Chris Buckley</author><author>James Allan</author><author>Gerard Salton</author></authors><venue>TREC</venue><pages>45-56</pages><year>1993</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/BuckleyAS93</url></info>
+<url>URL#3066958</url>
+</hit>
+<hit score="3" id="2691469">
+<info><title>Using clustering and SuperConcepts within SMART: TREC 6.</title><authors><author>Chris Buckley</author><author>Mandar Mitra</author><author>Janet A. Walz</author><author>Claire Cardie</author></authors><venue>Inf. Process. Manage.</venue><volume>36</volume><number>1</number><pages>109-131</pages><year>2000</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/ipm/BuckleyMWC00</url></info>
+<url>URL#2691469</url>
+</hit>
+<hit score="3" id="2742731">
+<info><title>Query Expansion Seen Through Return Order of Relevant Documents.</title><authors><author>Walter Liggett</author><author>Chris Buckley</author></authors><venue>TREC</venue><year>2000</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/LiggettB00</url></info>
+<url>URL#2742731</url>
+</hit>
+<hit score="3" id="2962069">
+<info><title>Automatic Routing and Retrieval Using Smart: TREC-2.</title><authors><author>Chris Buckley</author><author>James Allan</author><author>Gerard Salton</author></authors><venue>Inf. Process. Manage.</venue><volume>31</volume><number>3</number><pages>315-326</pages><year>1995</year><type>Journal Articles</type><url>http://dblp.org/rec/journals/ipm/BuckleyAS95</url></info>
+<url>URL#2962069</url>
+</hit>
+<hit score="3" id="3095552">
+<info><title>Automatic Retrieval With Locality Information Using SMART.</title><authors><author>Chris Buckley</author><author>Gerard Salton</author><author>James Allan</author></authors><venue>TREC</venue><pages>59-72</pages><year>1992</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/BuckleySA92</url></info>
+<url>URL#3095552</url>
+</hit>
+<hit score="3" id="3095554">
+<info><title>Optimizing Document Indexing and Search Term Weighting Based on Probabilistic Models.</title><authors><author>Norbert Fuhr</author><author>Chris Buckley</author></authors><venue>TREC</venue><pages>89-100</pages><year>1992</year><type>Conference and Workshop Papers</type><url>http://dblp.org/rec/conf/trec/FuhrB92</url></info>
+<url>URL#3095554</url>
+</hit>
+</hits>
+</result>

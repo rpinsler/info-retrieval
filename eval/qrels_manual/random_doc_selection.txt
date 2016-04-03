@@ -1,0 +1,1500 @@
+1) journals/fgcs/HwangH90
+ title: A compiling approach for exploiting AND-parallelism in logic programs.
+ authors: Zhiyi Hwang, Shouren Hu
+ year: 1990
+ venue: Future Generation Comp. Syst.
+2) journals/wias/CaiSCZ10
+ title: Leveraging sentiment analysis for topic detection.
+ authors: Keke Cai, W. Scott Spangler, Ying Chen, Li Zhang 0007
+ year: 2010
+ venue: Web Intelligence and Agent Systems
+3) journals/ccsecis/MohammedMAS13
+ title: Data Mining Techniques and Preference Learning in Recommender Systems.
+ authors: Bandar Mohammed, Malek Mouhoub, Eisa Alanazi, Samira Sadaoui
+ year: 2013
+ venue: Computer and Information Science
+4) journals/ejis/RanganathanSB06
+ title: Switching behavior of mobile users: do users' relational investments and demographics matter?
+ authors: C. Ranganathan, DongBack Seo, Yair Babad
+ year: 2006
+ venue: EJIS
+5) journals/ijhisi/InthiranAA12
+ title: Medical Information Retrieval Strategies: An Exploratory Study on the Information Retrieval Behaviors of Non-Medical Professionals.
+ authors: Anushia Inthiran, Saadat M. Alhashmi, Pervaiz K. Ahmed
+ year: 2012
+ venue: IJHISI
+6) journals/algorithmica/BajajK89
+ title: Generation of Configuration Space Obstacles: The Case of Moving Algebraic Curves.
+ authors: Chandrajit L. Bajaj, Myung-Soo Kim
+ year: 1989
+ venue: Algorithmica
+7) journals/puc/BrownJ01
+ title: Context-aware Retrieval: Exploring a New Environment for Information Retrieval and Information Filtering.
+ authors: Peter J. Brown, Gareth J. F. Jones
+ year: 2001
+ venue: Personal and Ubiquitous Computing
+8) journals/ieeesp/SheoranFB06
+ title: Developing and sustaining information assurance: the role of community colleges. Part 2.
+ authors: Pinny Sheoran, Oris Friesen, Barbara J. Huffman de Belón
+ year: 2006
+ venue: IEEE Security & Privacy
+9) journals/ppna/TzantzaraE10
+ title: Gender differences in digital music distribution methods.
+ authors: Kalliopi Tzantzara, Anastasios A. Economides
+ year: 2010
+ venue: Peer-to-Peer Networking and Applications
+10) journals/sadm/NguyenZ13
+ title: Content-boosted matrix factorization techniques for recommender systems.
+ authors: Jennifer Nguyen, Mu Zhu
+ year: 2013
+ venue: Statistical Analysis and Data Mining
+11) journals/ir/BigotCDHM11
+ title: Fusing different information retrieval systems according to query-topics: a study based on correlation in information retrieval systems and TREC topics.
+ authors: Anthony Bigot, Claude Chrisment, Taoufiq Dkaki, Gilles Hubert, Josiane Mothe
+ year: 2011
+ venue: Inf. Retr.
+12) journals/ir/Joho11
+ title: Diane Kelly: Methods for evaluating interactive information retrieval systems with users - Foundation and Trends in Information Retrieval, vol 3, nos 1-2, pp 1-224, 2009, ISBN: 978-1-60198-224-7.
+ authors: Hideo Joho
+ year: 2011
+ venue: Inf. Retr.
+13) journals/wicomm/0003JLZ13
+ title: An optimal algorithm for solving partial target coverage problem in wireless sensor networks.
+ authors: Yu Gu 0003, Yusheng Ji, Jie Li, Baohua Zhao
+ year: 2013
+ venue: Wireless Communications and Mobile Computing
+14) journals/jasis/Larson10a
+ title: Information Retrieval: Searching in the 21st Century; Human Information Retrieval.
+ authors: Ray R. Larson
+ year: 2010
+ venue: JASIST
+15) journals/jasis/Park00
+ title: Usability, user preferences, effectiveness, and user behaviors when searching individual and integrated full-text databases: implications for digital libraries.
+ authors: Soyeon Park
+ year: 2000
+ venue: JASIS
+16) journals/jasis/Brooks95a
+ title: Information Retrieval: New Systems and Current Research. Proceedings of the 15th Research Colloquium of the British Computer Society Information Retrieval Specialist Group, edited by Ruben Leon.
+ authors: Terrence A. Brooks
+ year: 1995
+ venue: JASIS
+17) journals/jasis/Cole11
+ title: A theory of information need for information retrieval that connects information to knowledge.
+ authors: Charles Cole
+ year: 2011
+ venue: JASIST
+18) journals/jasis/White06
+ title: Information retrieval design: Principles and options for information description, organization, display, and access in information retrieval databases, digital libraries, catalogs, and indexes.
+ authors: Ryen W. White
+ year: 2006
+ venue: JASIST
+19) journals/jasis/Benoit04
+ title: Properties-based retrieval and user decision states: User control and behavior modeling.
+ authors: Gerald Benoît
+ year: 2004
+ venue: JASIST
+20) journals/jasis/Boyce90a
+ title: Concepts of information retrieval and automatic text processing: The transformation analysis, and retrieval of information by computer.
+ authors: Bert R. Boyce
+ year: 1990
+ venue: JASIS
+21) journals/sigops/Mohan78
+ title: Survey of Recent Operating Systems Research, Designs and Implementations.
+ authors: C. Mohan
+ year: 1978
+ venue: Operating Systems Review
+22) journals/mr/Dwyer11
+ title: Analysis of critical-length data from Electromigration failure studies.
+ authors: Vincent M. Dwyer
+ year: 2011
+ venue: Microelectronics Reliability
+23) journals/dss/JarupathirunZ07a
+ title: Dialectic decision support systems: System design and empirical evaluation.
+ authors: Suprasith Jarupathirun, Fatemeh Zahedi
+ year: 2007
+ venue: Decision Support Systems
+24) journals/dss/LiW10
+ title: Using text mining and sentiment analysis for online forums hotspot detection and forecast.
+ authors: Nan Li, Desheng Dash Wu
+ year: 2010
+ venue: Decision Support Systems
+25) journals/dss/Yang10
+ title: Web user behavioral profiling for user identification.
+ authors: Yinghui (Catherine) Yang
+ year: 2010
+ venue: Decision Support Systems
+26) journals/tvlsi/PurohitCMV13
+ title: Throughput/Resource-Efficient Reconfigurable Processor for Multimedia Applications.
+ authors: Sohan Purohit, Sai Rahul Chalamalasetti, Martin Margala, Wim Vanderbauwhede
+ year: 2013
+ venue: IEEE Trans. VLSI Syst.
+27) journals/jolis/Underwood13
+ title: Book review: Ian Ruthven and Diane Kelly (eds.), Interactive Information Seeking, Behaviour and Retrieval and Allen Foster and Pauline Rafferty (eds.), Innovations in Information Retrieval: Perspectives for Theory and Practice.
+ authors: Peter G. Underwood
+ year: 2013
+ venue: JOLIS
+28) journals/ijhci/HaL15
+ title: User Behavior Model Based on Affordances and Emotions: A New Approach for an Optimal Use Method in Product-User Interactions.
+ authors: Taehyun Ha, Sangwon Lee
+ year: 2015
+ venue: Int. J. Hum. Comput. Interaction
+29) journals/sigmod/WangBC07
+ title: High diversity transforms multimedia information retrieval into a cross-cutting field: report on the 8th Workshop on Multimedia Information Retrieval.
+ authors: James Ze Wang, Nozha Boujemaa, Yixin Chen
+ year: 2007
+ venue: SIGMOD Record
+30) journals/chb/FaiolaNPS13
+ title: Correlating the effects of flow and telepresence in virtual worlds: Enhancing our understanding of user behavior in game-based learning.
+ authors: Anthony Faiola, Christine M. Newlon, Mark Pfaff, Olga V. Smyslova
+ year: 2013
+ venue: Computers in Human Behavior
+31) journals/chb/FarzanB11
+ title: Encouraging user participation in a course recommender system: An impact on user behavior.
+ authors: Rosta Farzan, Peter Brusilovsky
+ year: 2011
+ venue: Computers in Human Behavior
+32) journals/chb/WuTLWC14
+ title: User-switching behavior in social network sites: A model perspective with drill-down analyses.
+ authors: Yu-Lung Wu, Yu-Hui Tao, Ching-Pu Li, Sheng-Yuan Wang, Chi-Yuan Chiu
+ year: 2014
+ venue: Computers in Human Behavior
+33) journals/chb/Sheldon12
+ title: Profiling the non-users: Examination of life-position indicators, sensation seeking, shyness, and loneliness among users and non-users of social network sites.
+ authors: Pavica Sheldon
+ year: 2012
+ venue: Computers in Human Behavior
+34) journals/chb/Brandtzaeg10
+ title: Towards a unified Media-User Typology (MUT): A meta-analysis and review of the research literature on media-user typologies.
+ authors: Petter Bae Brandtzæg
+ year: 2010
+ venue: Computers in Human Behavior
+35) journals/chb/HosseiniF14
+ title: Databases' interface interactivity and user self-efficacy: Two mediators for flow experience and scientific behavior improvement.
+ authors: S. Mahdi Hosseini, Rahmatollah Fattahi
+ year: 2014
+ venue: Computers in Human Behavior
+36) journals/chb/LuZW09
+ title: Exploring Chinese users' acceptance of instant messaging using the theory of planned behavior, the technology acceptance model, and the flow theory.
+ authors: Yaobin Lu, Tao Zhou, Bin Wang
+ year: 2009
+ venue: Computers in Human Behavior
+37) journals/chb/BuccafurriLNN15
+ title: Comparing Twitter and Facebook user behavior: Privacy and other aspects.
+ authors: Francesco Buccafurri, Gianluca Lax, Serena Nicolazzo, Antonino Nocera
+ year: 2015
+ venue: Computers in Human Behavior
+38) journals/chb/KangG14
+ title: Exploring users' social responses to computer counseling interviewers' behavior.
+ authors: Sin-Hwa Kang, Jonathan Gratch
+ year: 2014
+ venue: Computers in Human Behavior
+39) journals/chb/WangN14
+ title: Tablet as human: How intensity and stability of the user-tablet relationship influences users' impression formation of tablet computers.
+ authors: Zongyuan Wang, Michelle R. Nelson
+ year: 2014
+ venue: Computers in Human Behavior
+40) journals/chb/Amoako-Gyampah07
+ title: Perceived usefulness, user involvement and behavioral intention: an empirical study of ERP implementation.
+ authors: Kwasi Amoako-Gyampah
+ year: 2007
+ venue: Computers in Human Behavior
+41) journals/chb/PachidiSW14
+ title: Understanding users' behavior with software operation data mining.
+ authors: Stella Pachidi, Marco R. Spruit, Inge van de Weerd
+ year: 2014
+ venue: Computers in Human Behavior
+42) journals/chb/IvoryFWI14
+ title: Sex role stereotyping is hard to kill: A field experiment measuring social responses to user characteristics and behavior in an online multiplayer first-person shooter game.
+ authors: Adrienne Holz Ivory, Jesse Fox, T. Franklin Waddell, James D. Ivory
+ year: 2014
+ venue: Computers in Human Behavior
+43) journals/chb/LeeKK07
+ title: Exploring the user interface of negotiation support systems from the user acceptance perspective.
+ authors: Kun Chang Lee, Inwon Kang, Jin-Sung Kim
+ year: 2007
+ venue: Computers in Human Behavior
+44) journals/chb/BodrozaJ16
+ title: Validation of the new scale for measuring behaviors of Facebook users: Psycho-Social Aspects of Facebook Use (PSAFU).
+ authors: Bojana Bodroza, Tamara Jovanovic
+ year: 2016
+ venue: Computers in Human Behavior
+45) journals/chb/PfeilAZ09
+ title: Age differences in online social networking - A study of user profiles and the social capital divide among teenagers and older users in MySpace.
+ authors: Ulrike Pfeil, Rajiv Arjan, Panayiotis Zaphiris
+ year: 2009
+ venue: Computers in Human Behavior
+46) journals/chb/KarahasanovicBHLVPLVJ09
+ title: Co-creation and user-generated content-elderly people's user requirements.
+ authors: Amela Karahasanovic, Petter Bae Brandtzæg, Jan Heim, Marika Lüders, Lotte Vermeir, Jo Pierson, Bram Lievens, Jeroen Vanattenhoven, Greet Jans
+ year: 2009
+ venue: Computers in Human Behavior
+47) journals/chb/LuCWY11
+ title: A study on factors that affect users' behavioral intention to transfer usage from the offline to the online channel.
+ authors: Yaobin Lu, Yuzhi Cao, Bin Wang, Shuiqing Yang
+ year: 2011
+ venue: Computers in Human Behavior
+48) journals/chb/LiikkanenS15
+ title: Music on YouTube: User engagement with traditional, user-appropriated and derivative videos.
+ authors: Lassi A. Liikkanen, Antti Salovaara
+ year: 2015
+ venue: Computers in Human Behavior
+49) journals/chb/LjepavaOLR13
+ title: Personality and social characteristics of Facebook non-users and frequent users.
+ authors: Nikolina Ljepava, R. Robert Orr, Sean Locke, Craig Ross
+ year: 2013
+ venue: Computers in Human Behavior
+50) journals/chb/JacquesPK15
+ title: Differentiation of online text-based advertising and the effect on users' click behavior.
+ authors: Jason T. Jacques, Mark Perry, Per Ola Kristensson
+ year: 2015
+ venue: Computers in Human Behavior
+51) journals/chb/HasanA07
+ title: Effects of interface style on user perceptions and behavioral intention to use computer systems.
+ authors: Bassam Hasan, Mesbah U. Ahmed
+ year: 2007
+ venue: Computers in Human Behavior
+52) journals/chb/MaiFSV15
+ title: "I know you've seen it!" Individual and social factors for users' chatting behavior on Facebook.
+ authors: Lisa M. Mai, Rainer Freudenthaler, Frank M. Schneider, Peter Vorderer
+ year: 2015
+ venue: Computers in Human Behavior
+53) journals/chb/YeLGC11
+ title: The influence of user-generated content on traveler behavior: An empirical investigation on the effects of e-word-of-mouth to hotel online bookings.
+ authors: Qiang Ye, Rob Law, Bin Gu, Wei Chen
+ year: 2011
+ venue: Computers in Human Behavior
+54) journals/chb/ShenBR13
+ title: A comparison study of user behavior on Facebook and Gmail.
+ authors: Jianqiang Shen, Oliver Brdiczka, Yiye Ruan
+ year: 2013
+ venue: Computers in Human Behavior
+55) journals/chb/ChangW08
+ title: An investigation of user communication behavior in computer mediated environments.
+ authors: Hsin Hsin Chang, I. Chen Wang
+ year: 2008
+ venue: Computers in Human Behavior
+56) journals/tsmc/JiangK99
+ title: User evaluation of information systems: by system typology.
+ authors: James J. Jiang, Gary Klein 0001
+ year: 1999
+ venue: IEEE Trans. Systems, Man, and Cybernetics, Part A
+57) journals/tsmc/LevitinAX13
+ title: Algorithm for Reliability Evaluation of Nonrepairable Phased-Mission Systems Consisting of Gradually Deteriorating Multistate Elements.
+ authors: Gregory Levitin, Suprasad V. Amari, Liudong Xing
+ year: 2013
+ venue: IEEE Trans. Systems, Man, and Cybernetics: Systems
+58) journals/eswa/QiuHZSBC10
+ title: DASA: Dissatisfaction-oriented Advertising based on Sentiment Analysis.
+ authors: Guang Qiu, Xiaofei He, Feng Zhang, Yuan Shi, Jiajun Bu, Chun Chen
+ year: 2010
+ venue: Expert Syst. Appl.
+59) journals/spe/YangYSG11
+ title: Compiler-assisted dynamic scratch-pad memory management with space overlapping for embedded systems.
+ authors: Yanqin Yang, Haijin Yan, Zili Shao, Minyi Guo
+ year: 2011
+ venue: Softw., Pract. Exper.
+60) journals/cg/ZhangZQW11
+ title: Importance sampling for volumetric illumination of flames.
+ authors: Yingping Zhang, Dengming Zhu, Xianjie Qiu, Zhaoqi Wang
+ year: 2011
+ venue: Computers & Graphics
+61) journals/crl/Herrera11
+ title: Google Scholar Users and User Behaviors: An Exploratory Study.
+ authors: Gail Herrera
+ year: 2011
+ venue: C&RL
+62) journals/ejwcn/YamauraKHS13
+ title: Adaptive hierarchical modulation and power allocation for superposition-coded relaying.
+ authors: Hirofumi Yamaura, Megumi Kaneko, Kazunori Hayashi, Hideaki Sakai
+ year: 2013
+ venue: EURASIP J. Wireless Comm. and Networking
+63) journals/jsa/VelascoMFLB10
+ title: Experimental evaluation of slack management in real-time control systems: Coordinated vs. self-triggered approach.
+ authors: Manel Velasco, Pau Martí, Josep M. Fuertes, Camilo Lozoya, Scott A. Brandt
+ year: 2010
+ venue: Journal of Systems Architecture - Embedded Systems Design
+64) journals/jsa/MogaD09
+ title: A comparative evaluation of hybrid distributed shared-memory systems.
+ authors: Adrian Moga, Michel Dubois
+ year: 2009
+ venue: Journal of Systems Architecture - Embedded Systems Design
+65) journals/jsa/ChengLZJSL08
+ title: Evaluation and optimization of a peer-to-peer video-on-demand system.
+ authors: Bin Cheng, Xiuzheng Liu, Zheng Zhang, Hai Jin, Lex Stein, Xiaofei Liao
+ year: 2008
+ venue: Journal of Systems Architecture - Embedded Systems Design
+66) journals/jsa/GarayODCA13
+ title: System performance evaluation by combining RTC and VHDL simulation: A case study on NICs.
+ authors: Godofredo R. Garay, Julio Ortega, Antonio F. Díaz, Luis Corrales, Vicente Alarcón Aquino
+ year: 2013
+ venue: Journal of Systems Architecture - Embedded Systems Design
+67) journals/jsa/BertozziB99
+ title: Tools for code optimization and system evaluation of the image processing system PAPRICA-3.
+ authors: Massimo Bertozzi, Alberto Broggi
+ year: 1999
+ venue: Journal of Systems Architecture
+68) journals/comcom/HsiehLLCTL08
+ title: Moving toward end-to-end support for handoffs across heterogeneous telephony systems on dual-mode mobile devices.
+ authors: Hung-Yun Hsieh, Chung-Wei Li, Shuo-Wei Liao, Yu-Wen Chen, Tsung-Lin Tsai, Hsiao-Pu Lin
+ year: 2008
+ venue: Computer Communications
+69) journals/comcom/LamCDLL05
+ title: Integrating connectionless and connection-oriented traffic using quantum packets.
+ authors: Ray Y. W. Lam, Henry C. B. Chan, Tharam S. Dillon, Victor O. K. Li, Victor C. M. Leung
+ year: 2005
+ venue: Computer Communications
+70) journals/comcom/Minoli80a
+ title: Optimal allocation in a multiresources graduated tariff communication environment.
+ authors: Daniel Minoli
+ year: 1980
+ venue: Computer Communications
+71) journals/comcom/YangGLS14
+ title: A survey of collaborative filtering based social recommender systems.
+ authors: Xiwang Yang, Yang Guo, Yong Liu, Harald Steck
+ year: 2014
+ venue: Computer Communications
+72) journals/heuristics/StrusevichWD99
+ title: A 3/2 Algorithm for Two-Machine Open Shop with Route-Dependent Processing Times.
+ authors: Vitaly A. Strusevich, A. J. A. van de Waart, R. Dekker
+ year: 1999
+ venue: J. Heuristics
+73) journals/midm/NeupaneOFJSD14
+ title: Comparing a paper based monitoring and evaluation system to a mHealth system to support the national community health worker programme, South Africa: an evaluation.
+ authors: Sunisha Neupane, Willem Odendaal, Irwin Friedman, Waasila Jassat, Helen Schneider, Tanya Doherty
+ year: 2014
+ venue: BMC Med. Inf. & Decision Making
+74) journals/cacm/RubinoffBRC68
+ title: Information Retrieval: Easy English, a language for information retrieval through a remote typewriter console.
+ authors: Morris Rubinoff, Samuel Bergman, F. Rapp, H. Cautin
+ year: 1968
+ venue: Commun. ACM
+75) journals/fss/DubeyM14
+ title: A bipolar approach in fuzzy multi-objective linear programming.
+ authors: Dipti Dubey, Aparna Mehra
+ year: 2014
+ venue: Fuzzy Sets and Systems
+76) journals/coling/Maynard08
+ title: Information Extraction: Algorithms and Prospects in a Retrieval Context Marie-Francine Moens (Katholieke Universiteit Leuven) Springer (Information retrieval series, edited by W. Bruce Croft), 2006, xiii+246 pp; ISBN 978-1-4020-4987-3.
+ authors: Diana Maynard
+ year: 2008
+ venue: Computational Linguistics
+77) journals/envsoft/KortB07
+ title: Decision making under uncertainty in a decision support system for the Red River.
+ authors: Inge A. T. de Kort, Martijn J. Booij
+ year: 2007
+ venue: Environmental Modelling and Software
+78) journals/is/BouadjenekHB16
+ title: Social networks and information retrieval, how are they converging? A survey, a taxonomy and an analysis of social information retrieval approaches and platforms.
+ authors: Mohamed Reda Bouadjenek, Hakim Hacid, Mokrane Bouzeghoub
+ year: 2016
+ venue: Inf. Syst.
+79) journals/sj/HallamC15
+ title: Evaluation of the Levelized Cost of Energy Method for Analyzing Renewable Energy Systems: A Case Study of System Equivalency Crossover Points Under Varying Analysis Assumptions.
+ authors: Cory R. A. Hallam, Carolina Contreras
+ year: 2015
+ venue: IEEE Systems Journal
+80) journals/jss/KleinJB97
+ title: Information system evaluation by system typology.
+ authors: Gary Klein 0001, James J. Jiang, Joseph L. Balloun
+ year: 1997
+ venue: Journal of Systems and Software
+81) journals/vldb/ParkR09
+ title: Efficient storage and retrieval of probabilistic latent semantic information for information retrieval.
+ authors: Laurence A. F. Park, Kotagiri Ramamohanarao
+ year: 2009
+ venue: VLDB J.
+82) journals/tvt/ZhangJMBMH15
+ title: Adaptive Iterative Decoding for Expediting the Convergence of Unary Error Correction Codes.
+ authors: Wenbo Zhang, Yanbo Jia, Xi Meng, Matthew F. Brejza, Robert G. Maunder, Lajos Hanzo
+ year: 2015
+ venue: IEEE Trans. Vehicular Technology
+83) journals/jms/VestJ12
+ title: How are Health Professionals Using Health Information Exchange Systems? Measuring Usage for Evaluation and System Improvement.
+ authors: Joshua R. Vest, Jon (Sean) Jasperson
+ year: 2012
+ venue: J. Medical Systems
+84) journals/jms/NabovatiVEK14
+ title: Usability Evaluation of Laboratory and Radiology Information Systems Integrated into a Hospital Information System.
+ authors: Ehsan Nabovati, Hasan Vakili-Arki, Saeid Eslami, Reza Khajouei
+ year: 2014
+ venue: J. Medical Systems
+85) journals/jdcta/LuQ10
+ title: Session-Based User Behavior Meta-Model of Web Applications for User-Level QoS Load Testing.
+ authors: Lu Lu, Xiuxia Quan
+ year: 2010
+ venue: JDCTA
+86) journals/tit/KumarIR11
+ title: High-Resolution Distributed Sampling of Bandlimited Fields With Low-Precision Sensors.
+ authors: Animesh Kumar, Prakash Ishwar, Kannan Ramchandran
+ year: 2011
+ venue: IEEE Trans. Information Theory
+87) journals/ijcisys/ZhangZML10
+ title: Power Distribution System Planning Evaluation by a Fuzzy Multi-Criteria Group Decision Support System.
+ authors: Tiefeng Zhang, Guangquan Zhang, Jun Ma, Jie Lu
+ year: 2010
+ venue: Int. J. Computational Intelligence Systems
+88) journals/ploscb/NagpalTMT15
+ title: Decoding Structural Properties of a Partially Unfolded Protein Substrate: En Route to Chaperone Binding.
+ authors: Suhani Nagpal, Satyam Tiwari, Koyeli Mapa, Lipi Thukral
+ year: 2015
+ venue: PLoS Computational Biology
+89) journals/jacic/Clancy14
+ title: Associating Data in System of Systems Using Measures of Information.
+ authors: Daniel J. Clancy 0002
+ year: 2014
+ venue: J. Aerospace Inf. Sys.
+90) journals/jdi/RovaCH08
+ title: Development of NEMA-based Software for Gamma Camera Quality Control.
+ authors: Andrew Rova, Anna Celler, Ghassan Hamarneh
+ year: 2008
+ venue: J. Digital Imaging
+91) journals/cm/Jacobs11
+ title: WiMAX subscriber and mobile station authentication challenges.
+ authors: Stuart Jacobs
+ year: 2011
+ venue: IEEE Communications Magazine
+92) journals/mj/KrajewskiGGWKWLKOG09
+ title: The influence of growth temperature and precursors' doses on electrical parameters of ZnO thin films grown by atomic layer deposition technique.
+ authors: T. Krajewski, E. Guziewicz, M. Godlewski, L. Wachnicki, I. A. Kowalik, A. Wojcik-Glodowska, M. Lukasiewicz, K. Kopalko, V. Osinniy, M. Guziewicz
+ year: 2009
+ venue: Microelectronics Journal
+93) journals/isca/Hu10
+ title: Sentiment Analysis of Surveys using Both Numeric Ratings.
+ authors: Gongzhu Hu
+ year: 2010
+ venue: I. J. Comput. Appl.
+94) journals/paapp/DattaS00
+ title: Improved Parallel Algorithm for Maximal Matching Based on Depth-first-search.
+ authors: Alak Kumar Datta, Ranjan K. Sen
+ year: 2000
+ venue: Parallel Algorithms Appl.
+95) journals/jsyml/Schmerl02
+ title: Automorphism Groups of Models of Peano Arithmetic.
+ authors: James H. Schmerl
+ year: 2002
+ venue: J. Symb. Log.
+96) journals/tal/CailliauC10
+ title: Shaping the Course of a Conversation through Sentiment Analysis on Speech Transcripts.
+ authors: Frédérik Cailliau, Ariane Cavet
+ year: 2010
+ venue: TAL
+97) journals/tal/PakP10
+ title: Microblogging for Micro Sentiment Analysis and Opinion Mining.
+ authors: Alexander Pak, Patrick Paroubek
+ year: 2010
+ venue: TAL
+98) journals/jikm/YaminRI13
+ title: Information Searching: The Impact of User Knowledge on User Search Behavior.
+ authors: Fadhilah Mat Yamin, T. Ramayah, Wan Hussain Wan Ishak
+ year: 2013
+ venue: JIKM
+99) journals/tie/HuangC14
+ title: Automatic Moving Object Extraction Through a Real-World Variable-Bandwidth Network for Traffic Monitoring Systems.
+ authors: Shih-Chia Huang, Bo-Hao Chen
+ year: 2014
+ venue: IEEE Trans. Industrial Electronics
+100) journals/tie/JacobB15
+ title: A New Space Vector Modulation Scheme for Multilevel Inverters Which Directly Vector Quantize the Reference Space Vector.
+ authors: Biji Jacob, M. R. Baiju
+ year: 2015
+ venue: IEEE Trans. Industrial Electronics
+101) journals/bmcbi/FrohlichSPB07
+ title: GOSim - an R-package for computation of information theoretic GO similarities between terms and gene products.
+ authors: Holger Fröhlich, Nora Speer, Annemarie Poustka, Tim Beißbarth
+ year: 2007
+ venue: BMC Bioinformatics
+102) journals/corr/abs-1207-6096
+ title: Accurate and Efficient Private Release of Datacubes and Contingency Tables
+ authors: Graham Cormode, Cecilia M. Procopiuc, Divesh Srivastava, Grigory Yaroslavtsev
+ year: 2012
+ venue: CoRR
+103) journals/corr/abs-1301-0159
+ title: Sensing as a Service and Big Data
+ authors: Arkady B. Zaslavsky, Charith Perera, Dimitrios Georgakopoulos
+ year: 2013
+ venue: CoRR
+104) journals/corr/abs-1111-2893
+ title: Optimal Crowdsourcing Contests
+ authors: Shuchi Chawla, Jason D. Hartline, Balasubramanian Sivan
+ year: 2011
+ venue: CoRR
+105) journals/corr/cs-PL-0003070
+ title: The (Lazy) Functional Side of Logic Programming
+ authors: Sandro Etalle, Jon Mountjoy
+ year: 2000
+ venue: CoRR
+106) journals/corr/abs-0809-0355
+ title: Simulations between triangular and hexagonal number-conserving cellular automata
+ authors: Katsunobu Imai, Bruno Martin
+ year: 2008
+ venue: CoRR
+107) journals/corr/abs-1211-5329
+ title: Game Dynamics and Nash Equilibria
+ authors: Yannick Viossat
+ year: 2012
+ venue: CoRR
+108) journals/jis/ThetNK10
+ title: Aspect-based sentiment analysis of movie reviews on discussion boards.
+ authors: Tun Thura Thet, Jin-Cheon Na, Christopher S. G. Khoo
+ year: 2010
+ venue: J. Information Science
+109) journals/amcs/PattonCK12
+ title: An LPV pole-placement approach to friction compensation as an FTC problem.
+ authors: Ronald J. Patton, Lejun Chen, Supat Klinkhieo
+ year: 2012
+ venue: Applied Mathematics and Computer Science
+110) journals/oir/Wical14a
+ title: Multidisciplinary Information Retrieval: 6th Information Retrieval Facility Conference, IRFC 2013, Limassol, Cyprus, October 2013, Proceedings.
+ authors: Stephanie H. Wical
+ year: 2014
+ venue: Online Information Review
+111) journals/oir/Domingo-FerrerSC09
+ title: h(k)-private information retrieval from privacy-uncooperative queryable databases.">h(k)-private information retrieval from privacy-uncooperative queryable databases.
+ authors: Josep Domingo-Ferrer, Agusti Solanas, Jordi Castellà-Roca
+ year: 2009
+ venue: Online Information Review
+112) journals/tec/NicolaisenPT01
+ title: Market power and efficiency in a computational electricity market with discriminatory double-auction pricing.
+ authors: James Nicolaisen, Valentin Petrov, Leigh Tesfatsion
+ year: 2001
+ venue: IEEE Trans. Evolutionary Computation
+113) journals/taccess/MaFKL13
+ title: Investigating User Behavior for Authentication Methods: A Comparison between Individuals with Down Syndrome and Neurotypical Users.
+ authors: Yao Ma, Jinjuan Feng, Libby Kumin, Jonathan Lazar
+ year: 2013
+ venue: TACCESS
+114) journals/jcmc/LiuDSW02
+ title: User Behavior and the "Globalness" of Internet: From a Taiwan Users' Perspective.
+ authors: Chun-chou Liu, Wan-wen Day, Se-wen Sun, Georgette Wang
+ year: 2002
+ venue: J. Computer-Mediated Communication
+115) journals/tlsdkcs/AlhadadSBL15
+ title: System Modeling and Trust Evaluation of Distributed Systems.
+ authors: Nagham Alhadad, Patricia Serrano-Alvarado, Yann Busnel, Philippe Lamarre
+ year: 2015
+ venue: Trans. Large-Scale Data- and Knowledge-Centered Systems
+116) journals/jdim/LiWG11
+ title: Fusion User Browsing Behavior and User Interests Autonomous Control of Personalized Search Results Sort.
+ authors: Jianting Li, Hao-ming Wang, Ye Guo
+ year: 2011
+ venue: JDIM
+117) journals/npl/DrayePCL95
+ title: Adaptative time constants improve the prediction capability of recurrent neural networks.
+ authors: Jean-Philippe Draye, Davor Pavisic, Guy Cheron, Gaetan Libert
+ year: 1995
+ venue: Neural Processing Letters
+118) journals/sigir/AllanABBCCDFHHHHHKLLLLMMPPRRRRRSSSSTVWXZ03
+ title: Challenges in information retrieval and language modeling: report of a workshop held at the center for intelligent information retrieval, University of Massachusetts Amherst, September 2002.
+ authors: James Allan, Jay Aslam, Nicholas J. Belkin, Chris Buckley, James P. Callan, W. Bruce Croft, Susan T. Dumais, Norbert Fuhr, Donna Harman, David J. Harper, Djoerd Hiemstra, Thomas Hofmann, Eduard H. Hovy, Wessel Kraaij, John D. Lafferty, Victor Lavrenko, David D. Lewis, Liz Liddy, R. Manmatha, Andrew McCallum, Jay M. Ponte, John M. Prager, Dragomir R. Radev, Philip Resnik, Stephen E. Robertson, Ronald Rosenfeld, Salim Roukos, Mark Sanderson, Richard M. Schwartz, Amit Singhal, Alan F. Smeaton, Howard R. Turtle, Ellen M. Voorhees, Ralph M. Weischedel, Jinxi Xu, ChengXiang Zhai
+ year: 2003
+ venue: SIGIR Forum
+119) journals/sigir/AllanCMS12
+ title: Frontiers, challenges, and opportunities for information retrieval: Report from SWIRL 2012 the second strategic workshop on information retrieval in Lorne.
+ authors: James Allan, W. Bruce Croft, Alistair Moffat, Mark Sanderson
+ year: 2012
+ venue: SIGIR Forum
+120) journals/ipm/Cole01
+ title: Intelligent information retrieval: Part IV - Testing the timing of two information retrieval devices in a naturalistic setting.
+ authors: Charles Cole
+ year: 2001
+ venue: Inf. Process. Manage.
+121) journals/ipm/Anderson07
+ title: The Turn: Integration of Information Seeking and Retrieval in Context, Peter Ingwersen, Kalervo Järvelin. Springer, Dordrecht, Netherlands (c2005). xiv, 448 p. (The Kluwer International Series on Information Retrieval) ISBN: 13 978-1-4020-3850-1 (HB).
+ authors: James D. Anderson
+ year: 2007
+ venue: Inf. Process. Manage.
+122) journals/scjapan/MiyazakiY00
+ title: Performance evaluation of the CPPS distributed-memory parallel production system under various system parameters.
+ authors: Jun Miyazaki, Haruo Yokota
+ year: 2000
+ venue: Systems and Computers in Japan
+123) journals/scjapan/KitagawaTOY95
+ title: Evaluation of an environment for supporting development of a three-dimensional image processing system VISUAL by development of virtual space manipulating system.
+ authors: Eiji Kitagawa, Jun-ichiro Toriwaki, Minoru Okada, Shigeki Yokoi
+ year: 1995
+ venue: Systems and Computers in Japan
+124) journals/tmm/ZhaoQX16
+ title: User-Service Rating Prediction by Exploring Social Users' Rating Behaviors.
+ authors: Guoshuai Zhao, Xueming Qian, Xing Xie
+ year: 2016
+ venue: IEEE Trans. Multimedia
+125) journals/se/LinC12
+ title: Evaluation of system reliability for a cloud computing system with imperfect nodes.
+ authors: Yi-Kuei Lin, Ping-Chen Chang
+ year: 2012
+ venue: Systems Engineering
+126) journals/jsce/XuGX13
+ title: Integrated system health management-based state evaluation for environmental control and life support system in manned spacecraft.
+ authors: Jiuping Xu, Feng Guo, Lei Xu
+ year: 2013
+ venue: J. Systems & Control Engineering
+127) journals/accs/OsipovMB14
+ title: Identification of differences of user behavior profiles and user class templates.
+ authors: Pavel Osipov, Aleksandr E. Mrochko, Arkadij Borisov
+ year: 2014
+ venue: Automatic Control and Computer Sciences
+128) journals/speech/WangS13
+ title: Modeling user behavior online for disambiguating user input in a spoken dialogue system.
+ authors: Fangju Wang, Kyle Swegles
+ year: 2013
+ venue: Speech Communication
+129) journals/jnsm/EndoMS12
+ title: GBLT-VG for High User Densities by User Group Behavior and Hot Point in MMO Virtual Environment.
+ authors: Rei Endo, Kei Matsumoto, Hiroshi Shigeno
+ year: 2012
+ venue: J. Network Syst. Manage.
+130) journals/at/KronS05
+ title: Haptisches Telepräsenzsystem zur Unterstützung bei Entschärfungstätigkeiten: Systemgestaltung, Regelung und Evaluation (Haptic Telepresence System for Support of Disposal of Explosive Ordnances: Design Issues, Control, and Evaluation).
+ authors: Alexander Kron, Günther Schmidt
+ year: 2005
+ venue: Automatisierungstechnik
+131) journals/ires/VilarZB07
+ title: Information seeking and information retrieval curricula development for modules taught in two library and information science schools: the cases of Ljubljana and Dublin.
+ authors: Polona Vilar, Maja Zumer, Jessica Bates
+ year: 2007
+ venue: Inf. Res.
+132) journals/ires/Eklund05
+ title: Review of: Chu, Heting. Information representation and retrieval in the digital age. Medford, NJ: Information Today for the American Society for Information Science and Technology, 2003.
+ authors: Johan Eklund
+ year: 2005
+ venue: Inf. Res.
+133) journals/csl/ShinGN13
+ title: Enabling effective design of multimodal interfaces for speech-to-speech translation system: An empirical study of longitudinal user behaviors over time and user strategies for coping with errors.
+ authors: JongHo Shin, Panayiotis G. Georgiou, Shrikanth Narayanan
+ year: 2013
+ venue: Computer Speech & Language
+134) journals/ijsr/KomatsuKY12
+ title: How Does the Difference Between Users' Expectations and Perceptions About a Robotic Agent Affect Their Behavior? - An Adaptation Gap Concept for Determining Whether Interactions Between Users and Agents Are Going Well or Not.
+ authors: Takanori Komatsu, Rie Kurosawa, Seiji Yamada
+ year: 2012
+ venue: I. J. Social Robotics
+135) journals/tcad/ZhangCF04
+ title: Behavioral modeling and performance evaluation of microelectrofluidics-based PCR systems using SystemC.
+ authors: Tianhao Zhang, Krishnendu Chakrabarty, Richard B. Fair
+ year: 2004
+ venue: IEEE Trans. on CAD of Integrated Circuits and Systems
+136) journals/cbsn/SchaikFL05
+ title: The Effects of Direction and Movement of Attractors on Users' Behavior in Virtual Environments.
+ authors: Paul van Schaik, Clive Fencott, Jonathan Ling
+ year: 2005
+ venue: Cyberpsy., Behavior, and Soc. Networking
+137) journals/cbsn/ShinK08
+ title: Applying the Technology Acceptance Model and Flow Theory to Cyworld User Behavior: Implication of the Web2.0 User Acceptance.
+ authors: Dong-Hee Shin, Won-Young Kim
+ year: 2008
+ venue: Cyberpsy., Behavior, and Soc. Networking
+138) journals/cbsn/WhangLC03
+ title: Internet Over-Users' Psychological Profiles: A Behavior Sampling Analysis on Internet Addiction.
+ authors: Leo Sang-Min Whang, Sujin Lee, Geun-Young Chang
+ year: 2003
+ venue: Cyberpsy., Behavior, and Soc. Networking
+139) journals/cbsn/JinM15
+ title: "A Match Made...Online?" The Effects of User-Generated Online Dater Profile Types (Free-Spirited Versus Uptight) on Other Users' Perception of Trustworthiness, Interpersonal Attraction, and Personality.
+ authors: Seunga Venus Jin, Cassie Martin
+ year: 2015
+ venue: Cyberpsy., Behavior, and Soc. Networking
+140) journals/cbsn/SimoneSRM06
+ title: Head-Mounted Displays for Clinical Virtual Reality Applications: Pitfalls in Understanding User Behavior while Using Technology.
+ authors: Lisa K. Simone, Maria T. Schultheis, Jose Rebimbas, Scott R. Millis
+ year: 2006
+ venue: Cyberpsy., Behavior, and Soc. Networking
+141) journals/cbsn/JohnsonK07
+ title: Dimensions of Online Behavior: Toward a User Typology.
+ authors: Genevieve Marie Johnson, Anastasia Kulpa
+ year: 2007
+ venue: Cyberpsy., Behavior, and Soc. Networking
+142) journals/ngc/KobayashiS07
+ title: A Study on an Information Recommendation System that Provides Topical Information Related to User's Inquiry for Information Retrieval.
+ authors: Ichiro Kobayashi, Mai Saito
+ year: 2007
+ venue: New Generation Comput.
+143) journals/jits/AerdeR99
+ title: A Framework for the Evaluation of System Safety Benefits of Intelligent Cruise Control Systems.
+ authors: Michel van Aerde, Hesham Rakha
+ year: 1999
+ venue: J. Intellig. Transport. Systems
+144) journals/lre/HasselH06
+ title: Adaptation of an automotive dialogue system to users' expertise and evaluation of the system.
+ authors: Liza Hassel, Eli Hagen
+ year: 2006
+ venue: Language Resources and Evaluation
+145) journals/jmis/CaoCLDBN06
+ title: Interactions Between System Evaluation and Theory Testing: A Demonstration of the Power of a Multifaceted Approach to Information Systems Research.
+ authors: Jinwei Cao, Janna M. Crews, Ming Lin, Amit V. Deokar, Judee K. Burgoon, Jay F. Nunamaker Jr.
+ year: 2006
+ venue: J. of Management Information Systems
+146) journals/ijmms/Davis93
+ title: User Acceptance of Information Technology: System Characteristics, User Perceptions and Behavioral Impacts.
+ authors: Fred D. Davis
+ year: 1993
+ venue: International Journal of Man-Machine Studies
+147) conf/iadis/SahebiOK08
+ title: Applying and Comparing Hidden Markov Model and Fuzzy Clustering Algorithms to Web Usage Data for Recommender Systems.
+ authors: Shaghayegh Sahebi, Farhad Oroumchian, Ramtin Khosravi
+ year: 2008
+ venue: IADIS European Conf. Data Mining
+148) conf/globecom/QinLGL12
+ title: Behavior spectrum: An effective method for user's web access behavior monitoring and measurement.
+ authors: Tao Qin, Wei Li 0029, Xiaohong Guan, Zhaoli Liu
+ year: 2012
+ venue: GLOBECOM
+149) conf/icon/LiCQC13
+ title: A hierarchical method for user's behavior characteristics visualization and special user identification.
+ authors: Wei Li 0029, Guangze Cao, Tao Qin, Ping Cao
+ year: 2013
+ venue: ICON
+150) conf/ACMdis/SawasdichaiP02
+ title: User purposes and information-seeking behaviors in web-based media: a user-centered approach to information design on websites.
+ authors: Napawan Sawasdichai, Sharon Poggenpohl
+ year: 2002
+ venue: Symposium on Designing Interactive Systems
+151) conf/dbta/ZhangQZ10
+ title: A New Method of Selecting Pivot Features for Structural Correspondence Learning in Domain Adaptive Sentiment Analysis.
+ authors: Yanbo Zhang, Youli Qu, Junsan Zhang
+ year: 2010
+ venue: DBTA
+152) conf/colis/Reid99
+ title: A New Task Oriented Paradigm for Information Retrieval: Implications for Evaluation of Information Retrieval Systems.
+ authors: Jane Reid
+ year: 1999
+ venue: CoLIS
+153) conf/anss/BurklenMFR05
+ title: User Centric Walk: An Integrated Approach for Modeling the Browsing Behavior of Users on the Web.
+ authors: Susanne Bürklen, Pedro José Marrón, Serena Fritsch, Kurt Rothermel
+ year: 2005
+ venue: Annual Simulation Symposium
+154) conf/icete/VojtasP14
+ title: e-Shop User Preferences via User Behavior.
+ authors: Peter Vojtás, Ladislav Peska
+ year: 2014
+ venue: ICE-B
+155) conf/paclic/JangS10
+ title: Effective Use of Linguistic Features for Sentiment Analysis of Korean.
+ authors: Hayeon Jang, Hyopil Shin
+ year: 2010
+ venue: PACLIC
+156) conf/birthday/Fuhr04
+ title: Information Retrieval - From Information Access to Contextual Retrieval.
+ authors: Norbert Fuhr
+ year: 2004
+ venue: Designing Information Systems
+157) conf/acl/PaltoglouT10
+ title: A Study of Information Retrieval Weighting Schemes for Sentiment Analysis.
+ authors: Georgios Paltoglou, Mike Thelwall
+ year: 2010
+ venue: ACL
+158) conf/vtc/SchoenenBMBY12
+ title: First Survey Results of Quantified User Behavior in User-in-the-Loop Scenarios for Sustainable Wireless Networks.
+ authors: Rainer Schoenen, Gurhan Bulu, Amir Mirtaheri, Tamer Beitelmal, Halim Yanikomeroglu
+ year: 2012
+ venue: VTC Fall
+159) conf/isi/ColbaughG10a
+ title: Estimating sentiment orientation in social media for intelligence monitoring and analysis.
+ authors: Richard Colbaugh, Kristin Glass
+ year: 2010
+ venue: ISI
+160) conf/imcsit/KisilevichRK10
+ title: 'Beautiful picture of an ugly place'. Exploring photo collections using opinion and sentiment analysis of user comments.
+ authors: Slava Kisilevich, Christian Rohrdantz, Daniel A. Keim
+ year: 2010
+ venue: IMCSIT
+161) conf/sysose/KimuraOYISK11
+ title: Evaluation of IT systems considering characteristics as system of systems.
+ authors: Daichi Kimura, Takao Osaki, Kazuo Yanoo, Sayaka Izukura, Hiroshi Sakaki, Atsushi Kobayashi
+ year: 2011
+ venue: SoSE
+162) conf/asru/LeeP09
+ title: Voice-based information retrieval - how far are we from the text-based information retrieval ?
+ authors: Lin-Shan Lee, Yi-Cheng Pan
+ year: 2009
+ venue: ASRU
+163) conf/racs/ChuangSH11
+ title: User behavior augmented software testing for user-centered GUI.
+ authors: Kuan-Chun Chuang, Chi-Sheng Shih, Shih-Hao Hung
+ year: 2011
+ venue: RACS
+164) conf/ipccc/XuS15
+ title: Identify user variants based on user behavior on social media.
+ authors: Haoran Xu, Yuqing Sun
+ year: 2015
+ venue: IPCCC
+165) conf/dnis/AgrawalBAGY14
+ title: Big Data in Online Social Networks: User Interaction Analysis to Model User Behavior in Social Networks.
+ authors: Divyakant Agrawal, Ceren Budak, Amr El Abbadi, Theodore Georgiou, Xifeng Yan
+ year: 2014
+ venue: DNIS
+166) conf/pacis/TsaiLH10
+ title: The Effects of News Sentiment and Coverage on Credit Rating Analysis.
+ authors: Feng-Tse Tsai, Hsin-Min Lu, Mao-Wei Hung
+ year: 2010
+ venue: PACIS
+167) conf/ic3k/AlonsoBL10
+ title: Incremental user Modeling with Heterogeneous user Behaviors.
+ authors: Rafael Alonso, Philip Bramsen, Hua Li
+ year: 2010
+ venue: KMIS
+168) conf/lwa/MandlFH07
+ title: Workshop Information Retrieval 2007 of the Special Interest Group Information Retrieval (FGIR).
+ authors: Thomas Mandl, Norbert Fuhr, Andreas Henrich
+ year: 2007
+ venue: LWA
+169) conf/lwa/ScheirGL07
+ title: Evaluating an Information Retrieval System for the Semantic Desktop using Standard Measures from Information Retrieval.
+ authors: Peter Scheir, Michael Granitzer, Stefanie N. Lindstaedt
+ year: 2007
+ venue: LWA
+170) conf/asunam/Zuo0Y12
+ title: Personal User or Organizational User? Behavior on Microblog can Tell.
+ authors: Yuchu Zuo, Jianmin Wang 0002, Fang You
+ year: 2012
+ venue: ASONAM
+171) conf/ai/NichollsS10
+ title: Comparison of Feature Selection Methods for Sentiment Analysis.
+ authors: Chris Nicholls, Fei Song
+ year: 2010
+ venue: Canadian Conference on AI
+172) conf/hri/KimLCK07
+ title: User-centered approach to path planning of cleaning robots: analyzing user's cleaning behavior.
+ authors: Hyunjin Kim, Hyunjeong Lee, Stanley Chung, Changsu Kim
+ year: 2007
+ venue: HRI
+173) conf/icail/ConradC03a
+ title: Validation: A Critical First Step in the Evaluation of Systems for Legal Corpus Determination.
+ authors: Jack G. Conrad, Joanne S. Claussen
+ year: 2003
+ venue: Evaluation of Legal Reasoning and Problem-Solving Systems
+174) conf/icail/HallHZ03a
+ title: A proposal for an evaluation repository for AI and Law systems.
+ authors: Jean Hall, Richard Hall, John Zeleznikow
+ year: 2003
+ venue: Evaluation of Legal Reasoning and Problem-Solving Systems
+175) conf/icail/Moens03
+ title: An Evaluation Forum for Legal IR System?
+ authors: Marie-Francine Moens
+ year: 2003
+ venue: Evaluation of Legal Reasoning and Problem-Solving Systems
+176) conf/cost/SchullerK10
+ title: Learning and Knowledge-Based Sentiment Analysis in Movie Review Key Excerpts.
+ authors: Björn W. Schuller, Tobias Knaup
+ year: 2010
+ venue: COST 2102 Training School
+177) conf/coling/JangS10
+ title: Language-Specific Sentiment Analysis in Morphologically Rich Languages.
+ authors: Hayeon Jang, Hyopil Shin
+ year: 2010
+ venue: COLING (Posters)
+178) conf/complexsystems/LunaLTZP13
+ title: Integration, Verification, Validation, Test, and Evaluation (IVVT&E) Framework for System of Systems (SoS).
+ authors: Sergio Luna, Amit J. Lopes, Hoong Yan See Tao, Francisco Zapata, Ricardo Pineda
+ year: 2013
+ venue: Complex Adaptive Systems
+179) conf/rcis/WanderleySA15
+ title: Evaluation of BehaviorMap: A user-centered behavior language.
+ authors: Fernando Wanderley, Antonio Silva, João Araújo 0001
+ year: 2015
+ venue: RCIS
+180) conf/iat/KobayashiS06
+ title: A Study on Information Recommendation System that Provides Topical Information Related to User's Inquiry for Information Retrieval.
+ authors: Ichiro Kobayashi, Mai Saito
+ year: 2006
+ venue: IAT Workshops
+181) conf/incdm/Piramuthu10
+ title: Sequential Bias, Online Product Reviews, and Recommender Systems.
+ authors: Selwyn Piramuthu
+ year: 2010
+ venue: Industrial Conference on Data Mining - Workshops
+182) conf/icwsm/HongS10
+ title: The Wisdom of Bookies? Sentiment Analysis Versus. the NFL Point Spread.
+ authors: Yancheng Hong, Steven Skiena
+ year: 2010
+ venue: ICWSM
+183) conf/iva/KramerHK10
+ title: Know Your Users! Empirical Results for Tailoring an Agent's Nonverbal Behavior to Different User Groups.
+ authors: Nicole C. Krämer, Laura Hoffmann, Stefan Kopp
+ year: 2010
+ venue: IVA
+184) conf/iva/KramerSK07
+ title: The Effects of an Embodied Conversational Agent's Nonverbal Behavior on User's Evaluation and Behavioral Mimicry.
+ authors: Nicole C. Krämer, Nina Simons, Stefan Kopp
+ year: 2007
+ venue: IVA
+185) conf/hci/Abascal-MenaLZ13
+ title: User Generated Content: An Analysis of User Behavior by Mining Political Tweets.
+ authors: Rocío Abascal-Mena, Érick Lopez-Ornelas, J. Sergio Zepeda-Hernández
+ year: 2013
+ venue: HCI (26)
+186) conf/icetet/ChawlaB08
+ title: Improving Information Retrieval Precision by Finding Related Queries with Similar Information Need Using Information Scent.
+ authors: Suruchi Chawla, Punam Bedi
+ year: 2008
+ venue: ICETET
+187) conf/icwe/MalinskyJ10
+ title: Improvements of Webometrics by Using Sentiment Analysis for Better Accessibility of the Web.
+ authors: Radek Malinský, Ivan Jelínek
+ year: 2010
+ venue: ICWE Workshops
+188) conf/kbse/LiHG10
+ title: Detecting user-visible failures in AJAX web applications by analyzing users' interaction behaviors.
+ authors: Wanchun Li, Mary Jean Harrold, Carsten Görg
+ year: 2010
+ venue: ASE
+189) conf/ceas/Fallows04
+ title: Internet Users and Spam: What the attitudes and behavior of Internet users can tell us about fighting spam.
+ authors: Deborah Fallows
+ year: 2004
+ venue: CEAS
+190) conf/aaai/LiHZ10
+ title: Sentiment Analysis with Global Topics and Local Dependency.
+ authors: Fangtao Li, Minlie Huang, Xiaoyan Zhu
+ year: 2010
+ venue: AAAI
+191) conf/re/Castro-HerreraDCM08
+ title: Using Data Mining and Recommender Systems to Facilitate Large-Scale, Open, and Inclusive Requirements Elicitation Processes.
+ authors: Carlos Castro-Herrera, Chuan Duan, Jane Cleland-Huang, Bamshad Mobasher
+ year: 2008
+ venue: RE
+192) conf/sigbdp/DuggalP90
+ title: An Example of Management Training in Expert Systems: SBA Loan Evaluation System.
+ authors: Sudesh M. Duggal, Paul R. Popovich
+ year: 1990
+ venue: ACM SIGBDP Conference on Trends and Directions in Expert Systems
+193) conf/semweb/CeolinGNFH13
+ title: Analyzing User Demographics and User Behavior for Trust Assessment.
+ authors: Davide Ceolin, Paul T. Groth, Archana Nottamkandath, Wan Fokkink, Willem Robert van Hage
+ year: 2014
+ venue: URSW (LNCS Vol.)
+194) conf/iaai/ShastriPKWB10
+ title: Sentiment Extraction: Integrating Statistical Parsing, Semantic Analysis, and Common Sense Reasoning.
+ authors: Lokendra Shastri, Anju G. Parvathy, Abhishek Kumar, John Wesley, Rajesh Balakrishnan
+ year: 2010
+ venue: IAAI
+195) conf/webi/YuLA10
+ title: An Adaptive Model for Probabilistic Sentiment Analysis.
+ authors: Xiaohui Yu, Yang Liu 0008, Aijun An
+ year: 2010
+ venue: Web Intelligence
+196) conf/webi/KaoL10
+ title: A Categorized Sentiment Analysis of Chinese Reviews by Mining Dependency in Product Features and Opinions from Blogs.
+ authors: Hung-Yu Kao, Zi-Yu Lin
+ year: 2010
+ venue: Web Intelligence
+197) conf/icmla/BurlinaSW15
+ title: Zero Shot Deep Learning from Semantic Attributes.
+ authors: Philippe M. Burlina, Aurora C. Schmidt, I-Jeng Wang
+ year: 2015
+ venue: ICMLA
+198) conf/icmla/DundarKZHR15
+ title: Simplicity of Kmeans Versus Deepness of Deep Learning: A Case of Unsupervised Feature Learning with Limited Data.
+ authors: Murat Dundar, Qiang Kou, Baichuan Zhang, Yicheng He, Bartek Rajwa
+ year: 2015
+ venue: ICMLA
+199) conf/icmla/DuL15
+ title: Deep Neural Networks with Parallel Autoencoders for Learning Pairwise Relations: Handwritten Digits Subtraction.
+ authors: Tianchuan Du, Li Liao
+ year: 2015
+ venue: ICMLA
+200) conf/icmla/SinghDZGT15
+ title: Layer-Specific Adaptive Learning Rates for Deep Networks.
+ authors: Bharat Singh, Soham De, Yangmuzi Zhang, Thomas Goldstein, Gavin Taylor
+ year: 2015
+ venue: ICMLA
+201) conf/cis/PanZ10
+ title: Chinese Sentiment Orientation Analysis.
+ authors: Wenbin Pan, Yanquan Zhou
+ year: 2010
+ venue: CIS
+202) conf/fskd/Wang10c
+ title: Sentiment analysis of online product reviews with Semi-supervised topic sentiment mixture model.
+ authors: Wei Wang
+ year: 2010
+ venue: FSKD
+203) conf/itqm/JunP13
+ title: Mining Explainable User Interests from Scalable User Behavior Data.
+ authors: Li Jun, Zhang Peng
+ year: 2013
+ venue: ITQM
+204) conf/ifip8-2/FrietasB93
+ title: A Study of End-Users' Behavior by Means of an Automated Assessment Method (or a Behavior Typology of End-Users).
+ authors: Henrique Frietas, Bernard Ballaz
+ year: 1993
+ venue: Human, Organizational, and Social Dimensions of Information Systems Development
+205) conf/clef/LipaniPAH14
+ title: An Information Retrieval Ontology for Information Retrieval Nanopublications.
+ authors: Aldo Lipani, Florina Piroi, Linda Andersson, Allan Hanbury
+ year: 2014
+ venue: CLEF
+206) conf/slt/CelikyilmazHF10
+ title: Probabilistic model-based sentiment analysis of twitter messages.
+ authors: Asli Çelikyilmaz, Dilek Hakkani-Tür, Junlan Feng
+ year: 2010
+ venue: SLT
+207) conf/wims/ElahiK12
+ title: User behavior in online social networks and its implications: a user study.
+ authors: Najeeb Elahi, Randi Karlsen
+ year: 2012
+ venue: WIMS
+208) conf/rocling/NingL10
+ title: 基於網路社群之旅遊經驗及對應情境之情感意見分析研究 (Sentiment Analysis in Scenic Spot Experiences from Web Community Using Semantically Relevant Contextual Information) [In Chinese].
+ authors: Ke-chih Ning, Kun-chi Lai
+ year: 2010
+ venue: ROCLING
+209) conf/socialcom/YangVYV13
+ title: Risk Management in the Era of BYOD: The Quintet of Technology Adoption, Controls, Liabilities, User Perception, and User Behavior.
+ authors: T. Andrew Yang, Radu E. Vlas, Alan Yang, Cristina Vlas
+ year: 2013
+ venue: SocialCom
+210) conf/iui/LiH04
+ title: An intelligent 3D user interface adapting to user control behaviors.
+ authors: Tsai-Yen Li, Shu-Wei Hsu
+ year: 2004
+ venue: IUI
+211) conf/iui/ZhouC03
+ title: Inferring user goals from personality and behavior in a causal model of user affect.
+ authors: Xiaoming Zhou, Cristina Conati
+ year: 2003
+ venue: IUI
+212) conf/pe-wasun/KanedaASMT05
+ title: Integrated user and network simulation for traffic control by influencing user behavior.
+ authors: Shigeru Kaneda, Yoshikazu Akinaga, Noriteru Shinagawa, Akira Miura, Mineo Takai
+ year: 2005
+ venue: PE-WASUN
+213) conf/icpr/LiZXCG10
+ title: Exploiting Combined Multi-level Model for Document Sentiment Analysis.
+ authors: Si Li 0001, Hao Zhang 0022, Weiran Xu, Guang Chen, Jun Guo
+ year: 2010
+ venue: ICPR
+214) conf/icee/FuL10
+ title: A Framework for Recommender Systems in E-Commerce Based on Distributed Storage and Data-Mining.
+ authors: Changjian Fu, Zhihua Leng
+ year: 2010
+ venue: ICEE
+215) conf/micai/SyedE10
+ title: Lexicon Based Sentiment Analysis of Urdu Text Using SentiUnits.
+ authors: Afraz Zahra Syed, Aslam Muhammad, Ana María Martínez Enríquez
+ year: 2010
+ venue: MICAI (1)
+216) conf/icis/KoptonSWRK13
+ title: Users' Trust Building Processes During Their Initial Connecting Behavior in Social Networks: Behavioral and Neural Evidence.
+ authors: Isabella Kopton, Jens Sommer, Axel Winkelmann, René Riedl, Peter Kenning
+ year: 2013
+ venue: ICIS
+217) conf/icis/JenkinsDRN10
+ title: Encouraging Users to Behave Securely: Examining the Influence of Technical, Managerial, and Educational Controls on Users' Secure Behavior.
+ authors: Jeffrey L. Jenkins, Alexandra Durcikova, Grayson Ross, Jay F. Nunamaker Jr.
+ year: 2010
+ venue: ICIS
+218) conf/sigir/LiDWDCZ14
+ title: A two-dimensional click model for query auto-completion.
+ authors: Yanen Li, Anlei Dong, Hongning Wang, Hongbo Deng, Yi Chang, ChengXiang Zhai
+ year: 2014
+ venue: SIGIR
+219) conf/sigir/MitraSRH14
+ title: On user interactions with query auto-completion.
+ authors: Bhaskar Mitra, Milad Shokouhi, Filip Radlinski, Katja Hofmann
+ year: 2014
+ venue: SIGIR
+220) conf/sigir/ZhangGKDDCGH15
+ title: adaQAC: Adaptive Query Auto-Completion via Implicit Negative Feedback.
+ authors: Aston Zhang, Amit Goyal, Weize Kong, Hongbo Deng, Anlei Dong, Yi Chang, Carl A. Gunter, Jiawei Han
+ year: 2015
+ venue: SIGIR
+221) conf/sigir/Shokouhi13
+ title: Learning to personalize query auto-completion.
+ authors: Milad Shokouhi
+ year: 2013
+ venue: SIGIR
+222) conf/sigir/JiangKCC14
+ title: Learning user reformulation behavior for query auto-completion.
+ authors: Jyun-Yu Jiang, Yen-Yu Ke, Pao-Yu Chien, Pu-Jen Cheng
+ year: 2014
+ venue: SIGIR
+223) conf/sigir/ShokouhiR12
+ title: Time-sensitive query auto-completion.
+ authors: Milad Shokouhi, Kira Radinsky
+ year: 2012
+ venue: SIGIR
+224) conf/sigir/LiuYHA10
+ title: S-PLASA+: adaptive sentiment analysis with application to sales performance prediction.
+ authors: Yang Liu 0008, Xiaohui Yu, Xiangji Huang, Aijun An
+ year: 2010
+ venue: SIGIR
+225) conf/sigir/LiDDCZB15
+ title: Analyzing User's Sequential Behavior in Query Auto-Completion via Markov Processes.
+ authors: Liangda Li, Hongbo Deng, Anlei Dong, Yi Chang, Hongyuan Zha, Ricardo A. Baeza-Yates
+ year: 2015
+ venue: SIGIR
+226) conf/i-semantics/MoraC13
+ title: Engineering optimisations in query rewriting for OBDA.
+ authors: José Mora, Óscar Corcho
+ year: 2013
+ venue: I-SEMANTICS
+227) conf/ew/SchoenenBMBY12
+ title: Quantified User Behavior in User-in-the-Loop Spatially and Demand Controlled Cellular Systems.
+ authors: Rainer Schoenen, Gurhan Bulu, Amir Mirtaheri, Tamer Beitelmal, Halim Yanikomeroglu
+ year: 2012
+ venue: EW
+228) conf/nips/SocherCMN13
+ title: Reasoning With Neural Tensor Networks for Knowledge Base Completion.
+ authors: Richard Socher, Danqi Chen, Christopher D. Manning, Andrew Y. Ng
+ year: 2013
+ venue: NIPS
+229) conf/nips/SocherHPNM11
+ title: Dynamic Pooling and Unfolding Recursive Autoencoders for Paraphrase Detection.
+ authors: Richard Socher, Eric H. Huang, Jeffrey Pennington, Andrew Y. Ng, Christopher D. Manning
+ year: 2011
+ venue: NIPS
+230) conf/nips/FrostigWLM14
+ title: Simple MAP Inference via Low-Rank Relaxations.
+ authors: Roy Frostig, Sida I. Wang, Percy S. Liang, Christopher D. Manning
+ year: 2014
+ venue: NIPS
+231) conf/nips/SocherGMN13
+ title: Zero-Shot Learning Through Cross-Modal Transfer.
+ authors: Richard Socher, Milind Ganjoo, Christopher D. Manning, Andrew Y. Ng
+ year: 2013
+ venue: NIPS
+232) conf/nips/KleinM02
+ title: Fast Exact Inference with a Factored Model for Natural Language Parsing.
+ authors: Dan Klein, Christopher D. Manning
+ year: 2002
+ venue: NIPS
+233) conf/nips/KleinM01
+ title: Natural Language Grammar Induction Using a Constituent-Context Model.
+ authors: Dan Klein, Christopher D. Manning
+ year: 2001
+ venue: NIPS
+234) conf/nips/SrikumarM14
+ title: Learning Distributed Representations for Structured Output Prediction.
+ authors: Vivek Srikumar, Christopher D. Manning
+ year: 2014
+ venue: NIPS
+235) conf/nips/DekelMS03
+ title: Log-Linear Models for Label Ranking.
+ authors: Ofer Dekel, Christopher D. Manning, Yoram Singer
+ year: 2003
+ venue: NIPS
+236) conf/nips/SocherHBMN12
+ title: Convolutional-Recursive Deep Learning for 3D Object Classification.
+ authors: Richard Socher, Brody Huval, Bharath Putta Bath, Christopher D. Manning, Andrew Y. Ng
+ year: 2012
+ venue: NIPS
+237) conf/nips/PaulusSM14
+ title: Global Belief Recursive Neural Networks.
+ authors: Romain Paulus, Richard Socher, Christopher D. Manning
+ year: 2014
+ venue: NIPS
+238) conf/dlog/Rodriguez-MuroKZ13
+ title: Query Rewriting and Optimisation with Database Dependencies in Ontop.
+ authors: Mariano Rodriguez-Muro, Roman Kontchakov, Michael Zakharyaschev
+ year: 2013
+ venue: Description Logics
+239) conf/uist/RaoCJMR92
+ title: The Information Grid: A Framework for Information Retrieval and Retrieval-centered Applications.
+ authors: Ramana Rao, Stuart K. Card, Herbert D. Jellinek, Jock D. Mackinlay, George G. Robertson
+ year: 1992
+ venue: ACM Symposium on User Interface Software and Technology
+240) conf/hicss/RomanoRNC99
+ title: Collaborative Information Retrieval Environment: Integration of Information Retrieval with Group Support Systems.
+ authors: Nicholas C. Romano Jr., Dmitri Roussinov, Jay F. Nunamaker Jr., Hsinchun Chen
+ year: 1999
+ venue: HICSS
+241) conf/riao/Kitano88
+ title: Multilingual Information Retrieval Mechanism Using VLSI. Requirements and Approaches for Information Retrieval Systems in the Computer-Aided Software Engineering and Document Processing Environment.
+ authors: Hiroaki Kitano
+ year: 1988
+ venue: RIAO
+242) conf/riao/GaizauskasR97
+ title: Coupling information retrieval and information extraction: A new text technology for gathering information from the web.
+ authors: Robert J. Gaizauskas, Alexander M. Robertson
+ year: 1997
+ venue: RIAO
+243) conf/icml/GuptaAGN15
+ title: Deep Learning with Limited Numerical Precision.
+ authors: Suyog Gupta, Ankur Agrawal, Kailash Gopalakrishnan, Pritish Narayanan
+ year: 2015
+ venue: ICML
+244) conf/icml/ChenSYU15
+ title: Learning Deep Structured Models.
+ authors: Liang-Chieh Chen, Alexander G. Schwing, Alan L. Yuille, Raquel Urtasun
+ year: 2015
+ venue: ICML
+245) conf/icml/Sohl-DicksteinW15
+ title: Deep Unsupervised Learning using Nonequilibrium Thermodynamics.
+ authors: Jascha Sohl-Dickstein, Eric A. Weiss, Niru Maheswaranathan, Surya Ganguli
+ year: 2015
+ venue: ICML
+246) conf/icml/FiratAOY15
+ title: Learning Deep Temporal Representations for fMRI Brain Decoding.
+ authors: Orhan Firat, Emre Aksan, Ilke Öztekin, Fatos T. Yarman-Vural
+ year: 2015
+ venue: MLMMI@ICML
+247) conf/icml/LongC0J15
+ title: Learning Transferable Features with Deep Adaptation Networks.
+ authors: Mingsheng Long, Yue Cao, Jianmin Wang 0001, Michael I. Jordan
+ year: 2015
+ venue: ICML
+248) conf/icml/Kandemir15
+ title: Asymmetric Transfer Learning with Deep Gaussian Processes.
+ authors: Melih Kandemir
+ year: 2015
+ venue: ICML
+249) conf/icml/WangALB15
+ title: On Deep Multi-View Representation Learning.
+ authors: Weiran Wang, Raman Arora, Karen Livescu, Jeff A. Bilmes
+ year: 2015
+ venue: ICML
+250) conf/icml/VanseijenS15
+ title: A Deeper Look at Planning as Learning from Replay.
+ authors: Harm Vanseijen, Rich Sutton
+ year: 2015
+ venue: ICML
+251) conf/wism/YuWL10
+ title: Algorithms of BBS Opinion Leader Mining Based on Sentiment Analysis.
+ authors: Xiao Yu, Xu Wei, Xia Lin
+ year: 2010
+ venue: WISM
+252) conf/iiix/ArifDL12a
+ title: Collaborative information retrieval in tourism: a study of user search behaviour, user interface and information retrieval performance.
+ authors: Abu Shamim Mohammad Arif, Jia Tina Du, Ivan Lee
+ year: 2012
+ venue: IIiX
+253) conf/tsd/ZizkaD10
+ title: Automatic Sentiment Analysis Using the Textual Pattern Content Similarity in Natural Language.
+ authors: Jan Zizka, Frantisek Darena
+ year: 2010
+ venue: TSD
+254) conf/cikm/RusS
+ title: Information Retrieval, Information Structure, and Information Agents.
+ authors: Daniela Rus, Devika Subramanian
+ year: 1997
+ venue: Intelligent Hypertext
+255) conf/cikm/RolkerK99
+ title: Quality of Service Transferred to Information Retrieval: The Adaptive Information Retrieval System.
+ authors: Claudia Rolker, Ralf Kramer
+ year: 1999
+ venue: CIKM
+256) conf/cikm/LiuLZM13
+ title: How do users grow up along with search engines?: a study of long-term users' behavior.
+ authors: Jian Liu, Yiqun Liu, Min Zhang 0006, Shaoping Ma
+ year: 2013
+ venue: CIKM
+257) conf/cikm/Deolalikar14a
+ title: Parameter Tuning with User Models: Influencing Aggregate User Behavior in Cluster Based Retrieval Systems.
+ authors: Vinay Deolalikar
+ year: 2014
+ venue: CIKM
+258) conf/um/GrausWS15
+ title: Understanding Real-Life Website Adaptations by Investigating the Relations Between User Behavior and User Experience.
+ authors: Mark P. Graus, Martijn C. Willemsen, Kevin Swelsen
+ year: 2015
+ venue: UMAP
+259) conf/icalt/CumminsBH10
+ title: Using Feedback Tags and Sentiment Analysis to Generate Sharable Learning Resources Investigating Automated Sentiment Analysis of Feedback Tags in a Programming Course.
+ authors: Stephen Cummins, Liz Burd, Andrew Hatch
+ year: 2010
+ venue: ICALT
+260) conf/icalt/LiaoC11
+ title: Analysis and Interpretation of e-Reader User Logs: A Case Study of High School Students' User Behaviors.
+ authors: Wen-Hung Liao, Chien-Pao Chueh
+ year: 2011
+ venue: ICALT
+261) conf/lrec/RentoumiPKVK10
+ title: United we Stand: Improving Sentiment Analysis by Joining Machine Learning and Rule Based Methods.
+ authors: Vassiliki Rentoumi, Stefanos Petrakis, Manfred Klenner, George A. Vouros, Vangelis Karkaletsis
+ year: 2010
+ venue: LREC
+262) conf/lrec/BaccianellaES10
+ title: SentiWordNet 3.0: An Enhanced Lexical Resource for Sentiment Analysis and Opinion Mining.
+ authors: Stefano Baccianella, Andrea Esuli, Fabrizio Sebastiani 0001
+ year: 2010
+ venue: LREC
+263) conf/lrec/BalahurSKZGHPB10
+ title: Sentiment Analysis in the News.
+ authors: Alexandra Balahur, Ralf Steinberger, Mijail Alexandrov Kabadjov, Vanni Zavarella, Erik Van der Goot, Matina Halkia, Bruno Pouliquen, Jenya Belyaeva
+ year: 2010
+ venue: LREC
+264) conf/lrec/AgicLT10
+ title: Towards Sentiment Analysis of Financial Texts in Croatian.
+ authors: Zeljko Agic, Nikola Ljubesic, Marko Tadic
+ year: 2010
+ venue: LREC
+265) conf/lrec/Waltinger10
+ title: GermanPolarityClues: A Lexical Resource for German Sentiment Analysis.
+ authors: Ulli Waltinger
+ year: 2010
+ venue: LREC
+266) conf/lrec/RemusQH10
+ title: SentiWS - A Publicly Available German-language Resource for Sentiment Analysis.
+ authors: Robert Remus, Uwe Quasthoff, Gerhard Heyer
+ year: 2010
+ venue: LREC
+267) conf/lrec/PakP10
+ title: Twitter as a Corpus for Sentiment Analysis and Opinion Mining.
+ authors: Alexander Pak, Patrick Paroubek
+ year: 2010
+ venue: LREC
+268) conf/tear/PuraoD10
+ title: An Enterprise-Wide Intervention at IRS: A Longitudinal Analysis of Stakeholder Sentiments.
+ authors: Sandeep Purao, Kevin C. Desouza
+ year: 2010
+ venue: TEAR
+269) conf/sin/AmirkhanyanSG0M15
+ title: Simulation user behavior on a security testbed using user behavior states graph.
+ authors: Aragats Amirkhanyan, Andrey Sapegin, Marian Gawron, Feng Cheng 0002, Christoph Meinel
+ year: 2015
+ venue: SIN
+270) conf/fuzzIEEE/DzogangLRB10
+ title: Expressions of graduality for sentiments analysis - A survey.
+ authors: Fabon Dzogang, Marie-Jeanne Lesot, Maria Rifqi, Bernadette Bouchon-Meunier
+ year: 2010
+ venue: FUZZ-IEEE
+271) conf/epia/PimentaCNN15
+ title: Improving User Privacy and the Accuracy of User Identification in Behavioral Biometrics.
+ authors: André Pimenta, Davide Carneiro, José Neves, Paulo Novais
+ year: 2015
+ venue: EPIA
+272) conf/ecai/ShivashankarR10
+ title: Multi Grain Sentiment Analysis using Collective Classification.
+ authors: S. Shivashankar, Balaraman Ravindran
+ year: 2010
+ venue: ECAI
+273) conf/ecir/Lazarinis98
+ title: Combining Information Retrieval with Information Extraction for Efficient Retrieval of Calls for Papers.
+ authors: F. Lazarinis
+ year: 1998
+ venue: BCS-IRSG Annual Colloquium on IR Research
+274) conf/emnlp/Boyd-GraberR10
+ title: Holistic Sentiment Analysis Across Languages: Multilingual Supervised Latent Dirichlet Allocation.
+ authors: Jordan L. Boyd-Graber, Philip Resnik
+ year: 2010
+ venue: EMNLP
+275) conf/icse/HuangZTWL14
+ title: AsDroid: detecting stealthy behaviors in Android applications by user interface and program behavior contradiction.
+ authors: Jianjun Huang, Xiangyu Zhang, Lin Tan, Peng Wang, Bin Liang
+ year: 2014
+ venue: ICSE
+276) conf/webist/GutschmidtC08
+ title: User Behavior under the Microscope - Can the Behavior Indicate a Web User's Task?
+ authors: Anne Gutschmidt, Clemens H. Cap
+ year: 2008
+ venue: WEBIST (2)
+277) conf/webist/Waltinger10
+ title: Sentiment Analysis Reloaded - A Comparative Study on Sentiment Polarity Identification Combining Machine Learning and Subjectivity Features.
+ authors: Ulli Waltinger
+ year: 2010
+ venue: WEBIST (1)
+278) conf/atal/CafaroVBHS13
+ title: First impressions in user-agent encounters: the impact of an agent's nonverbal behavior on users' relational decisions.
+ authors: Angelo Cafaro, Hannes Högni Vilhjálmsson, Timothy W. Bickmore, Dirk Heylen, Daniel Schulman
+ year: 2013
+ venue: AAMAS
+279) conf/trec/BuckleySM96
+ title: Using Query Zoning and Correlation Within SMART: TREC 5.
+ authors: Chris Buckley, Amit Singhal, Mandar Mitra
+ year: 1996
+ venue: TREC
+280) conf/trec/Buckley07
+ title: Examining Overfitting in Relevance Feedback: Sabir Research at TREC 2007.
+ authors: Chris Buckley
+ year: 2007
+ venue: TREC
+281) conf/trec/BuckleySAS94
+ title: Automatic Query Expansion Using SMART: TREC 3.
+ authors: Chris Buckley, Gerard Salton, James Allan, Amit Singhal
+ year: 1994
+ venue: TREC
+282) conf/trec/BuckleyW99a
+ title: SMART in TREC 8.
+ authors: Chris Buckley, Janet A. Walz
+ year: 1999
+ venue: TREC
+283) conf/trec/BuckleyW99
+ title: The TREC-8 Query Track.
+ authors: Chris Buckley, Janet A. Walz
+ year: 1999
+ venue: TREC
+284) conf/trec/BuckleySM95
+ title: New Retrieval Approaches Using SMART: TREC 4.
+ authors: Chris Buckley, Amit Singhal, Mandar Mitra
+ year: 1995
+ venue: TREC
+285) conf/trec/Buckley00
+ title: The TREC-9 Query Track.
+ authors: Chris Buckley
+ year: 2000
+ venue: TREC
+286) conf/trec/Buckley97
+ title: TREC 6 High-Precision Track.
+ authors: Chris Buckley
+ year: 1997
+ venue: TREC
+287) conf/trec/BuckleyW00
+ title: SabIR Research at TREC-9.
+ authors: Chris Buckley, Janet A. Walz
+ year: 2000
+ venue: TREC
+288) conf/trec/BuckleyAS93
+ title: Automatic Routing and Ad-hoc Retrieval Using SMART: TREC 2.
+ authors: Chris Buckley, James Allan, Gerard Salton
+ year: 1993
+ venue: TREC
+289) conf/trec/BuckleyMWC98
+ title: SMART High Precision: TREC 7.
+ authors: Chris Buckley, Mandar Mitra, Janet A. Walz, Claire Cardie
+ year: 1998
+ venue: TREC
+290) conf/trec/BuckleyMWC97
+ title: Using Clustering and SuperConcepts Within SMART: TREC 6.
+ authors: Chris Buckley, Mandar Mitra, Janet A. Walz, Claire Cardie
+ year: 1997
+ venue: TREC
+291) conf/trec/Buckley05
+ title: Looking at Limits and Tradeoffs: Sabir Research at TREC 2005.
+ authors: Chris Buckley
+ year: 2005
+ venue: TREC
+292) conf/nldb/Perea-OrtegaCVL08
+ title: Comparing Several Textual Information Retrieval Systems for the Geographical Information Retrieval Task.
+ authors: José M. Perea-Ortega, Miguel Angel García Cumbreras, Manuel García Vega, Luis Alfonso Ureña López
+ year: 2008
+ venue: NLDB
+293) conf/aaaiss/MadaniBY09
+ title: Prediction and Discovery of Users' Desktop Behavior.
+ authors: Omid Madani, Hung Hai Bui, Eric Yeh
+ year: 2009
+ venue: AAAI Spring Symposium: Human Behavior Modeling
+294) conf/elpub/Hedlund08
+ title: Business school researchers' attitudes towards open access and institutional repositories: a study on user acceptance and user behavior.
+ authors: Turid Hedlund
+ year: 2008
+ venue: ELPUB
+295) conf/edm/KimC10
+ title: Sentiment Analysis in Student Experiences of Learning.
+ authors: Sunghwan Mac Kim, Rafael A. Calvo
+ year: 2010
+ venue: EDM
+296) conf/setn/RentoumiPKKV10
+ title: A Collaborative System for Sentiment Analysis.
+ authors: Vassiliki Rentoumi, Stefanos Petrakis, Vangelis Karkaletsis, Manfred Klenner, George A. Vouros
+ year: 2010
+ venue: SETN
+297) conf/socrob/JoosseSE11
+ title: BEHAVE: A Set of Measures to Assess Users' Attitudinal and Non-verbal Behavioral Responses to a Robot's Social Behaviors.
+ authors: Michiel Joosse, Aziez Sardar, Vanessa Evers
+ year: 2011
+ venue: ICSR
+298) conf/iswsa/AqelV10
+ title: A framework for employee appraisals based on sentiment analysis.
+ authors: Darah Aqel, Sunil Vadera
+ year: 2010
+ venue: ISWSA
+299) conf/sigir/WongLC09
+ title:  Mining employment market via text block detection and adaptive cross-domain information extraction.
+ authors: Tak-Lam Wong, Wai Lam, Bo Chen
+ year: 2009
+ venue: SIGIR
+300) conf/compsac/MeiZJCT12
+ title: Preemptive Regression Test Scheduling Strategies: A New Testing Approach to Thriving on the Volatile Service Environments.
+ authors: Lijun Mei, Ke Zhai, Bo Jiang, W. K. Chan, T. H. Tse
+ year: 2012
+ venue: COMPSAC

@@ -1,0 +1,6 @@
+9	0	journals/ccsecis/MohammedMAS13	1
+9	0	journals/sadm/NguyenZ13	1
+9	0	conf/icee/FuL10	1
+9	0	conf/incdm/Piramuthu10	1
+9	0	conf/iadis/SahebiOK08	1
+9	0	conf/re/Castro-HerreraDCM08	1
