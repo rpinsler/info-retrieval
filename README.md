@@ -29,7 +29,15 @@ To set up the project, download the xml and dtd files of the [dblp dataset](http
 ## Usage ##
 
 Make sure you execute all commands from within the program directory: `cd info-retrieval`.
-As a first step, you should run `python build_index.py` to parse the DBLP dataset and construct a Lucene index from it.
+As a first step, you should run `python build_index.py` to parse the DBLP dataset and construct a Lucene index from it. The output should look similar to this:
+```
+100000 documents processed...
+200000 documents processed...
+...
+3200000 documents processed...
+Finished indexing. 3205115 documents indexed in total.
+
+```
 
 ### Search Engine ###
 
@@ -73,5 +81,77 @@ results = svy.query_venue_year(venue='SIGIR', year='2015', top_k=10)
 here we should show concrete sample queries and explain the output...
 
 ### Search Engine ###
+
+Let's use the command-line interface (`python cli_search.py`) to search for the phrase "query optimization":
+```
+Standard search. Type ':q' to quit.
+Query: "query optimization"
+```
+However, we also want to restrict the results to publications from 2000. This is where the advanced search comes into play:
+```
+Use advanced search? (y/n): y
+Advanced search. Hit enter with no input to skip field.
+Title: 
+Authors: 
+Year: 2000
+Venue: 
+```
+This yields the following result:
+```
+Execute search.
+Searching for: "query optimization"
+Searching for (advanced):  {'venue': '', 'authors': '', 'year': '2000', 'title': ''}
+Detected phrases:  ['query optimization']
+Lucene query: +(+(content:query content:optimization content:"query optimization"^5.0)) +year:2000
+1257 results found (0.20s)
+Showing only top 10
+
+Result list:
+1) conf/edbt/Josinski00 (relevance: 3.58)
+Dynamic Query Optimization and Query Processing in Multidatabase Systems
+Henryk Josinski
+EDBT PhD Workshop - 2000
+2) journals/is/PlodzienK00 (relevance: 3.51)
+Object Query Optimization through Detecting Independent Subqueries
+Jacek Plodzien, Anna Kraken
+Inf. Syst. - 2000
+3) journals/dr/Sellis00c (relevance: 3.51)
+Review - Query Optimization by Simulated Annealing
+Timos K. Sellis
+ACM SIGMOD Digital Review - 2000
+4) journals/dr/Srivastava00a (relevance: 3.51)
+Review - Query Optimization by Predicate Move-Around
+Divesh Srivastava
+ACM SIGMOD Digital Review - 2000
+5) journals/dr/Wu00 (relevance: 3.51)
+Review - Query Optimization for XML
+Yuqing Melanie Wu
+ACM SIGMOD Digital Review - 2000
+6) conf/sac/HaratyF00 (relevance: 3.51)
+Distributed Query Optimization Using PERF Joins
+Ramzi A. Haraty, Roula C. Fany
+SAC (1) - 2000
+7) conf/cata/HaratyF00 (relevance: 3.51)
+A PERF solution for distributed query optimization
+Ramzi A. Haraty, Roula C. Fany
+Computers and Their Applications - 2000
+8) conf/edbt/Wang00 (relevance: 3.51)
+Cost-Based Object Query Optimization
+Quan Wang
+EDBT PhD Workshop - 2000
+9) conf/sbbd/AndradeS00 (relevance: 3.51)
+Query Optimization in KESS - An Ontology-Based KBMS
+Henrique Andrade, Joel H. Saltz
+SBBD - 2000
+10) conf/iceis/OommenR00 (relevance: 3.51)
+An Empirical Comparison of Histogram-Like Techniques for Query Optimization
+B. John Oommen, Luis Rueda
+ICEIS - 2000
+```
+
+Looks not too bad, right? However, you may have noticed that some of the outputs are rather verbose from an end-user perspective (e.g. the internal Lucene query). This is because the command-line interface is meant to be used for debugging purposes. For example, the output shows that the search has found a total of 1257 hits, which seems to be quite a lot. By looking at the internal Lucene query, we can conclude that this is because we also accept results that contain either the term *query* or *optimization*. This considerably increases recall at the cost of some more false positives. If that is not desired, we could go back to the source code and adapt this aspect to our needs. 
+
+In reality, an end user would prefer to use the web UI, which is mostly self-explanatory (advanced query input not shown):
+![Search results for query "query optimization" year:2000](https://github.com/rpinsler/info-retrieval/blob/master/report/img/search.png)
 
 ### Applications ###
