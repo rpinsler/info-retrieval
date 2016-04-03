@@ -15,6 +15,7 @@ To run the applications, more packages are required:
 - nltk (run `nltk.download()` and install all packages)
 - numpy
 - scikit-learn
+- lda
 
 If not specified otherwise, [pip](https://pip.pypa.io/en/stable/quickstart/) can be used to install the packages, i.e. use `pip install <package>`.
 
