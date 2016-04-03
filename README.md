@@ -6,7 +6,9 @@ This is a basic search engine for the [dblp](http://dblp.uni-trier.de/) computer
 
 ## Installation ##
 
-The search engine has the following dependencies:
+The project runs on Python 2.7. 
+
+The search engine has the following Python dependencies:
 - PyLucene (see [installation instructions](http://lucene.apache.org/pylucene/install.html))
 - lxml
 - Flask
@@ -20,28 +22,24 @@ To run the applications, more packages are required:
 If not specified otherwise, [pip](https://pip.pypa.io/en/stable/quickstart/) can be used to install the packages, i.e. use `pip install <package>`.
 
 To set up the project, download the xml and dtd files of the [dblp dataset](http://dblp.uni-trier.de/xml/
-) into the *data/* folder. You may also want to have a look into the *config.json* file, where some parameters can be set.
+) into the *data/* folder. You may also want to have a look into the *config.json* file, where some parameters can be set (e.g. the maximum number of results that are returned from the search).
 
 ------------------
 
 ## Usage ##
 
-Make sure you execute all commands from within the program directory: `cd info-retrieval`
+Make sure you execute all commands from within the program directory: `cd info-retrieval`.
+As a first step, you should run `python build_index.py` to parse the DBLP dataset and construct a Lucene index from it.
 
-First, run `python build_index.py` to parse the DBLP dataset and construct a Lucene index from it. Afterwards, you can use one of the following ways to interact with the search engine:
+### Search Engine ###
+
+You can use one of the following ways to interact with the search engine:
 - **local web UI**: run `python ui_search.py` to start a local server. Open http://127.0.0.1:5000/ in your browser and start searching!
 - **CLI**: run `python cli_search.py` and follow the instructions.
-
-------------------
-
-## Examples ##
-
-Prerequisites: Make sure to construct an index of the dataset first: `python build_index.py`
 
 ### Applications ###
 
 #### Finding popular topics ####
-
 By sending a query (i.e. a year), the application can retrieve all titles from publications of that year and find the most popular topics.
 ```python
 from popular_topics import PopularTopics
@@ -67,3 +65,13 @@ Query for the top-k similar publication venues and years:
 ```python
 results = svy.query_venue_year(venue='SIGIR', year='2015', top_k=10)
 ```
+
+------------------
+
+## Examples ##
+
+here we should show concrete sample queries and explain the output...
+
+### Search Engine ###
+
+### Applications ###
