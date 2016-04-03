@@ -78,8 +78,6 @@ results = svy.query_venue_year(venue='SIGIR', year='2015', top_k=10)
 
 ## Examples ##
 
-here we should show concrete sample queries and explain the output...
-
 ### Search Engine ###
 
 Let's use the command-line interface (`python cli_search.py`) to search for the phrase "query optimization":
