@@ -1,0 +1,20 @@
+1) title:user behavior
+{'f1': 0.202, 'nrelevant_gt': 89, 'recall': 0.1124, 'k': 10, 'precision': 1.0, 'N': 101, 'R-precision': 0.9326}
+2) authors:christopher manning venue:nips
+{'f1': 1.0, 'nrelevant_gt': 10, 'recall': 1.0, 'k': 10, 'precision': 1.0, 'N': 10, 'R-precision': 1.0}
+3) query optimisation 2013
+{'f1': 0.8, 'nrelevant_gt': 2, 'recall': 1.0, 'k': 3, 'precision': 0.6667, 'N': 3, 'R-precision': 0.5}
+4) title:"information retrieval"
+{'f1': 0.3922, 'nrelevant_gt': 41, 'recall': 0.2439, 'k': 10, 'precision': 1.0, 'N': 42, 'R-precision': 0.9756}
+5) auto-completion sigir
+{'f1': 1.0, 'nrelevant_gt': 7, 'recall': 1.0, 'k': 7, 'precision': 1.0, 'N': 7, 'R-precision': 1.0}
+6) trec authors:chris buckley
+{'f1': 0.8696, 'nrelevant_gt': 13, 'recall': 0.7692, 'k': 10, 'precision': 1.0, 'N': 13, 'R-precision': 1.0}
+7) year:2010 title:sentiment analysis
+{'f1': 0.3509, 'nrelevant_gt': 47, 'recall': 0.2128, 'k': 10, 'precision': 1.0, 'N': 47, 'R-precision': 1.0}
+8) system evaluation
+{'f1': 0.45, 'nrelevant_gt': 30, 'recall': 0.3, 'k': 10, 'precision': 0.9, 'N': 44, 'R-precision': 0.8}
+9) "recommender systems" "data mining"
+{'f1': 0.9091, 'nrelevant_gt': 5, 'recall': 1.0, 'k': 6, 'precision': 0.8333, 'N': 6, 'R-precision': 0.8}
+10) deep learning venue:icml year:2015
+{'f1': 0.8, 'nrelevant_gt': 12, 'recall': 0.6667, 'k': 8, 'precision': 1.0, 'N': 8, 'R-precision': 1.0}

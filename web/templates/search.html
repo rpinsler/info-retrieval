@@ -58,12 +58,12 @@
 </div>
 
  <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-12">
   {% if metadata %}
     {% if results|length == 1 %}
-      <p class="text-muted">{{metadata.maxhits}} result found ({{metadata.time}}s)</p>
+      <p class="text-muted">{{metadata.totalhits}} result found ({{metadata.duration|round(2)}}s).</p>
     {% else %}
-      <p class="text-muted">{{metadata.maxhits}} results found ({{metadata.time}}s)</p>
+      <p class="text-muted">{{metadata.totalhits}} results found ({{metadata.duration|round(2)}}s).</p>
     {% endif %}
   {% else %}
   <!-- show nothing -->
@@ -71,17 +71,20 @@
   	{% for result in results %}
     <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-12 excerpet">
-            <h4 class="title"><strong class="score" title="Relevance score: {{ result.score }}">{{result.rank}}</strong><a href="http://dblp.uni-trier.de/rec/{{result.key}}">{{ result.title }}</a></h4>
-            <span>{{ result.authors }}</span>
-            <span>{{ result.year }} - {{ result.venue }}</span>
-            <a href="#" data-toggle="tooltip" title="{{ result.key }}"><span class="glyphicon glyphicon-link"></span></a>
-            <p class="snippet">{{ result.text }}</p>
+            <h4 class="title"><strong class="score" title="Relevance score: {{ result.score }}">{{result.rank}}</strong><a target="_blank" href="http://dblp.uni-trier.de/rec/{{result.key}}">{{ result.title }}</a></h4>
+            <span>{{ result.authors }} - {{ result.year }} - {{ result.venue }}</span><br>
             <!--<span class="text-muted">Relevance: {{ result.score }}</span>-->
-            <span class="text-info">Relevance score: {{ result.score }}</span>
+            <span class="text-muted">Relevance score: {{ result.score }}</span>
+            <a href="#" data-toggle="tooltip" title="{{ result.key }}"><span class="glyphicon glyphicon-link"></span></a>
           </div>
           <span class="clearfix borda"></span>
         </article>
   	{% endfor %}
+    {% if metadata %}
+      {% if metadata.totalhits > results|length %}
+        <p class="text-muted" style="margin-top: 2em;">Only top {{metadata.N}} results are shown.</p>
+      {% endif %}
+    {% endif %}
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
 {% endblock %}
@@ -89,13 +92,21 @@
 {% block js_footer %}
 {{ super() }}
 <script type="text/javascript">
+  function decodeEntities(encodedString) {
+      var textArea = document.createElement('textarea');
+      textArea.innerHTML = encodedString;
+      return textArea.value;
+  }
+
   // re-insert values after search has been performed
-  $("#i_search").val('{{query}}')
+  // using safe here is actually not so safe, but good enough
+  // for a demo
+  $("#i_search").val('{{query|safe}}')
   {% if adv_query %}
-  $("#i_title").val('{{adv_query.title}}')
-  $("#i_authors").val('{{adv_query.authors}}')
-  $("#i_year").val('{{adv_query.year}}')
-  $("#i_venue").val('{{adv_query.venue}}')
+  $("#i_title").val('{{adv_query.title|safe}}')
+  $("#i_authors").val('{{adv_query.authors|safe}}')
+  $("#i_year").val('{{adv_query.year|safe}}')
+  $("#i_venue").val('{{adv_query.venue|safe}}')
   {% endif %}
 </script>
 

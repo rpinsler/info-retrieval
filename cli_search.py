@@ -14,7 +14,7 @@ INDEX_DIR = 'index'
 DATA_DIR = 'data/dblp.xml'
 
 # run search on command line
-# see web/ui.py to use the search via web UI
+# see ui_search.py to use the search via web UI
 if __name__ == "__main__":
     with open(CONFIG_DIR) as f:
         config = json.load(f)

@@ -19,7 +19,12 @@ import HTMLParser
 TAGS = ('article', 'inproceedings')
 HTML_TAGS = ('i', 'ref', 'sub', 'sup', 'tt')
 FIELDS = ['title', 'author', 'year', 'journal', 'booktitle']
-EVAL_MODE = True  # used to randomly sample documents for evaluation
+
+# evaluation-specific variables
+EVAL_MODE = False
+DOC_SELECTION_DIR = "eval/qrels_manual/random_doc_selection.txt"
+QRELS_DIR = "eval/qrels_manual/qrels.txt"
+DBLP_RESULTS_DIR = "eval/qrels_dblp/dblp_results.txt"
 
 
 class Indexer():
@@ -44,14 +49,13 @@ class Indexer():
 
         # sample some random documents for evaluation
         if EVAL_MODE:
-            open("eval/qrels_manual/random_doc_selection", "w").close()
-            open("eval/qrels_manual/qrels", "w").close()
+            open(DOC_SELECTION_DIR, "w").close()
+            open(QRELS_DIR, "w").close()
             N = 3166933
             k = 150
             random.seed(0)
             self.randdocs = sorted(random.sample(range(1, N+1), k=k))
-            f_coll = "eval/qrels_manual/testcollection"
-            self.dblpdocs = [line.rstrip('\n') for line in open(f_coll)]
+            self.dblpdocs = [line.rstrip('\n') for line in open(DBLP_RESULTS_DIR)]
             self.collsize = 0
             self.dblpincoll = 0
 
@@ -64,7 +68,7 @@ class Indexer():
 
     def index(self, data_dir):
         """
-        Parses XML document and emits event for each matching tag. 
+        Parses XML document and emits event for each matching tag.
         Based on Liza Daly's fast_iter
         http://www.ibm.com/developerworks/xml/library/x-hiperfparse/
         See also http://effbot.org/zone/element-iterparse.htm
@@ -147,7 +151,10 @@ class Indexer():
         Extracts values from Lucene document and writes them into
         relevance judgments template file.
         """
-        with open("eval/qrels_manual/random_doc_selection", "a") as f:
+
+        # write human-readable document that can be used to assign
+        # relevance judgments
+        with open(DOC_SELECTION_DIR, "a") as f:
             # have to be careful with the correct encoding here!
             self.collsize += 1
             f.write('%d) ' % (self.collsize))
@@ -162,7 +169,11 @@ class Indexer():
             f.write('%s\n title: %s\n authors: %s\n year: %s\n venue: %s\n'
                     % (key, title, authors, year, venue))
 
-            with open("eval/qrels_manual/qrels", "a") as f:
+            with open(QRELS_DIR, "a") as f:
+                # write qrels template for evaluation.
+                # can use eval/qrels_manual/qrels.sh to copy template
+                # for each topic, which can then by completed by
+                # relevance judgments
                 f.write('TOPIC_NUM\t0\t%s\t \n' % doc['id'])
 
 

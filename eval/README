@@ -1,0 +1,11 @@
+This folder contains files for the evaluation of indexing configurations as well as the search engine. In particular:
+- topics.txt: definition of test queries derived from different topics with information needs
+- parse_dblp.py: uses topics.txt to query the DBLP search API; obtains and parses the results
+
+- qrels_dblp/: directory in which the query results from the DBLP search API as well as the derived relevance judgments are saved (produced by parse_dblp.py)
+- qrels_manual/: directory in which the templates for manual relevance judgment labeling are stored along with some auxiliary files to facilitate the labeling process (most of them produced by ../build_index.py with EVAL_MODE=True)
+
+- index_eval.txt: results from evaluating different indexing options (produced by ../evaluate.py)
+- search_eval.txt: results from evaluation the search engine (produced by ../evaluate.py) 
+
+

@@ -1,9 +1,13 @@
 from lxml import etree
 import urllib
 import re
+import os
 
 RECORD_TYPES = ["Conference and Workshop Papers", "Journal Articles"]
 API_URL = "http://dblp.uni-trier.de/search/publ/api?"
+QRELS_DIR = "eval/qrels_dblp/"
+DBLP_RESULTS_DIR = "eval/qrels_dblp/dblp_results.txt"
+TOPICS_DIR = "eval/topics.txt"
 
 
 def parse(context):
@@ -63,14 +67,17 @@ def build_dblp_query(q):
     return q
 
 if __name__ == "__main__":
-    tree = etree.parse("eval/topics.txt")
+    tree = etree.parse(TOPICS_DIR)
     results = []
+    if not os.path.exists(QRELS_DIR):
+        os.mkdir(QRELS_DIR)
+
     for element in tree.iter():
         if element.tag == 'num':
             topic_num = int(element.text)
         elif element.tag == 'query':
-            data_dir = 'eval/qrels_dblp/q_%d' % topic_num
-            open("eval/qrels_dblp/qrels_%d" % topic_num, 'w').close()
+            data_dir = QRELS_DIR + 'q_%d.txt' % topic_num
+            open(QRELS_DIR + "qrels_%d.txt" % topic_num, 'w').close()
             nretrieved = 0
             nresults = 1000
             nfetch = 1000
@@ -86,7 +93,7 @@ if __name__ == "__main__":
                 context = etree.iterparse(data_dir, events=('end',),
                                           tag=('hits'))
 
-                with open("eval/qrels_dblp/qrels_%d" % topic_num, "a") as f:
+                with open(QRELS_DIR + "qrels_%d.txt" % topic_num, "a") as f:
                     res, nresults = parse(context)
                     if nretrieved == 0:  # first fetch
                         maxscore = res[min(10, len(res))-1]['score']
@@ -104,7 +111,7 @@ if __name__ == "__main__":
                             results.append(d['key'])
                 nretrieved += nfetch
     print "#Results: " + str(len(results))
-    open("eval/qrels_manual/testcollection", 'w').close()
-    with open("eval/qrels_manual/testcollection", "a") as rf:
+    open(DBLP_RESULTS_DIR, 'w').close()
+    with open(DBLP_RESULTS_DIR, "a") as rf:
         for res in results:
             rf.write('%s\n' % res)

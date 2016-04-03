@@ -156,7 +156,7 @@ class Searcher():
                 try:
                     # trying to convert doc into string might
                     # cause ascii error
-                    print "%d) %s (relevance: %f)" % \
+                    print "%d) %s (relevance: %.2f)" % \
                         (d['rank'], d['key'], d['score'])
                     print d['title']
                     print d['authors']

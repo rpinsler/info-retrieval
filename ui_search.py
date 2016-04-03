@@ -7,7 +7,7 @@ from java.util import HashMap
 from flask import Flask, render_template, request
 import logging
 import logging.handlers
-from search import Searcher, format_results
+from search import Searcher
 from index import CustomAnalyzer
 from utils import check_config
 
@@ -34,11 +34,11 @@ searcher = Searcher(INDEX_DIR, analyzer)
 # start Flask app
 app = Flask(__name__, static_folder="web/static",
             template_folder="web/templates")
-# app.config.update(DEBUG=True)
-# logger = logging.getLogger('dblp-search')
-# logger.setLevel(logging.DEBUG)
-# ch = logging.StreamHandler()
-# logger.addHandler(ch)
+app.config.update(DEBUG=True)
+logger = logging.getLogger('dblp-search')
+logger.setLevel(logging.DEBUG)
+ch = logging.StreamHandler()
+logger.addHandler(ch)
 
 
 @app.route('/')
@@ -64,7 +64,7 @@ def search():
 
     docs, metadata = searcher.search(query=query, adv_query=adv_query,
                                      N=config['topN'])
-    results = format_results(docs)
+    results = searcher.format_results(docs)
     return render_template('search.html', results=results, metadata=metadata,
                            query=query, adv_query=adv_query)
 

@@ -259,7 +259,7 @@ Indexing the DBLP dataset is a multi-step process. First, each record has to be 
 \footnotetext[2]{Listings are slightly modified to improve readability.}
 \pythonexternal{snippets/class_indexer.py}
 
-\textbf{Parsing} \quad  We use an XML parser to extract the DBLP records from the dataset. Due to the large file size, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the lxml\footnote{\url{http://lxml.de}} Python library that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. For each emitted event, we call the index\_document function. (Listing \ref{lst:indexer}, lines 15-19)
+\textbf{Parsing} \quad  We use an XML parser to extract the DBLP records from the dataset. Due to the large file size, reading in the whole XML tree at once is impractical. Instead, we use a SAX-like parser from the lxml\footnote{\url{http://lxml.de}} Python package that sequentially reads the document and emits events when it encounters certain XML tags. This allows to only react to \emph{<article>} and \emph{<inproceedings>} tags, thereby ignoring record types we are not interested in. This makes it very fast and memory-efficient. For each emitted event, we call the index\_document function. (Listing \ref{lst:indexer}, lines 15-19)
 
 \lstset{caption={index\_document function}, label={lst:fn_index}}
 \pythonexternal{snippets/fn_index.py}
@@ -401,7 +401,7 @@ There are two ways to interact with the search engine: via a text-based command 
 \begin{figure*}[th]
 \centering
 \includegraphics[width=.8\textwidth]{img/search}
-\caption{Web-based search user interface}
+\caption{Web-based search user interface: results for example query "query optimization`` (restricted to publications from 2000, advanced query not shown). Only top-2 results are depicted due to space constraints.}. 
 \label{fig:search}
 \end{figure*}
 

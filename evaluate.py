@@ -1,8 +1,8 @@
 import time
-import os
 import lucene
 import csv
 import re
+import json
 from lxml import etree
 from java.io import File
 from org.apache.lucene.store import SimpleFSDirectory
@@ -14,10 +14,16 @@ from java.util import HashMap
 
 from index import Indexer, CustomAnalyzer
 from search import Searcher
+from utils import check_config
 
 INDEX_DIR = 'index'
-DATA_DIR = 'data/dblp.xml'
+DATA_DIR = 'data/dblp_small.xml'
 QRELS_FIELDS = ['topic', 'iteration', 'document', 'relevancy']
+CONFIG_DIR = 'config.json'
+INDEX_EVAL_DIR = "eval/index_eval.txt"
+TOPICS_DIR = "eval/topics.txt"
+QRELS_DIR = "eval/qrels_manual/"
+SEARCH_EVAL_DIR = "eval/search_eval.txt"
 
 
 def evaluate_index(data_dir, store_dir, analyzer):
@@ -30,7 +36,7 @@ def evaluate_index(data_dir, store_dir, analyzer):
     end = time.clock()
     duration = end-start
 
-    directory = SimpleFSDirectory(File(data_dir))
+    directory = SimpleFSDirectory(File(store_dir))
     reader = IndexReader.open(directory)
     vocabulary = MultiFields.getTerms(reader, 'title')
     vocab_size = vocabulary.size()
@@ -50,6 +56,7 @@ def evaluate_search(topics_dir, qrels_dir, searcher, N=0, k=10):
     Evaluates the quality of search results.
     """
     scores = []
+    queries = []
     tree = etree.parse(topics_dir)
 
     if N == 0:
@@ -59,14 +66,16 @@ def evaluate_search(topics_dir, qrels_dir, searcher, N=0, k=10):
         if element.tag == 'num':
             topic_num = int(element.text)
         elif element.tag == 'query':
+            print
             print("Evaluate topic %d") % topic_num
             gt = get_ground_truth(qrels_dir, topic_num)
 
             # perform search
             q = element.text
+            queries.append(q)
             query, adv_query = parse_query(q)
-            print query
-            print adv_query
+            print "Standard query: %s" % query
+            print "Advanced query: %s" % adv_query
             docs, _ = searcher.search(query=query, adv_query=adv_query, N=N)
 
             # get all ids from search results
@@ -109,7 +118,7 @@ def evaluate_search(topics_dir, qrels_dir, searcher, N=0, k=10):
                            'recall': naround(R[cutoff-1]),
                            'f1': naround(F[cutoff-1]),
                            'R-precision': naround(P[min(len(P), nrelevant_gt)-1])})
-    return scores
+    return scores, queries
 
 
 def get_ground_truth(qrels_dir, topic_num):
@@ -180,9 +189,11 @@ def naround(val, precision=4):
     """
     return round(val, precision) if val is not None else None
 
+
 if __name__ == "__main__":
     lucene.initVM()
 
+    # evaluate indexing options
     configs = [{'lowercase': False, 'stemming': False, 'stopwords': False},
                {'lowercase': False, 'stemming': False, 'stopwords': True},
                {'lowercase': False, 'stemming': True, 'stopwords': False},
@@ -192,45 +203,54 @@ if __name__ == "__main__":
                {'lowercase': True, 'stemming': True, 'stopwords': False},
                {'lowercase': True, 'stemming': True, 'stopwords': True}]
 
-    #print
-    #print("Evaluate indexing options")
-    #with open("eval/index_eval.txt", 'w') as f:
-    #    for config in configs:
-    #        context = etree.iterparse(DATA_DIR,
-    #                                  events=('end',),
-    #                                  tag=('article', 'inproceedings'),
-    #                                  dtd_validation=True)
-    #        title_analyzer = CustomAnalyzer(config)
-    #        per_field = HashMap()
-    #        per_field.put("title", title_analyzer)
-    #        analyzer = PerFieldAnalyzerWrapper(
-    #                    StandardAnalyzer(Version.LUCENE_CURRENT), per_field)
-    #        duration, size = evaluate_index(os.path.join(base_dir, INDEX_DIR),
-    #                                        context, analyzer)
-    #        print
-    #        print(config)
-    #        print("Speed of indexing: %.2fs" % round(duration, 2))
-    #        print("Size of vocabulary on title attribute: %d\n" % size)
-#
-#    #        f.write(str(config) + "\n")
-#    #        f.write("Speed of indexing: %.2fs\n" % round(duration, 2))
-    #        f.write("Size of vocabulary on title attribute: %d\n" % size)
+    print
+    print("Evaluate indexing options")
+    with open(INDEX_EVAL_DIR, 'w') as f:
+        for config in configs:
+            title_analyzer = CustomAnalyzer(config)
+            per_field = HashMap()
+            per_field.put("title", title_analyzer)
+            analyzer = PerFieldAnalyzerWrapper(
+                        StandardAnalyzer(Version.LUCENE_CURRENT), per_field)
+            duration, size = evaluate_index(DATA_DIR, INDEX_DIR, analyzer)
+            print
+            print(config)
+            print("Speed of indexing: %.2fs" % round(duration, 2))
+            print("Size of vocabulary on title attribute: %d\n" % size)
+
+            f.write(str(config) + "\n")
+            f.write("Speed of indexing: %.2fs\n" % round(duration, 2))
+            f.write("Size of vocabulary on title attribute: %d\n" % size)
+
+    # evaluate search
+    # requires labeled test collection of documents in QRELS_DIR
+    # to get meaningful results, one should first index the
+    # test collection only by running build_index.py with EVAL_MODE=True
 
     print
     print("Evaluate search")
-    topics_dir = "eval/topics.txt"
-    qrels_dir = "eval/qrels_manual/"
     scores = []
     N = 0
 
     # index documents
-    config = {'lowercase': True, 'stemming': True, 'stopwords': True}
-    title_analyzer = CustomAnalyzer(config)
+    with open(CONFIG_DIR) as f:
+            config = json.load(f, encoding='ascii')
+            config = check_config(config)
+
+    title_analyzer = CustomAnalyzer(config['titleAnalyzer'])
     per_field = HashMap()
     per_field.put("title", title_analyzer)
     analyzer = PerFieldAnalyzerWrapper(
                 StandardAnalyzer(Version.LUCENE_CURRENT), per_field)
     searcher = Searcher(INDEX_DIR, analyzer, verbose=False)
-    scores = evaluate_search(topics_dir, qrels_dir, searcher, N=N, k=10)
-    for i, sc in enumerate(scores):
-        print("%d) %s") % (i+1, sc)
+    scores, queries = evaluate_search(TOPICS_DIR, QRELS_DIR, searcher,
+                                      N=N, k=10)
+    print
+    print("Evaluation results:")
+    with open(SEARCH_EVAL_DIR, 'w') as f:
+        for i, q in enumerate(queries):
+            print("%d) %s") % (i+1, q)
+            print str(scores[i])
+
+            f.write("%d) %s\n" % (i+1, q))
+            f.write("%s\n" % scores[i])
