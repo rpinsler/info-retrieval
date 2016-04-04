@@ -47,6 +47,10 @@ You can use one of the following ways to interact with the search engine:
 
 ### Applications ###
 
+The easiest way to use the applications is to run `python run_app.py` and follow the instructions. If you want to call the functions directly (e.g. to build a UI on top), follow the steps below.
+
+**Hint:** If you get a memory error, try to reduce the number of topics.
+
 #### Finding popular topics ####
 By sending a query (i.e. a year), the application can retrieve all titles from the paper published in that year and find the most popular topics.
 ```python
@@ -66,18 +70,12 @@ svy.lda_modeling(context, n_topics=10, n_iter=100)
 ```
 You may want to store the model so the next time you can just load the model from files, instead of running LDA again.
 ```python
-svy.write_to_file(path) # defalut: ./temp
+svy.write_to_file(path) # default: ./temp
 svy.load_from_file(path)
 ```
 Query for the top-k similar publication venues and years:
 ```python
 results = svy.query_venue_year(venue='SIGIR', year='2015', top_k=10)
-```
-
-Besides of calling above-mentioned APIs, you can also open `run_app.py` to test the code with:
-```python
-run_app1(top_k)
-run_app2(n_topics, n_iter, top_k)
 ```
 
 ------------------
@@ -162,41 +160,68 @@ In reality, an end user would prefer to use the web UI, which is mostly self-exp
 
 #### Finding popular ####
 
-The result is like:
+Running `python run_app.py` shows the following dialogue, where we can enter our search query: 2015.
 
 ```
-2015
-case study 1294
-wireless sensor networks 978
-performance analysis 525
-special issue 455
-performance evaluation 397
-cognitive radio networks 350
-comparative study 344
-empirical study 315
-neural network 313
-genetic algorithm 303
+Search for most popular topics in a given year. Press enter with no input to continue.
+Year: 2015
 ```
 
-The first line is the query year, and the remainings are the top 10 most popular topics, with the frequency of appearing in the paper titles in the query year.
+As a result, we get the top 10 most popular topics with the number of occurences in the paper titles shown in parentheses:
+
+```
+Results:
+1) case study (1294)
+2) wireless sensor networks (978)
+3) performance analysis (525)
+4) special issue (455)
+5) performance evaluation (397)
+6) cognitive radio networks (350)
+7) comparative study (344)
+8) empirical study (315)
+9) neural network (313)
+10) genetic algorithm (303)
+```
 
 #### Finding similar publication venues and year ####
 
-The result is like:
+Similarly, we can search for the most similar publication venues and years. Since we are using Latent Dirichlet Allocation (LDA), we first have to learn the model. The output should look similar to this:
 
 ```
-Query: ICML 2008
+Search for most similar publication venues and years. This requires to first run LDA (may take some minutes).
+Do you want to continue? (y/n): y
+Running LDA...
+INFO:lda:n_documents: 52113
+INFO:lda:vocab_size: 41704
+INFO:lda:n_words: 22698646
+INFO:lda:n_topics: 10
+INFO:lda:n_iter: 100
+INFO:lda:<0> log likelihood: -239102931
+INFO:lda:<10> log likelihood: -200741256
+...
+INFO:lda:<99> log likelihood: -186544533
 
-NIPS 2013 0.996201855584
-NIPS 2014 0.996095504679
-ICML 2013 0.99563417354
-ICML 2006 0.995400670197
-NIPS 2007 0.995344881108
-NIPS 2010 0.995275601664
-AISTATS 2012 0.994550320804
-Journal of Machine Learning Research 2010 0.994530348355
-ICML 2007 0.994376385049
-ICML 2011 0.994253713082
+Finished LDA.
 ```
 
-The first line is the query venue and year, and the remainings are the top 10 most similar publication venues and years (except itself), with the topic similarities of appearing in the paper titles in the query year.
+Afterwards, we can send our query, for example ICML 2008:
+
+```
+Search for most similar publication venues and years. Press enter with no input to continue.
+Venue: ICML
+Year: 2008
+
+Results:
+1) NIPS 2013 (0.9962)
+2) NIPS 2014 (0.9961)
+3) ICML 2013 (0.9956)
+4) ICML 2006 (0.9954)
+5) NIPS 2007 (0.9953)
+6) NIPS 2010 (0.9953)
+7) AISTATS 2012 (0.9946)
+8) Journal of Machine Learning Research 2010 (0.9945)
+9) ICML 2007 (0.9944)
+10) ICML 2011 (0.9943)
+```
+
+which will output the top-10 most similar publication venues and years (except itself), with the topic similarity scores shown in parentheses.
