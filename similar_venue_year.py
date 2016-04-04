@@ -9,6 +9,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
 
 STOP_WORDS = stopwords.words('english')
+TEMP_PATH = 'temp'
 
 
 class SimilarVenueYear():
@@ -32,12 +33,15 @@ class SimilarVenueYear():
         cv = CountVectorizer(stop_words='english', min_df=min_df)
         self.venue_year_names = venue_year_titles.keys()
 
-        features = cv.fit_transform(venue_year_titles.values()).toarray()
+        features = cv.fit_transform(venue_year_titles.values())
+        venue_year_titles = None  # cleanup memory
+        # features = features.toarray()
         self.vocab = zip(*sorted(cv.vocabulary_.iteritems(), key=lambda k: k[1]))[0]
         self.model = lda.LDA(n_topics=n_topics, random_state=0, n_iter=n_iter)
         self.model.fit(features)
+        features = None  # cleanup memory
 
-        self.write_to_file()
+        self.write_to_file(TEMP_PATH)
 
     def parse_dataset(self, context):
         """
@@ -65,6 +69,7 @@ class SimilarVenueYear():
                 while ancestor.getprevious() is not None:
                     del ancestor.getparent()[0]
         del context
+        return venue_year_titles
 
     def print_topic_words(self, n_topics='all', n_top_words=8):
         """
@@ -82,6 +87,9 @@ class SimilarVenueYear():
         Finds top-k most similar (venue, year) pairs to given venue and year.
         """
         query_venue_year_name = venue + year
+        if query_venue_year_name not in self.venue_year_names:
+            print("(venue, year) pair not found. Please try again.")
+            return None
         query_id = self.venue_year_names.index(query_venue_year_name)
         doc_topic = self.model.doc_topic_
         all_sim = []

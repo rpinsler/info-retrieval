@@ -1,4 +1,3 @@
-import sys
 import lucene
 import json
 from lxml import etree
@@ -7,7 +6,7 @@ from org.apache.lucene.util import Version
 from org.apache.lucene.analysis.miscellaneous import PerFieldAnalyzerWrapper
 from java.util import HashMap
 
-from index import Indexer, CustomAnalyzer
+from index import CustomAnalyzer
 from utils import check_config
 
 
@@ -19,26 +18,51 @@ TAGS = ('article', 'inproceedings')
 
 def run_app1(top_k):
     from popular_topics import PopularTopics
-
     pt = PopularTopics(INDEX_DIR, analyzer)
-    while 1:
-        query_year = raw_input("Query for a year: ")
-        results = pt.get_popular_topics(query_year, top_k=top_k)  # top_k is set to 10.
-        print results
+    while True:
+        print
+        print("Search for most popular topics in a given year. Press enter with no input to continue.")
+        query_year = raw_input("Year: ")
         if query_year == '':
-            sys.exit(0)
+            return
+
+        results = pt.get_popular_topics(query_year, top_k=top_k)
+        print
+        print("Results:")
+        for i, res in enumerate(results):
+            print("%d) %s (%s)") % (i+1, res[0], res[1])
 
 
 def run_app2(n_topics, n_iter, top_k):
     from similar_venue_year import SimilarVenueYear
     svy = SimilarVenueYear()
+    context = etree.iterparse(DATA_DIR, events=('end',),
+                              tag=TAGS, dtd_validation=True)
+    print
+    print("Search for most similar publication venues and years. This requires to first run LDA (may take some minutes).")
+    cont = raw_input("Do you want to continue? (y/n): ")
+    if cont == 'n':
+        return
+    elif cont != 'y':
+        print "Invalid input. Stopping here."
+        return
+
+    print("Running LDA...")
     svy.lda_modeling(context, n_topics=n_topics, n_iter=n_iter)
-    while 1:
-        query_venue, query_year = raw_input("Query for a venue and year: ").split()
-        results = svy.query_venue_year(venue=query_venue, year=query_year, top_k=top_k)  # top_k is set to 10.
-        print results
-        if query_year == '':
-            sys.exit(0)
+    print("Finished LDA.")
+    while True:
+        print
+        print("Search for most similar publication venues and years. Press enter with no input to continue.")
+        query_venue = raw_input("Venue: ")
+        if query_venue == '':
+            return
+        query_year = raw_input("Year: ")
+        results = svy.query_venue_year(venue=query_venue, year=query_year, top_k=top_k)
+        if results is not None:
+            print
+            print("Results:")
+            for i, res in enumerate(results):
+                print("%d) %s (%.4f)") % (i+1, res[0] + " " + str(res[1]), res[2])
 
 
 if __name__ == '__main__':
@@ -53,10 +77,6 @@ if __name__ == '__main__':
     per_field.put("title", title_analyzer)
     analyzer = PerFieldAnalyzerWrapper(
                 StandardAnalyzer(Version.LUCENE_CURRENT), per_field)
-
-    context = etree.iterparse(DATA_DIR, events=('end',),
-                                  tag=TAGS,
-                                  dtd_validation=True)
 
     run_app1(top_k=10)
     run_app2(n_topics=10, n_iter=100, top_k=10)
