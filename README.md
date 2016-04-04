@@ -48,7 +48,7 @@ You can use one of the following ways to interact with the search engine:
 ### Applications ###
 
 #### Finding popular topics ####
-By sending a query (i.e. a year), the application can retrieve all titles from publications of that year and find the most popular topics.
+By sending a query (i.e. a year), the application can retrieve all titles from the paper published in that year and find the most popular topics.
 ```python
 from popular_topics import PopularTopics
 
@@ -58,7 +58,7 @@ results = pt.get_popular_topics(query_year, top_k)
 ```
 
 #### Finding similar publication venues and years ####
-We will use [LDA](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) to find the most similar publication venues and years. If this is the first time you run this code, then you need to build an LDA model using:
+We use [LDA](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation) to find the most similar publication venues and years. If this is the first time you run this code, then you need to build an LDA model using:
 ```python
 from similar_venue_year import SimilarVenueYear
 svy = SimilarVenueYear()
@@ -153,3 +153,44 @@ In reality, an end user would prefer to use the web UI, which is mostly self-exp
 ![Search results for query "query optimization" year:2000](https://github.com/rpinsler/info-retrieval/blob/master/report/img/search.png)
 
 ### Applications ###
+
+#### Finding popular ####
+
+The result is like:
+
+```
+2015
+case study 1294
+wireless sensor networks 978
+performance analysis 525
+special issue 455
+performance evaluation 397
+cognitive radio networks 350
+comparative study 344
+empirical study 315
+neural network 313
+genetic algorithm 303
+```
+
+The first line is the query year, and the remainings are the top 10 most popular topics, with the frequency of appearing in the paper titles in the query year.
+
+#### Finding similar publication venues and year ####
+
+The result is like:
+
+```
+Query: KDD 2014
+
+KDD 2015 0.993358313714
+KDD 2013 0.978063508124
+DSAA 2015 0.975281958078
+ICDM 2014 0.972571708635
+PAKDD (1) 2015 0.971885548488
+ICDM 2015 0.970327638254
+SDM 2014 0.969345481194
+KDD 2010 0.967680933111
+SDM 2013 0.967679102332
+TKDD 2015 0.96663906374
+```
+
+The first line is the query venue and year, and the remainings are the top 10 most similar publication venues and years (except itself), with the topic similarities of appearing in the paper titles in the query year.
