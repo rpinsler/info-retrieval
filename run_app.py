@@ -34,7 +34,8 @@ def run_app2(n_topics, n_iter, top_k):
     svy = SimilarVenueYear()
     svy.lda_modeling(context, n_topics=n_topics, n_iter=n_iter)
     while 1:
-        query_venue, query_year = raw_input("Query for a venue and year: ").split()
+        query_venue = raw_input("Query for a venue: ")
+        query_year = raw_input("Query for a year: ")
         results = svy.query_venue_year(venue=query_venue, year=query_year, top_k=top_k)  # top_k is set to 10.
         print results
         if query_year == '':
