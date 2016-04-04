@@ -74,6 +74,12 @@ Query for the top-k similar publication venues and years:
 results = svy.query_venue_year(venue='SIGIR', year='2015', top_k=10)
 ```
 
+Besides of calling above-mentioned APIs, you can also open `run_app.py` to test the code with
+```python
+run_app1(top_k)
+run_app2(n_topics, n_iter, top_k)
+```
+
 ------------------
 
 ## Examples ##

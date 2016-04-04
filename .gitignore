@@ -4,6 +4,7 @@
 data/
 index/
 luke/
+.idea/
 
 report/sig-*
 !report/sig-alternate-05-2015.cls
