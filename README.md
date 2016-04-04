@@ -49,8 +49,6 @@ You can use one of the following ways to interact with the search engine:
 
 The easiest way to use the applications is to run `python run_app.py` and follow the instructions. If you want to call the functions directly (e.g. to build a UI on top), follow the steps below.
 
-**Hint:** If you get a memory error, try to reduce the number of topics.
-
 #### Finding popular topics ####
 By sending a query (i.e. a year), the application can retrieve all titles from the paper published in that year and find the most popular topics.
 ```python
@@ -185,7 +183,7 @@ Results:
 
 #### Finding similar publication venues and year ####
 
-Similarly, we can search for the most similar publication venues and years. Since we are using Latent Dirichlet Allocation (LDA), we first have to learn the model. The output should look similar to this:
+Similarly, we can search for the most similar publication venues and years. Since we are using Latent Dirichlet Allocation (LDA), we first have to learn the model (**Hint:** If you get a memory error, try to reduce the number of topics). The output should look similar to this:
 
 ```
 Search for most similar publication venues and years. This requires to first run LDA (may take some minutes).
