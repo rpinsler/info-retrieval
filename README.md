@@ -179,18 +179,18 @@ The first line is the query year, and the remainings are the top 10 most popular
 The result is like:
 
 ```
-Query: KDD 2014
+Query: ICML 2008
 
-KDD 2015 0.993358313714
-KDD 2013 0.978063508124
-DSAA 2015 0.975281958078
-ICDM 2014 0.972571708635
-PAKDD (1) 2015 0.971885548488
-ICDM 2015 0.970327638254
-SDM 2014 0.969345481194
-KDD 2010 0.967680933111
-SDM 2013 0.967679102332
-TKDD 2015 0.96663906374
+NIPS 2013 0.996201855584
+NIPS 2014 0.996095504679
+ICML (3) 2013 0.99563417354
+ICML 2006 0.995400670197
+NIPS 2007 0.995344881108
+NIPS 2010 0.995275601664
+AISTATS 2012 0.994550320804
+Journal of Machine Learning Research 2010 0.994530348355
+ICML 2007 0.994376385049
+ICML 2011 0.994253713082
 ```
 
 The first line is the query venue and year, and the remainings are the top 10 most similar publication venues and years (except itself), with the topic similarities of appearing in the paper titles in the query year.
